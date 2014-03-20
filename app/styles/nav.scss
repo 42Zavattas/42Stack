@@ -1,0 +1,24 @@
+@import "compass/css3";
+@import "colors";
+
+nav {
+	z-index: 999;
+	background: $base03;
+	border-bottom: 2px solid rgba(black, .3);
+	@include background-image(linear-gradient($base03, darken($base03, 2)));
+	@include box-shadow(rgba(white, .1) 0 1px 0);
+	> ul {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		list-style-type:none;
+		> li {
+			margin: 8px;
+		}
+		> .profile {
+			position: absolute;
+			right: 0px;
+		}
+	}
+
+}

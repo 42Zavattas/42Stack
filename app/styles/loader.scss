@@ -1,0 +1,27 @@
+@keyframes anim-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+loader {
+	display: inline-block;
+	position: fixed;
+	top: 102px;
+	left: 29px;
+	width: 32px;
+	height:32px;
+	animation: anim-rotate 500ms infinite linear;
+	text-shadow: 0 0 .25em rgba(255,255,255, .3);
+	> i {
+		font-size: 32px;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+}

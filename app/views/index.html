@@ -1,66 +1,54 @@
-<!doctype html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
 	<head>
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<base href="/">
-		<title></title>
+
+		<title>42Stack</title>
+
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
-		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<!-- build:css(app) styles/vendor.css -->
+
+		<!-- build:css styles/vendor.css -->
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/animate.css/animate.css" />
 		<link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
 		<!-- endbower -->
 		<!-- endbuild -->
+
 		<!-- build:css({.tmp,app}) styles/main.css -->
+		<link rel="stylesheet" href="bower_components/animate.css/animate.css">
+		<link rel="stylesheet" href="styles/ng-tags.css" />
+		<link rel="stylesheet" href="styles/menu.css">
+		<link rel="stylesheet" href="styles/icomoon/style.css">
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
+
 	</head>
-	<body ng-app="42StackApp">
-		<!--[if lt IE 7]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
-				href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
+	<body ng-app="42StackApp" ng-controller="AppCtrl">
 
-		<!-- Add your site or application content here -->
-		<div class="container" ng-view=""></div>
+		<loader></loader>
 
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-		<script>
-			(function (i, s, o, g, r, a, m) {
-				i['GoogleAnalyticsObject'] = r;
-				i[r] = i[r] || function () {
-					(i[r].q = i[r].q || []).push(arguments)
-				}, i[r].l = 1 * new Date();
-				a = s.createElement(o),
-						m = s.getElementsByTagName(o)[0];
-				a.async = 1;
-				a.src = g;
-				m.parentNode.insertBefore(a, m)
-			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+		<nav id="bt-menu" class="bt-menu">
+			<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+			<ul>
+				<li><a href="#/" class="bt-icon icon-home">Accueil</a></li>
+				<li><a href="#/ask" class="bt-icon icon-quill">Poser une question</a></li>
+				<li><a href="#/users" class="bt-icon icon-users">Utilisateurs</a></li>
+				<li><a href="#/chat" class="bt-icon icon-bubbles4">Chat</a></li>
+				<li><a href="#/login" class="bt-icon icon-user">Profil</a></li>
+			</ul>
+		</nav>
 
-			ga('create', 'UA-XXXXX-X');
-			ga('send', 'pageview');
-		</script>
+		<div class="ui-content" ng-view=""></div>
 
-		<!--[if lt IE 9]>
-		<script src="bower_components/es5-shim/es5-shim.js"></script>
-		<script src="bower_components/json3/lib/json3.min.js"></script>
-		<![endif]-->
-
-		<!-- build:js(app) scripts/vendor.js -->
+		<!-- build:js scripts/vendor.js -->
 		<!-- bower:js -->
 		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/es5-shim/es5-shim.js"></script>
 		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/json3/lib/json3.min.js"></script>
 		<script src="bower_components/angular-resource/angular-resource.js"></script>
 		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -70,12 +58,35 @@
 		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
 		<script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 		<!-- endbower -->
+		<script src="scripts/effects/modernizr.js"></script>
+		<script src="scripts/effects/jquery.dropdown.js"></script>
+		<script src="scripts/lib/ng-tags-input.js"></script>
+		<script src="scripts/lib/Markdown.Converter.js"></script>
+		<script src="scripts/lib/Markdown.Sanitizer.js"></script>
+		<script src="scripts/lib/Markdown.Editor.js"></script>
 		<!-- endbuild -->
 
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
+		<script src="scripts/services/question.js"></script>
+		<script src="scripts/services/tags.js"></script>
+		<script src="scripts/services/user.js"></script>
 		<script src="scripts/controllers/main.js"></script>
-		<script src="scripts/controllers/navbar.js"></script>
+		<script src="scripts/controllers/ask.js"></script>
+		<script src="scripts/controllers/login.js"></script>
+		<script src="scripts/controllers/question.js"></script>
+		<script src="scripts/controllers/questions.js"></script>
+		<script src="scripts/controllers/user.js"></script>
+		<script src="scripts/controllers/users.js"></script>
+		<script src="scripts/controllers/chat.js"></script>
+		<script src="scripts/directives/hashbar.js"></script>
+		<script src="scripts/directives/loader.js"></script>
+		<script src="scripts/directives/dropdown.js"></script>
+		<script src="scripts/directives/markdown.js"></script>
+		<script src="scripts/directives/pagedown.js"></script>
+		<script src="scripts/effects/classie.js"></script>
+		<script src="scripts/effects/borderMenu.js"></script>
 		<!-- endbuild -->
+
 	</body>
 </html>
