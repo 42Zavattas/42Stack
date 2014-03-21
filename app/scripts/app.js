@@ -20,27 +20,20 @@ angular.module('42StackApp', [
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList(),
-					Restangular.all('tags').getList()
+					Restangular.all('tags').getList(),
+					Restangular.all('users').getList()
 				]).then(function (res) {
 					var questions = res[0];
-					var tags = (function (tab) {
-						var res = {};
-						angular.forEach(tab, function (el) {
-							res[el._id] = el;
-						});
-						return res;
-					})(res[1]);
+					var tags = indexify(res[1]);
+					var users = indexify(res[2]);
 					angular.forEach(questions, function (question, _id) {
-						console.log(question);
+						question.author = users[question.author];
 						angular.forEach(question.tags, function (_id, i) {
 							question.tags[i] = tags[_id];
 						});
-						console.log(question.tags);
 					});
-					console.log(questions);
 					deferred.resolve(questions);
 				}, function (err) {
-					console.log(err);
 					deferred.reject();
 				});
 				return deferred.promise;
@@ -79,3 +72,11 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) 
 	});
 
 });
+
+function indexify(tab) {
+	var res = {};
+	angular.forEach(tab, function (el) {
+		res[el._id] = el;
+	});
+	return res;
+}
