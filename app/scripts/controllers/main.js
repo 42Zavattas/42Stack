@@ -5,8 +5,8 @@ angular.module('42StackApp').controller('MainCtrl', function ($q, $http, $scope,
 	var questions = Restangular.all('questions');
 
 	questions.getList().then(function (res) {
-		$scope.questions = res;
 		console.log(res);
+		$scope.questions = res;
 	}, function (err) {
 		console.log(err);
 	});
