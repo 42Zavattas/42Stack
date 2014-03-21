@@ -42,11 +42,31 @@ angular.module('42StackApp', [
 	})
 	.when('/users', {
 		templateUrl: 'partials/users',
-		controller: 'UsersCtrl'
+		controller: 'UsersCtrl',
+		resolve: {
+			users: function (Restangular) {
+				return Restangular.all('users').getList();
+			}
+		}
 	})
 	.when('/users/:id', {
 		templateUrl: 'partials/user',
-		controller: 'UserCtrl'
+		controller: 'UserCtrl',
+		resolve: {
+			user: function ($route, $q, Restangular) {
+				var deferred = $q.defer();
+				Restangular.one('users', $route.current.params.id).get().then(function (res) {
+					if (res !== 'null') {
+						deferred.resolve(res);
+					} else {
+						deferred.reject("No such user");
+					}
+				}, function (err) {
+					deferred.reject(err);
+				})
+				return deferred.promise;
+			}
+		}
 	})
 	.otherwise({
 		redirectTo: '/'

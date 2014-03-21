@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope) {
+angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope, users, $routeParams) {
 
-	$scope.users = [];
+	$scope.users = users;
 
 	$scope.viewUser = function (user) {
-		$location.path('/users/' + user.id);
+		$location.path('/users/' + user._id);
 	};
 
 });
