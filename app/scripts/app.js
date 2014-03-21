@@ -27,6 +27,9 @@ angular.module('42StackApp', [
 })
 .config(function (RestangularProvider) {
 	RestangularProvider.setBaseUrl("/api");
+	RestangularProvider.setRestangularFields({
+		id: "_id"
+	});
 });
 
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) {

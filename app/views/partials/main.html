@@ -1,6 +1,6 @@
 <hashbar></hashbar>
 <ul class="unstyled ui-questions">
-	<li class="ui-question" ng-repeat="question in data.questions.$tab"
+	<li class="ui-question" ng-repeat="question in questions"
 		ng-click="viewQuestion(question)">
 		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">

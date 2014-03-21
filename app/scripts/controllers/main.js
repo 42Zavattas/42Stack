@@ -5,23 +5,8 @@ angular.module('42StackApp').controller('MainCtrl', function ($q, $http, $scope,
 	var questions = Restangular.all('questions');
 
 	questions.getList().then(function (res) {
+		$scope.questions = res;
 		console.log(res);
-	}, function (err) {
-		console.log(err);
-	});
-
-	$scope.data = {
-		questions : { $obj: {}, $tab: [] },
-		users : { $obj: {}, $tab: [] },
-		tags : { $obj: {}, $tab: [] }
-	};
-
-	$q.all([
-		$http.get('/api/questions'),
-		$http.get('/api/tags')
-	]).then(function (res) {
-		$scope.data.questions.$tab = res[0].data;
-		$scope.data.tags.$tab = res[1].data;
 	}, function (err) {
 		console.log(err);
 	});
