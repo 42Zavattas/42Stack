@@ -44,6 +44,10 @@ angular.module('42StackApp', [
 		templateUrl: 'partials/users',
 		controller: 'UsersCtrl'
 	})
+	.when('/users/:id', {
+		templateUrl: 'partials/user',
+		controller: 'UserCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
