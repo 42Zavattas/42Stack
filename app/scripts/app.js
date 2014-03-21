@@ -8,7 +8,8 @@ angular.module('42StackApp', [
 	'ngAnimate',
 	'ngTagsInput',
 	'monospaced.elastic',
-	'ngMockE2E'
+	'ngMockE2E',
+	'restangular'
 ])
 .config(function ($routeProvider, $locationProvider) {
 	$routeProvider
