@@ -15,7 +15,7 @@
 					<span class="tag" ng-repeat="tag in question.tags">{{ tag.name }}</span>
 				</div>
 				<div class="extra">
-					par <a class="author" href="/#/users/{{ question.author.id }}">{{ question.author.name }}</a>
+					par <a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
 					le <span class="time">{{ question.timestamp }}</span>
 				</div>
 			</div>
