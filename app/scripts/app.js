@@ -34,11 +34,3 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) 
 	});
 
 });
-
-function indexify(tab) {
-	var res = {};
-	angular.forEach(tab, function (el) {
-		res[el._id] = el;
-	});
-	return res;
-}

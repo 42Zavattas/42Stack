@@ -63,4 +63,12 @@ angular.module('42StackApp')
 		redirectTo: '/'
 	});
 	$locationProvider.html5Mode(true);
-})
+});
+
+function indexify(tab) {
+	var res = {};
+	angular.forEach(tab, function (el) {
+		res[el._id] = el;
+	});
+	return res;
+}
