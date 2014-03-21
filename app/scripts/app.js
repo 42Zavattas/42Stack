@@ -56,10 +56,10 @@ angular.module('42StackApp', [
 			user: function ($route, $q, Restangular) {
 				var deferred = $q.defer();
 				Restangular.one('users', $route.current.params.id).get().then(function (res) {
-					if (res !== 'null') {
-						deferred.resolve(res);
-					} else {
+					if (!res._id) {
 						deferred.reject("No such user");
+					} else {
+						deferred.resolve(res);
 					}
 				}, function (err) {
 					deferred.reject(err);
@@ -92,6 +92,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) 
 	});
 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
+		$scope.$broadcast('loadingStop');
 		console.log('ROUTE CHANGE ERROR: ' + rejection);
 	});
 
