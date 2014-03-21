@@ -8,6 +8,7 @@
 		<title>42Stack</title>
 
 		<!-- build:css(app) styles/vendor.css -->
+		<link rel="stylesheet" href="styles/icomoon/style.css">
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/animate.css/animate.css" />
 		<link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
@@ -15,13 +16,27 @@
 		<!-- endbuild -->
 
 		<!-- build:css({.tmp,app}) styles/main.css -->
+		<link rel="stylesheet" href="styles/menu.css">
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 
 	</head>
 	<body ng-app="42StackApp">
 
-		<div class="container" ng-view=""></div>
+		<loader></loader>
+
+		<nav id="bt-menu" class="bt-menu">
+			<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+			<ul>
+				<li><a href="#/" class="bt-icon icon-home">Accueil</a></li>
+				<li><a href="#/ask" class="bt-icon icon-quill">Poser une question</a></li>
+				<li><a href="#/users" class="bt-icon icon-users">Utilisateurs</a></li>
+				<li><a href="#/chat" class="bt-icon icon-bubbles4">Chat</a></li>
+				<li><a href="#/login" class="bt-icon icon-user">Profil</a></li>
+			</ul>
+		</nav>
+
+		<div class="ui-content" ng-view=""></div>
 
 		<!-- build:js(app) scripts/vendor.js -->
 		<!-- bower:js -->
@@ -37,6 +52,8 @@
 		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
 		<script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 		<!-- endbower -->
+		<script src="scripts/effects/classie.js"></script>
+		<script src="scripts/effects/borderMenu.js"></script>
 		<!-- endbuild -->
 
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
