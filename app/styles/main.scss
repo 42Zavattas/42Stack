@@ -63,7 +63,7 @@ a {
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
-	}
+}
 }
 
 hr {
@@ -84,7 +84,7 @@ h2 {
 	@include simpleshadow;
 	&.ng-enter {
 		animation: fadeIn 250ms;
-	}
+}
 }
 
 .ui-questions {
@@ -110,71 +110,71 @@ h2 {
 			color: $cyan;
 			border-right: 1px solid rgba(white, .1);
 			@include box-shadow(rgba(black, .1) -1px 0 0 inset);
-		}
-		> .description {
-			max-width: 448px;
-			padding: 8px;
-			i.icon-quotes-left {
-				color:rgba(black, .3);
-				margin-right: 8px;
-				&.inverted {
-					margin-right: 0;
-					margin-left: 8px;
-				}
-			}
-			> .flex {
-				display: flex;
-				text-align: left;
-				> .title {
-					margin: 0 10px;
-				}
-			}
-			> .infos {
-				font-family: "Helvetica Neue Thin";
-				font-size: 15px;
-				text-align: right;
-				color: $base00;
-				margin-top: 5px;
-				> .tags {
-					display: table;
-				}
-				> .categ {
-					margin-right: 24px;
-					float: left;
-					top: 3px;
-					left: 1px;
-					font-family: "Menlo";
-					font-size: 12px;
-					line-height:12px;
-					padding: 2px;
-					background:rgba(black, .4);
-					text-decoration: none;
-					color: $base1;
-					border: 1px solid rgba(white, .2);
-					@include transition-property(border-color);
-					@include transition-duration(250ms);
-					&:hover {
-						border: 1px solid rgba(white, .5);
-						cursor: pointer;
-					}
-				}
-				> .extra {
-					margin-left: 64px;
-					> .author {
-						text-decoration: underline;
-						color: $base00;
-						&:hover {
-							color: $green;
-						}
-					}
-				}
-			}
-		}
+}
+> .description {
+	max-width: 448px;
+	padding: 8px;
+	i.icon-quotes-left {
+		color:rgba(black, .3);
+		margin-right: 8px;
+		&.inverted {
+			margin-right: 0;
+			margin-left: 8px;
+}
+}
+> .flex {
+	display: flex;
+	text-align: left;
+	> .title {
+		margin: 0 10px;
+}
+}
+> .infos {
+	font-family: "Helvetica Neue Thin";
+	font-size: 15px;
+	text-align: right;
+	color: $base00;
+	margin-top: 5px;
+	> .tags {
+		display: table;
+}
+> .categ {
+	margin-right: 24px;
+	float: left;
+	top: 3px;
+	left: 1px;
+	font-family: "Menlo";
+	font-size: 12px;
+	line-height:12px;
+	padding: 2px;
+	background:rgba(black, .4);
+	text-decoration: none;
+	color: $base1;
+	border: 1px solid rgba(white, .2);
+	@include transition-property(border-color);
+	@include transition-duration(250ms);
+	&:hover {
+		border: 1px solid rgba(white, .5);
+		cursor: pointer;
+}
+}
+> .extra {
+	margin-left: 64px;
+	> .author {
+		text-decoration: underline;
+		color: $base00;
 		&:hover {
-			border-color:$green;
-			cursor: pointer;
-		}
+			color: $green;
 	}
+}
+}
+}
+}
+&:hover {
+	border-color:$green;
+	cursor: pointer;
+}
+}
 }
 
 
@@ -196,8 +196,8 @@ h2 {
 		&:hover {
 			border-color: $green;
 			cursor: pointer;
-		}
-	}
+}
+}
 }
 
 .inverted {
@@ -216,86 +216,86 @@ h2 {
 			> .count {
 				font-size: 24px;
 				padding: 4px;
-			}
-			> i {
-				font-size: 32px;
-			}
-			> .voteup:hover, > .votedown:hover {
-				cursor: pointer;
-			}
-			> .voteup:hover, > .voteup.active {
-				color: $green;
-			}
-			> .votedown:hover, > .votedown.active {
-				color: $red;
-			}
-		}
-		> .content {
-			width: 100%;
-			.text {
-				background: rgba(white, .05);
-				border: 1px solid rgba(white, .05);
-				padding: 8px;
-			}
-			text-align: justify;
-			> .content, > .title {
-				@include user-select(text);
-			}
-			> .info {
-				display: flex;
-				margin-top: 24px;
-				> .tags {
-					align-content: stretch;
-				}
-				.extra {
-					min-width: 16%;
-					display: flex;
-					margin-left: auto;
-					.picture img {
-						width: 50px;
-						height: 50px;
-						border: 2px solid $base01;
-						@include border-radius(50px);
-						@include box-shadow(rgba(black, .4) 0 2px 5px);
-					}
-					.signature {
-						margin-left: 16px;
-					}
-					.timestamp {
-						margin-top: 4px;
-					}
-				}
-			}
-			> .comments {
-				margin-top: 16px;
-				> .comment {
-					display: flex;
-					padding: 8px;
-					border-top: 1px dashed $base01;
-					> .votes {
-						min-width: 64px;
-					}
-					> .action {
-						min-width: 80px;
-						margin-right: 24px;
-						margin-top: 2px;
-					}
-					> .content {
-						@include user-select(text);
-					}
-				}
-			}
-		}
-	}
-	> .answer {
-		margin-top: 32px;
-		> .content {
-			width: 100%;
-		}
-		> .action {
-			margin-top: 0;
-		}
-	}
+}
+> i {
+	font-size: 32px;
+}
+> .voteup:hover, > .votedown:hover {
+	cursor: pointer;
+}
+> .voteup:hover, > .voteup.active {
+	color: $green;
+}
+> .votedown:hover, > .votedown.active {
+	color: $red;
+}
+}
+> .content {
+	width: 100%;
+	.text {
+		background: rgba(white, .05);
+		border: 1px solid rgba(white, .05);
+		padding: 8px;
+}
+text-align: justify;
+> .content, > .title {
+	@include user-select(text);
+}
+> .info {
+	display: flex;
+	margin-top: 24px;
+	> .tags {
+		align-content: stretch;
+}
+.extra {
+	min-width: 16%;
+	display: flex;
+	margin-left: auto;
+	.picture img {
+		width: 50px;
+		height: 50px;
+		border: 2px solid $base01;
+		@include border-radius(50px);
+		@include box-shadow(rgba(black, .4) 0 2px 5px);
+}
+.signature {
+	margin-left: 16px;
+}
+.timestamp {
+	margin-top: 4px;
+}
+}
+}
+> .comments {
+	margin-top: 16px;
+	> .comment {
+		display: flex;
+		padding: 8px;
+		border-top: 1px dashed $base01;
+		> .votes {
+			min-width: 64px;
+}
+> .action {
+	min-width: 80px;
+	margin-right: 24px;
+	margin-top: 2px;
+}
+> .content {
+	@include user-select(text);
+}
+}
+}
+}
+}
+> .answer {
+	margin-top: 32px;
+	> .content {
+		width: 100%;
+}
+> .action {
+	margin-top: 0;
+}
+}
 }
 
 .comments {
@@ -303,43 +303,43 @@ h2 {
 		cursor: pointer;
 		> i {
 			margin-right: 8px;
-		}
-		> .icon-flag:hover, > .icon-flag.active {
-			color: $red;
-		}
-		> .icon-star:hover {
-			color: rgb(255, 224, 0);
-		}
-		> .downvote {
-			color: $red;
-			margin-right: 8px;
-		}
-		> .upvote {
-			color: $green;
-		}
-	}
-	td {
-		padding: 5px 10px;
-		border-top: 1px dashed rgba(white, .1);
-	}
+}
+> .icon-flag:hover, > .icon-flag.active {
+	color: $red;
+}
+> .icon-star:hover {
+	color: rgb(255, 224, 0);
+}
+> .downvote {
+	color: $red;
+	margin-right: 8px;
+}
+> .upvote {
+	color: $green;
+}
+}
+td {
+	padding: 5px 10px;
+	border-top: 1px dashed rgba(white, .1);
+}
 }
 
 .add-answer {
 	margin-top: 24px;
 	> hr {
 		margin: 16px 0;
-	}
-	> .flex {
-		> .wmd-panel {
-			margin-right: 32px;
-		}
-		> .wmd-preview {
-			margin-top: 32px;
-		}
-		> div {
-			width: 50%;
-		}
-	}
+}
+> .flex {
+	> .wmd-panel {
+		margin-right: 32px;
+}
+> .wmd-preview {
+	margin-top: 32px;
+}
+> div {
+	width: 50%;
+}
+}
 }
 
 .login {
@@ -350,14 +350,14 @@ h2 {
 	input {
 		width: 300px;
 		margin-top: 10px;
-	}
-	> div {
-		margin: 0 auto;
-		width: 400px;
-		> form {
-			margin-bottom: 1em;
-		}
-	}
+}
+> div {
+	margin: 0 auto;
+	width: 400px;
+	> form {
+		margin-bottom: 1em;
+}
+}
 }
 
 .unstyled {
@@ -370,7 +370,7 @@ form {
 	.login {
 		text-align: center;
 		top: 0; bottom: 0; left: 0; right: 0;
-	}
+}
 }
 
 input {
@@ -387,18 +387,18 @@ input {
 	@include transition-duration(250ms);
 	&:focus {
 		border-color:$green;
-	}
+}
+@include placeholder {
+	color: rgba(black, .2);
+	@include text-shadow(none);
+}
+&:focus {
+	background: rgba(black, .2);
+	color: $base2;
 	@include placeholder {
-		color: rgba(black, .2);
-		@include text-shadow(none);
-	}
-	&:focus {
-		background: rgba(black, .2);
-		color: $base2;
-		@include placeholder {
-			color: rgba(white, .2);
-		}
-	}
+		color: rgba(white, .2);
+}
+}
 }
 
 .userlist {
@@ -421,17 +421,17 @@ input {
 			margin-right: 16px;
 			@include border-radius(50px);
 			@include box-shadow(rgba(black, .4) 0 2px 5px);
-		}
-		> .infos {
-			> .name {
-				color: $cyan;
-			}
-		}
-		&:hover {
-			border-color: $green;
-			cursor: pointer;
-		}
-	}
+}
+> .infos {
+	> .name {
+		color: $cyan;
+}
+}
+&:hover {
+	border-color: $green;
+	cursor: pointer;
+}
+}
 }
 
 .ask-edit, .ask-preview {
@@ -440,38 +440,38 @@ input {
 		> .category {
 			margin-left: 32px;
 			width: 16%;
-		}
-	}
+}
+}
 }
 
 .ask-preview {
 	margin-left: 32px;
 	> .title {
 		height: 40px;
-	}
+}
 }
 
 .wmd-preview {
 	p, pre, code, h1, h2, blockquote, a, strong, em, ul, ol, li {
 		@include user-select(text);
-	}
-	p > code {
-		padding: 3px 4px;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		@include border-radius(4px, 4px);
-	}
-	> blockquote {
-		padding: 0 0 0 16px;
-		margin: 0 0 16px;
-		border-left: 5px solid $base03;
-	}
-	> h2 {
-		margin: 5px 0 20px 0;
-		font-size: 2.5em;
-		font-family: "Helvetica Neue";
-		text-decoration: underline;
-		color: $base0;
-	}
+}
+p > code {
+	padding: 3px 4px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	@include border-radius(4px, 4px);
+}
+> blockquote {
+	padding: 0 0 0 16px;
+	margin: 0 0 16px;
+	border-left: 5px solid $base03;
+}
+> h2 {
+	margin: 5px 0 20px 0;
+	font-size: 2.5em;
+	font-family: "Helvetica Neue";
+	text-decoration: underline;
+	color: $base0;
+}
 }
 
 .wmd-panel {
@@ -492,32 +492,33 @@ input {
 					margin-right: 5px;
 					position: absolute;
 					display: inline-block;
-				}
-			}
-			> .wmd-spacer {
-				width: 1px;
-				height: 20px;
-				margin: 0 8px;
-				background-color: Silver;
-			}
-		}
-	}
-	> .wmd-input {
-		width: 100%;
-		border: 1px solid rgba(white, .1);
-		background: $base03;
-		color: $base0;
-		padding: 1em;
-		font-size: 14px;
-		outline: none;
-		resize: none;
-		word-wrap: break-word;
-		overflow: hidden;
-		@include transition-duration(50ms);
-		&:focus {
-			border-color: $green;
-		}
-	}
+}
+}
+> .wmd-spacer {
+	width: 1px;
+	height: 20px;
+	margin: 0 8px;
+	background-color: Silver;
+}
+}
+}
+}
+
+textarea {
+	width: 100%;
+	border: 1px solid rgba(white, .1);
+	background: $base03;
+	color: $base0;
+	padding: 1em;
+	font-size: 14px;
+	outline: none;
+	resize: none !important;
+	word-wrap: break-word;
+	overflow: hidden;
+	@include transition-duration(50ms);
+	&:focus {
+		border-color: $green;
+}
 }
 
 .wmd-prompt-background {
@@ -543,42 +544,42 @@ input {
 	background-color: $base02;
 	> div {
 		text-align: center;
-	}
-	> form {
-		padding: 0;
-		margin: 0;
-		text-align: center;
-		input[type="button"] {
-			padding: 8px;
-			margin: 8px;
-			width: 24%;
-		}
-		input[type="text"] {
-			margin: auto;
-			width: 80%;
-		}
-	}
+}
+> form {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	input[type="button"] {
+		padding: 8px;
+		margin: 8px;
+		width: 24%;
+}
+input[type="text"] {
+	margin: auto;
+	width: 80%;
+}
+}
 }
 
 .taglist {
 	width: 100%;
 	margin-top: 4px;
 	outline: none;
-	* {
-		outline: none;
-	}
-	.tags {
-		border: 1px solid rgba(white, .1);
-		background-color:$base03;
-		&:focus {
-			border-color: $green;
-		}
-	}
-	input {
-		background: none;
-		font-size: 14px;
-		width: auto !important;
-	}
+			 * {
+				 outline: none;
+}
+.tags {
+	border: 1px solid rgba(white, .1);
+	background-color:$base03;
+	&:focus {
+		border-color: $green;
+}
+}
+input {
+	background: none;
+	font-size: 14px;
+	width: auto !important;
+}
 }
 
 //Placeholders

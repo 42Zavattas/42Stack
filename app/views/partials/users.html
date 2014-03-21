@@ -1,0 +1,11 @@
+<hashbar></hashbar>
+<ul class="userlist">
+	<li ng-repeat="user in users" ng-click="viewUser(user)">
+		<div class="image"><img ng-src="/images/{{ user.image }}"></div>
+		<div class="infos">
+			<span class="name">{{ user.name }}</span>
+			<div class="rep">rep : {{ user.reputation }}</div>
+			<div class="time">joined : {{ user.joined }}</div>
+		</div>
+	</li>
+</ul>
