@@ -31,6 +31,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
 		$scope.$broadcast('loadingStop');
 		console.log('ROUTE CHANGE ERROR: ' + rejection);
+		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
 
 });
