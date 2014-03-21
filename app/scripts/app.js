@@ -12,6 +12,10 @@ angular.module('42StackApp', [
 		templateUrl: 'partials/main',
 		controller : 'MainCtrl'
 	})
+.when('/users', {
+  templateUrl: 'partials/users',
+  controller: 'UsersCtrl'
+})
 	.otherwise({
 		redirectTo: '/'
 	});
