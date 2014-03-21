@@ -1,0 +1,48 @@
+@import 'compass/css3';
+@import 'colors';
+
+.ui-unstyled {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.ui-bordered {
+	border: 1px solid rgba(white, .1);
+}
+
+.ui-btn {
+	font-family: "Helvetica Neue";
+	font-size: 16px;
+	background: $base03;
+	color: $base0;
+	border: none;
+	outline: none;
+	display: inline-block;
+	cursor: pointer;
+	padding: .5em 1em;
+	border: 2px solid transparent;
+	@include border-radius(5px);
+	@include text-shadow(rgba(black, .2) 0 1px);
+	&:hover, &:focus {
+		color: $green;
+		border: 2px solid rgba($green, .4);
+	}
+	&:active {
+		background: darken($base03, 3);
+	}
+}
+
+.ui-form {
+	> section {
+		padding: .5em 0;
+	}
+}
+
+.ui-hr {
+	margin: 1.5em 10%;
+	border: none;
+	border-top: 1px solid rgba(white, .05);
+	@include box-shadow(rgba(black, .1) 0 -1px 0);
+}
