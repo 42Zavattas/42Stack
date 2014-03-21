@@ -14,7 +14,38 @@ angular.module('42StackApp', [
 	$routeProvider
 	.when('/', {
 		templateUrl: 'partials/main',
-		controller : 'MainCtrl'
+		controller : 'MainCtrl',
+		resolve : {
+			questions : function ($q, Restangular) {
+				var deferred = $q.defer();
+				$q.all([
+					Restangular.all('questions').getList(),
+					Restangular.all('tags').getList()
+				]).then(function (res) {
+					var questions = res[0];
+					var tags = (function (tab) {
+						var res = {};
+						angular.forEach(tab, function (el) {
+							res[el._id] = el;
+						});
+						return res;
+					})(res[1]);
+					angular.forEach(questions, function (question, _id) {
+						console.log(question);
+						angular.forEach(question.tags, function (_id, i) {
+							question.tags[i] = tags[_id];
+						});
+						console.log(question.tags);
+					});
+					console.log(questions);
+					deferred.resolve(questions);
+				}, function (err) {
+					console.log(err);
+					deferred.reject();
+				});
+				return deferred.promise;
+			}
+		}
 	})
 	.when('/users', {
 		templateUrl: 'partials/users',
