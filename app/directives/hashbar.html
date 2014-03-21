@@ -1,5 +1,5 @@
-<a href="#/" class="bt-icon icon-home"></a>
+<a href="/" class="bt-icon icon-home"></a>
 <div ng-if="paths">
 	<span ng-repeat-start="path in paths">/</span>
-	<a ng-repeat-end ng-href="#/{{ path.path }}">{{ path.name }}</a>
+	<a ng-repeat-end ng-href="/{{ path.path }}">{{ path.name }}</a>
 </div>
