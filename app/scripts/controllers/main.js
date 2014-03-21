@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('42StackApp').controller('MainCtrl', function ($q, $http, $scope, $location) {
+angular.module('42StackApp').controller('MainCtrl', function ($q, $http, $scope, $location, Restangular) {
+
+	var questions = Restangular.all('questions');
+
+	questions.getList().then(function (res) {
+		console.log(res);
+	}, function (err) {
+		console.log(err);
+	});
 
 	$scope.data = {
 		questions : { $obj: {}, $tab: [] },

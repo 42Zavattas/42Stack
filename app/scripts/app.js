@@ -24,8 +24,10 @@ angular.module('42StackApp', [
 	.otherwise({
 		redirectTo: '/'
 	});
-
 	$locationProvider.html5Mode(true);
+})
+.config(function (RestangularProvider) {
+	RestangularProvider.setBaseUrl("/api");
 });
 
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, $httpBackend) {
