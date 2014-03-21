@@ -92,10 +92,10 @@ angular.module('42StackApp', [
 		redirectTo: '/'
 	});
 
-	//$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(true);
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, $httpBackend) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) {
 
 	$scope.$on('$routeChangeStart', function () {
 		$scope.$broadcast('loading');
