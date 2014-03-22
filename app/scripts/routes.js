@@ -63,6 +63,10 @@ angular.module('42StackApp')
 			}
 		}
 	})
+	.when('/chat', {
+		templateUrl: 'partials/chat',
+		controller: 'ChatCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
