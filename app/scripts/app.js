@@ -7,7 +7,6 @@ angular.module('42StackApp', [
 	'ngRoute',
 	'ngAnimate',
 	'ngTagsInput',
-	'monospaced.elastic',
 	'restangular',
 	'ngMarkdown'
 ])
