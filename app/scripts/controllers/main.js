@@ -15,7 +15,7 @@ angular.module('42StackApp').controller('MainCtrl', function ($scope, $location,
 
 	$scope.viewTag = function ($event, tag) {
 		$event.stopPropagation();
-		$location.url('/questions?tag=' + tag);
+		$location.url('/questions?tags=' + tag);
 	}
 
 });

@@ -11,7 +11,7 @@
 			<div class="content text">{{ question.content}}</div>
 			<div class="info">
 				<div class="tags">
-					<span class="tag" ng-repeat="tag in question.tags">{{ tag.name }}</span>
+					<span class="tag" ng-click="viewTag(tag.name)" ng-repeat="tag in question.tags">{{ tag.name }}</span>
 				</div>
 				<div class="extra">
 					<div class="picture">
