@@ -48,7 +48,7 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				Restangular.one('users', $route.current.params.id).get().then(function (res) {
 					if (!res._id) {
-						deferred.reject("No such user");
+						deferred.reject('user '+$route.current.params.id+' not found');
 					} else {
 						deferred.resolve(res);
 					}
