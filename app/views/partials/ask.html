@@ -1,0 +1,19 @@
+<hashbar></hashbar>
+
+<div class="flex">
+	<div class="ask-edit">
+		<input class="question-title" type="text" placeholder="Titre" ng-model="questiontitle">
+		<div class="wmd-panel">
+			<div class="wmd-button-bar"></div>
+			<ng-markdown sanitized="true" content="content"></ng-markdown>
+		</div>
+		<div class="extra flex">
+			<tags-input class="taglist" ng-model="taglist" placeholder="Ajouter un tag" add-on-comma="true" add-on-space="true"></tags-input>
+		</div>
+		<dropdown title="Categorie" options="categories"></dropdown>
+	</div>
+	<div class="ask-preview">
+		<h2 class="title">{{ questiontitle }}</h2>
+		<div class="wmd-preview"></div>
+	</div>
+</div>

@@ -31,6 +31,10 @@ angular.module('42StackApp')
 			}
 		}
 	})
+	.when('/ask', {
+		templateUrl: 'partials/ask',
+		controller: 'AskCtrl'
+	})
 	.when('/users', {
 		templateUrl: 'partials/users',
 		controller: 'UsersCtrl',
