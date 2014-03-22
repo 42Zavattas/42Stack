@@ -22,7 +22,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 
 	$scope.msgs = Flash.msgs;
 
-	$scope.$on('$routeChangeStart', function () {
+	$scope.$on('$routeChangeStart', function (event, current, previous) {
 		$scope.$broadcast('loading');
 	});
 
