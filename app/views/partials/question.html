@@ -1,0 +1,93 @@
+<hashbar></hashbar>
+<div class="question-detailled">
+	<div class="purpose-block">
+		<div class="action">
+			<i class="voteup icon-arrow-up3"></i>
+			<div class="count">{{ question.upvotes - question.downvotes }}</div>
+			<i class="votedown icon-arrow-down3"></i>
+		</div>
+		<div class="content">
+			<h2 class="title">{{ question.title }}</h2>
+			<div class="content text">{{ question.content}}</div>
+			<div class="info">
+				<div class="tags">
+					<span class="tag" ng-repeat="tag in question.tags">{{ tag.name }}</span>
+				</div>
+				<div class="extra">
+					<div class="picture">
+						<a ng-href="/#/users/{{ question.author.name }}">
+							<img ng-src="/images/{{ question.author.image }}" />
+						</a>
+					</div>
+					<div class="signature">
+						<a class="author" ng-href="/#/users/{{ question.author.id }}">{{ question.author.name }}</a>
+						<div class="timestamp">le {{ question.timestamp }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="comments">
+				<div class="comment" ng-repeat="comment in question.comments">
+					<span class="votes">{{ comment.upvotes - comment.downvotes }}</span>
+					<span class="action">
+						<i class="icon-flag"></i>
+						<i class="icon-star"></i>
+						<span class="downvote">-</span>
+						<span class="upvote">+</span>
+					</span>
+					<span class="content">{{ comment.content }} - <a href="/#/users/{{ comment.author }}">{{ comment.author }}</a> le {{ comment.timestamp }}</span>
+				</div>
+				<div class="new">
+					<input type="text" placeholder="Ajouter un commentaire">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="purpose-block answer">
+		<div class="action">
+			<i class="voteup icon-arrow-up3"></i>
+			<div class="count">10</div>
+			<i class="votedown icon-arrow-down3"></i>
+		</div>
+		<div class="content">
+			<div class="content text">Simple, let them try it and show every feature of vim emacs don't have : everything.</div>
+			<div class="info">
+				<div class="extra">
+					<div class="picture">
+						<a ng-href="/#/users/2">
+							<img ng-src="/images/dawuut.png" />
+						</a>
+					</div>
+					<div class="signature">
+						<a class="author" ng-href="/#/users/2">dawuut</a>
+						<div class="timestamp">le 04/7/2014</div>
+					</div>
+				</div>
+			</div>
+			<div class="comments">
+				<div class="comment" ng-repeat="comment in question.comments">
+					<span class="votes">{{ comment.upvotes - comment.downvotes }}</span>
+					<span class="action">
+						<i class="icon-flag"></i>
+						<i class="icon-star"></i>
+						<span class="downvote">-</span>
+						<span class="upvote">+</span>
+					</span>
+					<span class="content">{{ comment.content }} - <a href="/#/users/{{ comment.author }}">{{ comment.author }}</a> le {{ comment.timestamp }}</span>
+				</div>
+				<div class="new">
+					<input type="text" placeholder="Ajouter un commentaire">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="add-answer">
+		<hr class="ui-hr">
+		<div class="flex">
+			<div class="wmd-panel">
+				<div class="wmd-button-bar"></div>
+				<ng-markdown content="content"></ng-markdown>
+			</div>
+			<div class="wmd-preview"></div>
+		</div>
+	</div>
+</div>

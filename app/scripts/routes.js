@@ -75,6 +75,29 @@ angular.module('42StackApp')
 		templateUrl: 'partials/chat',
 		controller: 'ChatCtrl'
 	})
+	.when('/question/:id', {
+		templateUrl: 'partials/question',
+		controller: 'QuestionCtrl',
+		resolve: {
+			question: function ($route, $q, Restangular) {
+				var deferred = $q.defer();
+				$q.all([
+					Restangular.one('questions', $route.current.params.id).get(),
+					Restangular.all('tags').getList()
+				]).then(function (res) {
+					var question = res[0];
+					var tags = indexify(res[1]);
+					angular.forEach(question.tags, function (tagId, i) {
+						question.tags[i] = tags[tagId];
+					});
+					deferred.resolve(question);
+				}, function (err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
+			}
+		}
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

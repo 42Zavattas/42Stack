@@ -1,4 +1,5 @@
 @import 'compass/css3';
+@import "compass/css3/user-interface";
 @import 'colors';
 
 .ui-unstyled {
@@ -45,4 +46,8 @@
 	border: none;
 	border-top: 1px solid rgba(white, .05);
 	@include box-shadow(rgba(black, .1) 0 -1px 0);
+}
+
+.ui-selectable {
+	@include user-select(text);
 }
