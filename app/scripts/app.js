@@ -8,7 +8,8 @@ angular.module('42StackApp', [
 	'ngAnimate',
 	'ngTagsInput',
 	'restangular',
-	'ngMarkdown'
+	'ngMarkdown',
+	'btford.socket-io'
 ])
 .config(function (RestangularProvider) {
 	RestangularProvider.setBaseUrl("/api");
