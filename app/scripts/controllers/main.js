@@ -5,7 +5,7 @@ angular.module('42StackApp').controller('MainCtrl', function ($scope, $location,
 	$scope.questions = questions;
 
 	$scope.viewQuestion = function (question) {
-		$location.path('/questions/' + question.id);
+		$location.path('/question/' + question._id);
 	};
 
 });
