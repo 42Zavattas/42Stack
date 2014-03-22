@@ -86,6 +86,8 @@ angular.module('42StackApp')
 					Restangular.all('tags').getList()
 				]).then(function (res) {
 					var question = res[0];
+					if (!question._id)
+						deferred.reject('question '+$route.current.params.id+' not found');
 					var tags = indexify(res[1]);
 					angular.forEach(question.tags, function (tagId, i) {
 						question.tags[i] = tags[tagId];
