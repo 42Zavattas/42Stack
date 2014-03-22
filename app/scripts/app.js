@@ -17,7 +17,9 @@ angular.module('42StackApp', [
 	});
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash) {
+
+	$scope.msgs = Flash.msgs;
 
 	$scope.$on('$routeChangeStart', function () {
 		$scope.$broadcast('loading');
@@ -30,7 +32,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location) 
 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
 		$scope.$broadcast('loadingStop');
-		console.log('ROUTE CHANGE ERROR: ' + rejection);
+		Flash.set(rejection, 'error');
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
 
