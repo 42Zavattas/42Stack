@@ -36,7 +36,12 @@ angular.module('42StackApp')
 	})
 	.when('/ask', {
 		templateUrl: 'partials/ask',
-		controller: 'AskCtrl'
+		controller: 'AskCtrl',
+		resolve : {
+			categories : function (Restangular) {
+				return Restangular.all('categories').getList();
+			}
+		}
 	})
 	.when('/users', {
 		templateUrl: 'partials/users',
