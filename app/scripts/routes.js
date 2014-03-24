@@ -28,7 +28,7 @@ angular.module('42StackApp')
 					});
 					deferred.resolve(questions);
 				}, function (err) {
-					deferred.reject();
+					deferred.reject(err);
 				});
 				return deferred.promise;
 			}
@@ -130,6 +130,10 @@ angular.module('42StackApp')
 				return deferred.promise;
 			}
 		}
+	})
+	.when('/login', {
+		templateUrl: 'partials/login',
+		controller: 'LoginCtrl'
 	})
 	.otherwise({
 		redirectTo: '/'
