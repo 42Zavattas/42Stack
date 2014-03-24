@@ -7,8 +7,8 @@ angular.module('42StackApp', [
 	'ngRoute',
 	'ngAnimate',
 	'ngTagsInput',
-	'restangular',
 	'ngMarkdown',
+	'restangular',
 	'btford.socket-io'
 ])
 .config(function (RestangularProvider) {
@@ -16,7 +16,10 @@ angular.module('42StackApp', [
 	RestangularProvider.setDefaultHttpFields({cache: true});
 	RestangularProvider.setRestangularFields({
 		id: "_id"
-	});
+	})
+})
+.factory('socket', function (socketFactory) {
+	return socketFactory();
 });
 
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash) {

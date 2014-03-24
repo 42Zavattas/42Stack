@@ -1,2 +1,8 @@
 <hashbar></hashbar>
-<p>This is the chat view.</p>
+<ul>
+	<li ng-repeat="msg in msgs">{{ msg.user }} : {{ msg.content }}</li>
+</ul>
+
+<form ng-submit="send(newMsg)">
+	<input type="text" placeholder="Envoyer un message" ng-model="newMsg">
+</form>
