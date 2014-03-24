@@ -1,6 +1,8 @@
 {
   "name": "42stack",
   "version": "0.0.0",
+  "description": "purposing",
+  "repository": "http://www.github.com/42Zavattas/42Stack.git",
   "dependencies": {
     "express": "~3.4.3",
     "lodash": "~2.4.1",
