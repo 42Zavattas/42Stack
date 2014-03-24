@@ -8,7 +8,9 @@
     "lodash": "~2.4.1",
     "mongoose": "~3.8.8",
     "ejs": "~0.8.4",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "express-jwt": "~0.1.0",
+    "jsonwebtoken": "~0.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
