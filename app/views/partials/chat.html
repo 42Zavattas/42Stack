@@ -1,6 +1,9 @@
 <hashbar></hashbar>
-<ul>
-	<li ng-repeat="msg in msgs">{{ msg.user }} : {{ msg.content }}</li>
+<ul class="messagebox">
+	<li ng-repeat="msg in msgs" ng-class="{ 'last' : $last }">
+		<span class="user">{{ msg.user }} :</span>
+		<span class="content">{{ msg.content }}</span>
+	</li>
 </ul>
 <hr class="ui-hr">
 <form ng-submit="send(newMsg)">
