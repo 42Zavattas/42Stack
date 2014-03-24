@@ -23,6 +23,8 @@ $padsize: 4px;
 // -----
 @include font-face("Menlo", font-files("Menlo-Powerline.otf"));
 @include font-face("Helvetica Neue", font-files("HelveticaNeue/helvetica-neue1.ttf"));
+@include font-face("Helvetica Neue Bold", font-files("HelveticaNeue/helvetica-neue-bold.ttf"));
+@include font-face("Helvetica Neue Italic", font-files("HelveticaNeue/HelveticaNeueLTStd-LtCnO.otf"));
 @include font-face("Helvetica Neue Thin", font-files("HelveticaNeue/HelveticaNeueLTPro-LtCnO.otf"));
 
 @mixin simpleshadow (){
@@ -41,6 +43,14 @@ html {
 	padding: 0;
 	background: $base02;
 	color: $base0;
+}
+
+em {
+	font-family: "Helvetica Neue Italic";
+}
+
+strong {
+	font-family: "Helvetica Neue Bold";
 }
 
 body {
