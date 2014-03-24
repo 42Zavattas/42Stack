@@ -36,7 +36,6 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	});
 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
-		console.log(event, rejection);
 		$scope.$broadcast('loadingStop');
 		if (rejection.status && rejection.status === 401) {
 			Flash.set('U mad bro ?', 'error');
