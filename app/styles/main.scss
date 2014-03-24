@@ -413,13 +413,12 @@ input {
 	> li {
 		display: flex;
 		padding: 10px 0;
-		border-bottom: 1px solid rgba(black, .1);
 		> .user {
 			margin-right: 8px;
 		}
 	}
-	> .last {
-		border: 0;
+	> .bordered {
+		border-bottom: 1px solid rgba(black, .1);
 	}
 }
 

@@ -1,6 +1,6 @@
 <hashbar></hashbar>
 <ul class="messagebox">
-	<li ng-repeat="msg in msgs" ng-class="{ 'last' : $last }">
+	<li ng-repeat="msg in msgs" ng-class="{ 'bordered' : !$last }">
 		<span class="user">{{ msg.user }} :</span>
 		<span class="content">{{ msg.content }}</span>
 	</li>
