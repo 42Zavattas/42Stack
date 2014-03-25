@@ -11,15 +11,35 @@ angular.module('42StackApp', [
 	'restangular',
 	'btford.socket-io'
 ])
-.config(function (RestangularProvider) {
+.config(function (RestangularProvider, $httpProvider) {
 	RestangularProvider.setBaseUrl("/api");
 	RestangularProvider.setDefaultHttpFields({cache: true});
 	RestangularProvider.setRestangularFields({
 		id: "_id"
 	})
+
+	$httpProvider.interceptors.push('authInterceptor');
 })
 .factory('socket', function (socketFactory) {
 	return socketFactory();
+})
+.factory('authInterceptor', function ($rootScope, $q, $window) {
+	return {
+		request: function (config) {
+			config.headers = config.headers || {};
+			if ($window.sessionStorage.token) {
+				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+			}
+			return config;
+		},
+		response: function (response) {
+			if (response.status === 401) {
+				// handle the case where the user is not authenticated
+				console.log(response);
+			}
+			return response || $q.when(response);
+		}
+	};
 });
 
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash) {
@@ -38,7 +58,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
 		$scope.$broadcast('loadingStop');
 		if (rejection.status && rejection.status === 401) {
-			Flash.set('U mad bro ?', 'error');
+			Flash.set('Unauthorized', 'error');
 			$location.path('/login');
 			return;
 		}

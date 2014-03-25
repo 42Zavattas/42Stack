@@ -73,7 +73,12 @@ angular.module('42StackApp')
 	})
 	.when('/chat', {
 		templateUrl: 'partials/chat',
-		controller: 'ChatCtrl'
+		controller: 'ChatCtrl',
+		resolve: {
+			user: function (Restangular) {
+				return Restangular.all('users').getList();
+			}
+		}
 	})
 	.when('/questions/:id', {
 		templateUrl: 'partials/question',

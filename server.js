@@ -36,8 +36,7 @@ var app = express();
 // AUTH
 // -------------------
 
-var secret = 'this is the secret secret secret 12356';
-console.log('Starting auth config...');
+var secret = 'Are you a zavatta ?';
 
 app.use('/api', expressJwt({secret: secret}));
 app.use(express.json());
@@ -49,37 +48,39 @@ app.use(function(err, req, res, next){
 	}
 });
 
-/*app.post('/login', function (req, res) {
+// Express settings
+require('./lib/config/express')(app);
 
-	if (!(req.body.username === 'a' && req.body.password === 'a')) {
-		res.send(401, 'Wrong user or password');
+app.post('/authentificate', function (req, res) {
+
+	//console.log(req.body);
+	//We need to check name & sha of pass + salt
+	if (!(req.body.name === 'a' && req.body.mdp === 'a')) {
+		res.send(401, 'Auth failed');
 		return;
 	}
 
 	var profile = {
-		first_name: 'John',
-		last_name: 'Doe',
-		email: 'john@doe.com',
-		id: 123
+		id: 1,
+		first_name: 'Purposed',
+		last_name: 'Zavatta',
+		email: 'zav@t.ta'
 	};
 
 	var token = jwt.sign(profile, secret, { expiresInMinutes: 60*5 });
 
 	res.json({ token: token });
 });
-*/
-// -------------------
+
+// Routing
+require('./lib/routes')(app);
 
 var server = require('http').createServer(app);
 
 // Sockets settings
 require('./lib/sockets')(server);
 
-// Express settings
-require('./lib/config/express')(app);
-
-// Routing
-require('./lib/routes')(app);
+// -------------------
 
 // Start server
 server.listen(config.port, function () {
