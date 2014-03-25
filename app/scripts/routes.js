@@ -140,6 +140,10 @@ angular.module('42StackApp')
 		templateUrl: 'partials/login',
 		controller: 'LoginCtrl'
 	})
+	.when('/profile', {
+		templateUrl: 'partials/profile',
+		controller: 'ProfileCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
