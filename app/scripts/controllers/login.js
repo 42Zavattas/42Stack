@@ -4,9 +4,9 @@ angular.module('42StackApp')
 .controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies, $timeout) {
 
 	$scope.user = { name : '', mdp : '' };
-	$scope.logged = true;
+	$scope.uiLogged = true;
 	$timeout(function () {
-		$scope.logged = false;
+		$scope.uiLogged = false;
 	}, 500);
 
 	$scope.login = function() {
@@ -14,7 +14,8 @@ angular.module('42StackApp')
 			$http.post('/authentificate', $scope.user)
 			.success(function (data, status, headers, config) {
 				$cookies.token = data.token;
-				$scope.logged = true;
+				$scope.$root.logged = true;
+				$scope.uiLogged = true;
 				Flash.set('Welcome to the awesome', 'success');
 				$timeout(function () {
 					$location.url('/');

@@ -13,10 +13,6 @@
 	transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
 }
 
-.bt-menu a.ng-add: {
-	animation: bounceInLeft 500ms;
-}
-
 .bt-menu a.ng-remove: {
 	animation: bounceInLeft 500ms;
 }

@@ -45,6 +45,7 @@ angular.module('42StackApp', [
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies) {
 
 	$scope.msgs = Flash.msgs;
+	$scope.$root.logged = !!$cookies.token;
 
 	$scope.$on('$routeChangeStart', function (event, current, previous) {
 		$scope.$broadcast('loading');
@@ -68,12 +69,13 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 
 	$scope.logout = function () {
 		delete $cookies.token;
+		$scope.$root.logged = false;
 		$location.path('/login');
 		Flash.set('You have successfully logged out ;)', 'success');
 	};
 
 	$scope.isLogged = function () {
-		return !!$cookies.token;
+		return $scope.$root.logged;
 	};
 
 });

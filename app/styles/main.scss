@@ -629,3 +629,7 @@ input:-moz-placeholder {
 	font-size: 14px;
 	text-shadow: none;
 }
+
+.bt-menu-trigger.ng-hide-remove {
+	animation: bounceInLeft 500ms;
+}
