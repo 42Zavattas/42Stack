@@ -23,12 +23,12 @@ angular.module('42StackApp', [
 .factory('socket', function (socketFactory) {
 	return socketFactory();
 })
-.factory('authInterceptor', function ($rootScope, $q, $window) {
+.factory('authInterceptor', function ($rootScope, $q, $cookies) {
 	return {
 		request: function (config) {
 			config.headers = config.headers || {};
-			if ($window.sessionStorage.token) {
-				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+			if ($cookies.token) {
+				config.headers.Authorization = 'Bearer ' + $cookies.token;
 			}
 			return config;
 		},
