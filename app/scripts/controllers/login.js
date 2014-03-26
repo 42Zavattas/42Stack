@@ -10,6 +10,7 @@ angular.module('42StackApp')
 			$http.post('/authentificate', $scope.user)
 			.success(function (data, status, headers, config) {
 				$cookies.token = data.token;
+				Flash.set('Welcome to the awesome');
 				$location.url('/');
 			})
 			.error(function (data, status, headers, config) {
