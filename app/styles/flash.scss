@@ -20,7 +20,7 @@
 			background: rgba(white, .1);
 			@include border-radius(3px);
 			&.ng-enter {
-				animation: bounceInLeft 500ms;
+				animation: bounceInRight 500ms;
 			}
 			&.ng-leave{
 				animation: bounceOutRight 500ms;
