@@ -51,3 +51,38 @@
 .ui-selectable {
 	@include user-select(text);
 }
+
+.ui-sneak {
+	.fromTop {
+		&.ng-enter {
+			animation: bounceInDown 1000ms;
+		}
+		&.ng-leave {
+			animation: bounceOutUp 1000ms;
+		}
+	}
+	.fromRight {
+		&.ng-enter {
+			animation: bounceInRight 1000ms;
+		}
+		&.ng-leave {
+			animation: bounceOutRight 1000ms;
+		}
+	}
+	.fromLeft {
+		&.ng-enter {
+			animation: bounceInLeft 1000ms;
+		}
+		&.ng-leave {
+			animation: bounceOutLeft 1000ms;
+		}
+	}
+	.fromBot {
+		&.ng-enter {
+			animation: bounceInUp 1000ms;
+		}
+		&.ng-leave {
+			animation: bounceOutDown 1000ms;
+		}
+	}
+}
