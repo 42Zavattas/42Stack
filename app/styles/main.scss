@@ -614,8 +614,7 @@ textarea {
 	 }
 }
 
-//Placeholders
-	::-webkit-input-placeholder {
+::-webkit-input-placeholder {
 	color: rgba($base1, .5) !important;
 	font-size: 14px;
 	text-shadow: none;
@@ -626,7 +625,7 @@ textarea {
 	font-size: 14px;
 	text-shadow: none;
 }
-	:-ms-input-placeholder {
+:-ms-input-placeholder {
 	color: rgba($base1, .5) !important;
 	font-size: 14px;
 	text-shadow: none;
@@ -636,4 +635,4 @@ input:-moz-placeholder {
 	color: rgba($base1, .5) !important;
 	font-size: 14px;
 	text-shadow: none;
- }
+}
