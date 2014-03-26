@@ -10,8 +10,8 @@
 loader {
 	display: inline-block;
 	position: fixed;
-	top: 102px;
-	left: 29px;
+	bottom: 16px;
+	right: 16px;
 	width: 32px;
 	height:32px;
 	animation: anim-rotate 999ms infinite linear;
@@ -23,5 +23,8 @@ loader {
 		font-weight: normal;
 		line-height: 1;
 		-webkit-font-smoothing: antialiased;
+		&.ng-leave {
+			animation: fadeOut 500ms;
+		}
 	}
 }

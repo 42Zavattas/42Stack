@@ -13,6 +13,14 @@
 	transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
 }
 
+.bt-menu a.ng-add: {
+	animation: bounceInLeft 500ms;
+}
+
+.bt-menu a.ng-remove: {
+	animation: bounceInLeft 500ms;
+}
+
 .bt-menu.bt-menu-open {
 	height: 100%;
 	border-width: 30px 30px 30px 90px;
@@ -123,27 +131,27 @@
 	transition: transform 0.3s, opacity 0.2s, visibility 0s 0.3s;
 }
 
-.bt-menu ul li:first-child { 
+.bt-menu ul li:first-child {
 	-webkit-transform: translate3d(-100%,200%,0);
 	transform: translate3d(-100%,200%,0);
 }
 
-.bt-menu ul li:nth-child(2) { 
+.bt-menu ul li:nth-child(2) {
 	-webkit-transform: translate3d(-100%,100%,0);
 	transform: translate3d(-100%,100%,0);
 }
 
-.bt-menu ul li:nth-child(3) { 
+.bt-menu ul li:nth-child(3) {
 	-webkit-transform: translate3d(-100%,0,0);
 	transform: translate3d(-100%,0,0);
 }
 
-.bt-menu ul li:nth-child(4) { 
+.bt-menu ul li:nth-child(4) {
 	-webkit-transform: translate3d(-100%,-100%,0);
 	transform: translate3d(-100%,-100%,0);
 }
 
-.bt-menu ul li:nth-child(5) { 
+.bt-menu ul li:nth-child(5) {
 	-webkit-transform: translate3d(-100%,-200%,0);
 	transform: translate3d(-100%,-200%,0);
 }

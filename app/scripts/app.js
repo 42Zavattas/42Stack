@@ -58,7 +58,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
 		$scope.$broadcast('loadingStop');
 		if (rejection.status && rejection.status === 401) {
-			Flash.set('Unauthorized', 'error');
+			Flash.set('You are not logged', 'error');
 			$location.path('/login');
 			return;
 		}
@@ -70,6 +70,10 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 		delete $cookies.token;
 		$location.path('/login');
 		Flash.set('You have successfully logged out ;)', 'success');
+	};
+
+	$scope.isLogged = function () {
+		return !!$cookies.token;
 	};
 
 });
