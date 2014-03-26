@@ -92,9 +92,6 @@ h2 {
 	margin-top: 26px;
 	height: 100%;
 	@include simpleshadow;
-	&.ng-enter {
-		animation: fadeIn 250ms;
-	}
 }
 
 .ui-questions {
