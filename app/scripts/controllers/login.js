@@ -18,7 +18,7 @@ angular.module('42StackApp')
 				Flash.set('Welcome to the awesome');
 				$timeout(function () {
 					$location.url('/');
-				}, 1000);
+				}, 500);
 			})
 			.error(function (data, status, headers, config) {
 				delete $cookies.token;
