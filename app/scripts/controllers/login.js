@@ -13,7 +13,7 @@ angular.module('42StackApp')
 				$location.url('/');
 			})
 			.error(function (data, status, headers, config) {
-				delete $window.sessionStorage.token;
+				delete $cookies.token;
 				Flash.set('Authentification failed.', 'error');
 				$scope.user.mdp = '';
 			});
