@@ -88,12 +88,15 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
-					Restangular.all('tags').getList()
+					Restangular.all('tags').getList(),
+					Restangular.all('users').getList()
 				]).then(function (res) {
 					var question = res[0];
 					if (!question._id)
 						deferred.reject('question '+$route.current.params.id+' not found');
 					var tags = indexify(res[1]);
+					var users = indexify(res[2]);
+					question.author = users[question.author];
 					angular.forEach(question.tags, function (tagId, i) {
 						question.tags[i] = tags[tagId];
 					});

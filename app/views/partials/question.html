@@ -8,19 +8,19 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ question.title }}</h2>
-			<div class="content text">{{ question.content}}</div>
+			<div class="content text">{{ question.content }}</div>
 			<div class="info">
 				<div class="tags">
 					<span class="tag" ng-click="viewTag(tag.name)" ng-repeat="tag in question.tags">{{ tag.name }}</span>
 				</div>
 				<div class="extra">
 					<div class="picture">
-						<a ng-href="/#/users/{{ question.author.name }}">
+						<a ng-href="/users/{{ question.author._id }}">
 							<img ng-src="/images/{{ question.author.image }}" />
 						</a>
 					</div>
 					<div class="signature">
-						<a class="author" ng-href="/#/users/{{ question.author.id }}">{{ question.author.name }}</a>
+						<a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
 						<div class="timestamp">le {{ question.timestamp }}</div>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/#/users/{{ comment.author }}">{{ comment.author }}</a> le {{ comment.timestamp }}</span>
+					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp }}</span>
 				</div>
 				<div class="new">
 					<input type="text" placeholder="Ajouter un commentaire">
@@ -53,12 +53,12 @@
 			<div class="info">
 				<div class="extra">
 					<div class="picture">
-						<a ng-href="/#/users/2">
+						<a ng-href="/users/2">
 							<img ng-src="/images/dawuut.png" />
 						</a>
 					</div>
 					<div class="signature">
-						<a class="author" ng-href="/#/users/2">dawuut</a>
+						<a class="author" ng-href="/users/2">dawuut</a>
 						<div class="timestamp">le 04/7/2014</div>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/#/users/{{ comment.author }}">{{ comment.author }}</a> le {{ comment.timestamp }}</span>
+					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp }}</span>
 				</div>
 				<div class="new">
 					<input type="text" placeholder="Ajouter un commentaire">
