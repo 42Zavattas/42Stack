@@ -42,7 +42,7 @@ angular.module('42StackApp', [
 	};
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies) {
 
 	$scope.msgs = Flash.msgs;
 
@@ -65,5 +65,11 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 		Flash.set(rejection, 'error');
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
+
+	$scope.logout = function () {
+		delete $cookies.token;
+		$location.path('/login');
+		Flash.set('You have successfully logged out ;)');
+	};
 
 });
