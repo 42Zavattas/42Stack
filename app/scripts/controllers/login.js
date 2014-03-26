@@ -15,7 +15,7 @@ angular.module('42StackApp')
 			.success(function (data, status, headers, config) {
 				$cookies.token = data.token;
 				$scope.logged = true;
-				Flash.set('Welcome to the awesome');
+				Flash.set('Welcome to the awesome', 'success');
 				$timeout(function () {
 					$location.url('/');
 				}, 500);

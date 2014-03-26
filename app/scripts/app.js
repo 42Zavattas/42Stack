@@ -69,7 +69,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	$scope.logout = function () {
 		delete $cookies.token;
 		$location.path('/login');
-		Flash.set('You have successfully logged out ;)');
+		Flash.set('You have successfully logged out ;)', 'success');
 	};
 
 });

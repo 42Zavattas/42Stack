@@ -12,13 +12,35 @@
 		list-style-type: none;
 		margin: 0; padding: 0;
 		> li {
+			display: flex;
+			align-items: center;
 			> i {
-				margin: 5px;
+				font-size: 2em;
+				margin-right: .25em;
 			}
 			cursor: pointer;
 			margin: .5em 0; padding: .5em;
-			background: rgba(white, .1);
 			@include border-radius(3px);
+			@include box-shadow(rgba(black, .5) 0 1px 3px);
+			@include text-shadow(rgba(white, 0.05) 0 1px 0);
+			&.info {
+				background: rgba(white, .1);
+				&:hover {
+					background: rgba(white, .2);
+				}
+			}
+			&.error {
+				background: rgba($red, .4);
+				&:hover {
+					background: rgba($red, .5);
+				}
+			}
+			&.success {
+				background: rgba($green, .4);
+				&:hover {
+					background: rgba($green, .5);
+				}
+			}
 			&.ng-enter {
 				animation: bounceInRight 500ms;
 			}

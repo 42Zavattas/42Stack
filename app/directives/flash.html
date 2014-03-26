@@ -1,0 +1,15 @@
+<div class="ui-flash-container">
+	<ul>
+		<li
+			ng-repeat="msg in msgs"
+			ng-click="close($index)"
+			ng-class="msg.type">
+			<i ng-class="{
+				'icon-warning': msg.type == 'error',
+				'icon-checkmark-circle': msg.type == 'success',
+				'icon-info': msg.type == 'info'
+				}"></i>
+			<span>{{ msg.msg }}</span>
+		</li>
+	</ul>
+</div>
