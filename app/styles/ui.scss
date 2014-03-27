@@ -86,3 +86,15 @@
 		}
 	}
 }
+
+.ui-box {
+	border: 1px solid rgba(white, .1);
+	background: rgba(white, .03);
+	@include box-shadow(rgba(black, .3) 0 2px 10px);
+	&.padded {
+		padding: .5em;
+	}
+	&.full {
+		width: 100%;
+	}
+}
