@@ -12,7 +12,7 @@ angular.module('42StackApp')
 		setTimeout(function () {
 			that.msgs.shift();
 			$rootScope.$apply();
-		}, 2000);
+		}, 3500);
 	};
 
 });

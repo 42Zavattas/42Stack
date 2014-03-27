@@ -113,7 +113,6 @@ angular.module('42StackApp')
 					var users = indexify(res[1]);
 					var categories = indexify(res[2]);
 					angular.forEach(questions, function (question, _id) {
-						console.log(question);
 						question.author = users[question.author];
 						question.category = categories[question.category].name;
 					});

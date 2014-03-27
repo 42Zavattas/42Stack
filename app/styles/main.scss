@@ -349,6 +349,10 @@ h2 {
 	}
 }
 
+input[type=submit] {
+	cursor: pointer;
+}
+
 .login, .register {
 	text-align: center;
 	display: flex;
