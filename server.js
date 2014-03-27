@@ -72,6 +72,11 @@ app.post('/authentificate', function (req, res) {
 	res.json({ token: token });
 });
 
+app.post('/signup', function (res, req) {
+
+	console.log(req.body);
+});
+
 // Routing
 require('./lib/routes')(app);
 
