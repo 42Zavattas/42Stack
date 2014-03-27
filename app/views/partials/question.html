@@ -34,7 +34,9 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+					<span class="content">{{ comment.content }}
+						- <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a>
+						le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 				<div class="new">
 					<input type="text" placeholder="Ajouter un commentaire">
@@ -59,7 +61,7 @@
 					</div>
 					<div class="signature">
 						<a class="author" ng-href="/users/2">dawuut</a>
-						<div class="timestamp">le 04/7/2014</div>
+						<div class="timestamp">le {{ answer.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</div>
 					</div>
 				</div>
 			</div>
