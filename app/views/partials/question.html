@@ -42,14 +42,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="purpose-block answer">
+	<div ng-repeat="answer in question.answers" class="purpose-block answer">
 		<div class="action">
 			<i class="voteup icon-arrow-up3"></i>
 			<div class="count">10</div>
 			<i class="votedown icon-arrow-down3"></i>
 		</div>
 		<div class="content">
-			<div class="content text">Simple, let them try it and show every feature of vim emacs don't have : everything.</div>
+			<div class="content text" ng-bind-html="answer.msg"></div>
 			<div class="info">
 				<div class="extra">
 					<div class="picture">
@@ -80,14 +80,17 @@
 			</div>
 		</div>
 	</div>
-	<div class="add-answer">
-		<hr class="ui-hr">
-		<div class="flex">
-			<div class="wmd-panel">
-				<div class="wmd-button-bar"></div>
-				<ng-markdown content="content"></ng-markdown>
+	<form ng-submit="postAnswer()">
+		<div class="add-answer">
+			<hr class="ui-hr">
+			<div class="flex">
+				<div class="wmd-panel">
+					<div class="wmd-button-bar"></div>
+					<ng-markdown content="answer.msg"></ng-markdown>
+				</div>
+				<div class="wmd-preview"></div>
 			</div>
-			<div class="wmd-preview"></div>
+			<button class="ui-btn">Post answer</button>
 		</div>
-	</div>
+	</form>
 </div>
