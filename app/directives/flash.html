@@ -9,7 +9,7 @@
 				'icon-checkmark-circle': msg.type == 'success',
 				'icon-info': msg.type == 'info'
 				}"></i>
-			<span>{{ msg.msg }}</span>
+			<span ng-bind-html="msg.msg"></span>
 		</li>
 	</ul>
 </div>

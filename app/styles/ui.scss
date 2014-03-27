@@ -98,3 +98,15 @@
 		width: 100%;
 	}
 }
+
+a.ui-discret {
+	color: $base01;
+	text-decoration: none;
+	@include text-shadow(none);
+	&:hover {
+		text-decoration: none;
+		> span {
+			text-decoration: underline;
+		}
+	}
+}

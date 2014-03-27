@@ -4,7 +4,6 @@ var express = require('express'),
 path = require('path'),
 fs = require('fs'),
 mongoose = require('mongoose'),
-jwt = require('jsonwebtoken'),
 expressJwt = require('express-jwt');
 
 /**
@@ -50,32 +49,6 @@ app.use(function(err, req, res, next){
 
 // Express settings
 require('./lib/config/express')(app);
-
-app.post('/authentificate', function (req, res) {
-
-	//console.log(req.body);
-	//We need to check name & sha of pass + salt
-	if (!(req.body.name === 'a' && req.body.mdp === 'a')) {
-		res.send(401, 'Auth failed');
-		return;
-	}
-
-	var profile = {
-		id: 1,
-		first_name: 'Purposed',
-		last_name: 'Zavatta',
-		email: 'zav@t.ta'
-	};
-
-	var token = jwt.sign(profile, secret, { expiresInMinutes: 60*5 });
-
-	res.json({ token: token });
-});
-
-app.post('/signup', function (res, req) {
-
-	console.log(req.body);
-});
 
 // Routing
 require('./lib/routes')(app);
