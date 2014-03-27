@@ -23,26 +23,6 @@
 		<link rel="stylesheet" href="styles/main.css" />
 		<!-- endbuild -->
 
-	</head>
-	<body ng-app="42StackApp" ng-controller="AppCtrl" ng-cloak>
-
-		<loader></loader>
-
-		<flash></flash>
-
-		<nav id="bt-menu" class="bt-menu">
-			<a ng-show="isLogged()" href="#" class="bt-menu-trigger"><span>Menu</span></a>
-			<ul>
-				<li><a href="/ask" class="bt-icon icon-quill">Poser une question</a></li>
-				<li><a href="/questions" class="bt-icon icon-list2">Questions</a></li>
-				<li><a href="/chat" class="bt-icon icon-bubbles4">Chat</a></li>
-				<li><a href="/profile" class="bt-icon icon-user">Profil</a></li>
-				<li><a ng-click="logout()" href="" class="bt-icon icon-exit">Logout</a></li>
-			</ul>
-		</nav>
-
-		<div class="ui-content" ng-view=""></div>
-
 		<!-- build:js scripts/vendor.js -->
 		<script src="/socket.io/socket.io.js"></script>
 		<!-- bower:js -->
@@ -87,6 +67,26 @@
 		<script src="scripts/controllers/login.js"></script>
 		<script src="scripts/controllers/profile.js"></script>
 		<!-- endbuild -->
+
+	</head>
+	<body ng-app="42StackApp" ng-controller="AppCtrl" ng-cloak>
+
+		<loader></loader>
+
+		<flash></flash>
+
+		<nav id="bt-menu" class="bt-menu">
+			<a ng-show="isLogged()" href="#" class="bt-menu-trigger"><span>Menu</span></a>
+			<ul>
+				<li><a href="/ask" class="bt-icon icon-quill">Poser une question</a></li>
+				<li><a href="/questions" class="bt-icon icon-list2">Questions</a></li>
+				<li><a href="/chat" class="bt-icon icon-bubbles4">Chat</a></li>
+				<li><a href="/profile" class="bt-icon icon-user">Profil</a></li>
+				<li><a ng-click="logout()" href="" class="bt-icon icon-exit">Logout</a></li>
+			</ul>
+		</nav>
+
+		<div class="ui-content" ng-view=""></div>
 
 	</body>
 </html>
