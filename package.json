@@ -10,7 +10,8 @@
     "ejs": "~0.8.4",
     "socket.io": "~0.9.16",
     "express-jwt": "~0.1.0",
-    "jsonwebtoken": "~0.1.0"
+    "jsonwebtoken": "~0.1.0",
+    "mail": "~0.2.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
