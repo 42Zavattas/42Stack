@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function ($http, $scope, question, $location, Flash) {
+angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, question, answers, $location, Flash) {
 
 	$scope.question = question;
+	$scope.answers = answers;
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
 
@@ -15,15 +16,23 @@ angular.module('42StackApp').controller('QuestionCtrl', function ($http, $scope,
 			Flash.set('<strong>Invalid purpose !</strong> Type an answer before posting ?', 'error');
 		}
 		if ($scope.answer.msg) {
-			$scope.question.answers.push({
-				msg : $scope.answer.msg
+			Restangular.all('answers').post($scope.answer).then(function (res) {
+				if (typeof res === 'string') {
+					Flash.set(res, 'error');
+				} else {
+					Flash.set('Answer saved', 'success');
+					$scope.answers.push(res);
+				}
+			}, function (err) {
+				Flash.set(err.data, 'error');
 			});
 		}
 	};
 
 	function resetAnswer () {
 		$scope.answer = {
-			msg : null
+			question : $scope.question._id,
+			msg      : null
 		};
 		return $scope.answer;
 	}

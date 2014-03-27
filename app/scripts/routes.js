@@ -83,7 +83,8 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
-					Restangular.all('users').getList()
+					Restangular.all('users').getList(),
+					Restangular.all('answers').getList({ question : $route.current.params.id })
 				]).then(function (res) {
 					var question = res[0];
 					if (!question._id)
@@ -91,6 +92,17 @@ angular.module('42StackApp')
 					var users = indexify(res[1]);
 					question.author = users[question.author];
 					deferred.resolve(question);
+				}, function (err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
+			},
+			answers : function ($route, $q, Restangular) {
+				var deferred = $q.defer();
+				Restangular.all('answers')
+				.getList({ question : $route.current.params.id })
+				.then(function (res) {
+					deferred.resolve(res);
 				}, function (err) {
 					deferred.reject(err);
 				});
