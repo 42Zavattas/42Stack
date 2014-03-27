@@ -12,7 +12,7 @@
 			<div class="infos">
 				<span class="categ" ng-click="viewCateg($event, question.category)">{{ question.category }}</span>
 				<div class="tags">
-					<span class="tag" ng-click="viewTag($event, tag.name)" ng-repeat="tag in question.tags">{{ tag.name }}</span>
+					<span class="tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
 				</div>
 				<div class="extra">
 					par <a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
