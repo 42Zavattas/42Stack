@@ -8,7 +8,7 @@
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
-(function() {
+$(document).ready(function() {
 
  	// http://stackoverflow.com/a/11381730/989439
 	function mobilecheck() {
@@ -19,51 +19,47 @@
 
 	function init() {
 
-		var menu = document.getElementById( 'bt-menu' );
+		var menu = document.getElementById('bt-menu');
 		if (!menu)
 			return;
-		var trigger = menu.querySelector( 'a.bt-menu-trigger' ),
-			// triggerPlay only for demo 6
-			triggerPlay = document.querySelector( 'a.bt-menu-trigger-out' ),
-			// event type (if mobile use touch events)
+		var trigger = menu.querySelector('a.bt-menu-trigger'),
+			triggerPlay = document.querySelector('a.bt-menu-trigger-out'),
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
 				angular.element(menu).removeClass('bt-menu-open');
 				angular.element(menu).addClass('bt-menu-close');
-				/*classie.remove( menu, 'bt-menu-open' );
-				classie.add( menu, 'bt-menu-close' );*/
 			},
-			closeClickFn = function( ev ) {
+			closeClickFn = function(ev) {
 				resetMenu();
-				overlay.removeEventListener( eventtype, closeClickFn );
+				overlay.removeEventListener(eventtype, closeClickFn);
 			};
 
 		var overlay = document.createElement('div');
 		overlay.className = 'bt-overlay';
-		menu.appendChild( overlay );
+		menu.appendChild(overlay);
 
-		trigger.addEventListener( eventtype, function( ev ) {
+		trigger.addEventListener(eventtype, function(ev) {
 			ev.stopPropagation();
 			ev.preventDefault();
 
-			if( classie.has( menu, 'bt-menu-open' ) ) {
+			if (classie.has(menu, 'bt-menu-open')) {
 				resetMenu();
 			}
 			else {
-				classie.remove( menu, 'bt-menu-close' );
-				classie.add( menu, 'bt-menu-open' );
-				overlay.addEventListener( eventtype, closeClickFn );
+				classie.remove(menu, 'bt-menu-close');
+				classie.add(menu, 'bt-menu-open');
+				overlay.addEventListener(eventtype, closeClickFn);
 			}
 		});
 
-		if( triggerPlay ) {
-			triggerPlay.addEventListener( eventtype, function( ev ) {
+		if (triggerPlay) {
+			triggerPlay.addEventListener(eventtype, function(ev) {
 				ev.stopPropagation();
 				ev.preventDefault();
 
-				classie.remove( menu, 'bt-menu-close' );
-				classie.add( menu, 'bt-menu-open' );
-				overlay.addEventListener( eventtype, closeClickFn );
+				classie.remove(menu, 'bt-menu-close');
+				classie.add(menu, 'bt-menu-open');
+				overlay.addEventListener(eventtype, closeClickFn);
 			});
 		}
 
@@ -74,9 +70,8 @@
 		angular.element("nav a.bt-icon").click(function () {
 			resetMenu();
 		});
-
 	}
 
 	init();
 
-})();
+});
