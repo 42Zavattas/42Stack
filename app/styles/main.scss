@@ -111,12 +111,11 @@ h2 {
 		@include transition-property(border-color);
 		@include transition-duration(100ms);
 		> .votes {
+			text-align: center;
 			width: 64px;
 			padding: 0 8px;
 			font-size: 25px;
 			color: $cyan;
-			border-right: 1px solid rgba(white, .1);
-			@include box-shadow(rgba(black, .1) -1px 0 0 inset);
 		}
 		> .description {
 			max-width: 448px;

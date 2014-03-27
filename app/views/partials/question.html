@@ -1,4 +1,4 @@
-<hashbar></hashbar>
+/<hashbar></hashbar>
 <div class="question-detailled">
 	<div class="purpose-block">
 		<div class="action">
@@ -8,7 +8,7 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ question.title }}</h2>
-			<div class="content text">{{ question.content }}</div>
+			<div class="content text" ng-bind-html="question.content"></div>
 			<div class="info">
 				<div class="tags">
 					<span class="tag" ng-click="viewTag(tag.name)" ng-repeat="tag in question.tags">{{ tag.name }}</span>
@@ -21,7 +21,7 @@
 					</div>
 					<div class="signature">
 						<a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
-						<div class="timestamp">le {{ question.timestamp }}</div>
+						<div class="timestamp">le {{ question.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</div>
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp }}</span>
+					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 				<div class="new">
 					<input type="text" placeholder="Ajouter un commentaire">
@@ -72,7 +72,7 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp }}</span>
+					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 				<div class="new">
 					<input type="text" placeholder="Ajouter un commentaire">
