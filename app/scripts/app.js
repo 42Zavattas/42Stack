@@ -13,17 +13,15 @@ angular.module('42StackApp', [
 ])
 .config(function (RestangularProvider, $httpProvider) {
 	RestangularProvider.setBaseUrl("/api");
-	//RestangularProvider.setDefaultHttpFields({cache: true});
 	RestangularProvider.setRestangularFields({
 		id: "_id"
 	})
-
 	$httpProvider.interceptors.push('authInterceptor');
 })
 .factory('socket', function (socketFactory) {
 	return socketFactory();
 })
-.factory('authInterceptor', function ($rootScope, $q, $cookies) {
+.factory('authInterceptor', function ($rootScope, $q, $cookies, Flash) {
 	return {
 		request: function (config) {
 			config.headers = config.headers || {};
@@ -32,12 +30,14 @@ angular.module('42StackApp', [
 			}
 			return config;
 		},
-		response: function (response) {
-			if (response.status === 401) {
-				// handle the case where the user is not authenticated
-				console.log(response);
+		response: function (res) {
+			return res || $q.when(res);
+		},
+		responseError: function (res) {
+			if (typeof res.data === "string") {
+				Flash.set('<strong>' + res.config.url + '</strong> ' + res.status + ' ' + res.data, 'error');
 			}
-			return response || $q.when(response);
+			return res || $q.when(res);
 		}
 	};
 });

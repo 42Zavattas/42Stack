@@ -10,7 +10,7 @@ angular.module('42StackApp')
 			questions : function ($q, Restangular) {
 				var deferred = $q.defer();
 				$q.all([
-					Restangular.all('questions').getList(),
+					Restangular.all('questions').getList({ limit : 10 }),
 					Restangular.all('users').getList(),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
