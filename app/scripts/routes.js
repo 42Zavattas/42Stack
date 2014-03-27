@@ -143,6 +143,10 @@ angular.module('42StackApp')
 		templateUrl: 'partials/login',
 		controller: 'LoginCtrl'
 	})
+	.when('/signup', {
+		templateUrl: 'partials/signup',
+		controller: 'SignupCtrl'
+	})
 	.when('/profile', {
 		templateUrl: 'partials/profile',
 		controller: 'ProfileCtrl'
