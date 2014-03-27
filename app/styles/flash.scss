@@ -24,21 +24,21 @@
 			@include box-shadow(rgba(black, .5) 0 1px 3px);
 			@include text-shadow(rgba(white, 0.05) 0 1px 0);
 			&.info {
-				background: rgba(white, .1);
+				background: #1f4a55;
 				&:hover {
-					background: rgba(white, .2);
+					background: #395e68;
 				}
 			}
 			&.error {
-				background: rgba($red, .4);
+				background: #5c343a;
 				&:hover {
-					background: rgba($red, .5);
+					background: #723438;
 				}
 			}
 			&.success {
-				background: rgba($green, .4);
+				background: #395d28;
 				&:hover {
-					background: rgba($green, .5);
+					background: #466721;
 				}
 			}
 			&.ng-enter {
