@@ -2,8 +2,8 @@
 	<div class="ui-sneak">
 		<img src="images/padlock.png" ng-if="!uiLogged" class="fromTop">
 		<form class="ui-form" ng-submit="login()">
-			<input class="fromLeft" type="text" ng-model="user.name" placeholder="Identifiant" autofocus="autofocus" ng-if="!uiLogged"><br>
-			<input class="fromRight" type="password" ng-model="user.mdp" placeholder="Mot de passe" ng-if="!uiLogged"><br>
+			<input class="fromLeft" type="text" ng-model="user.login" placeholder="Identifiant" autofocus="autofocus" ng-if="!uiLogged"><br>
+			<input class="fromRight" type="password" ng-model="user.password" placeholder="Mot de passe" ng-if="!uiLogged"><br>
 			<input class="fromBot" type="submit" value="Valider" ng-if="!uiLogged">
 		</form>
 	</div>
