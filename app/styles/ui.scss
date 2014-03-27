@@ -46,6 +46,9 @@
 	border: none;
 	border-top: 1px solid rgba(white, .05);
 	@include box-shadow(rgba(black, .1) 0 -1px 0);
+	&.full {
+		margin: 1.5em 0;
+	}
 }
 
 .ui-selectable {

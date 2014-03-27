@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function ($scope, question, $location) {
+angular.module('42StackApp').controller('QuestionCtrl', function ($http, $scope, question, $location) {
 
 	$scope.question = question;
 
