@@ -24,7 +24,7 @@
 	cursor: pointer;
 	padding: .5em 1em;
 	border: 2px solid transparent;
-	@include border-radius(5px);
+	@include border-radius(3px);
 	@include text-shadow(rgba(black, .2) 0 1px);
 	&:hover, &:focus {
 		color: $green;

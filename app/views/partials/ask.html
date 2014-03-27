@@ -1,19 +1,21 @@
 <hashbar></hashbar>
-
-<input class="question-title" type="text" placeholder="Titre" ng-model="questiontitle" autofocus>
-<hr class="ui-hr">
-<div class="flex">
-	<div class="ask-edit">
-		<div class="wmd-panel">
-			<div class="wmd-button-bar"></div>
-			<ng-markdown sanitized="true" content="content"></ng-markdown>
+<form ng-submit="post()">
+	<input class="question-title" type="text" placeholder="Titre" ng-model="question.title" autofocus>
+	<hr class="ui-hr">
+	<div class="flex">
+		<div class="ask-edit">
+			<div class="wmd-panel">
+				<div class="wmd-button-bar"></div>
+				<ng-markdown sanitized="true" content="question.content"></ng-markdown>
+			</div>
+			<div class="extra flex">
+				<tags-input class="taglist" ng-model="question.tags" placeholder="Ajouter un tag" add-on-comma="true" add-on-space="true"></tags-input>
+			</div>
+			<dropdown title="Categorie" options="categories"></dropdown>
 		</div>
-		<div class="extra flex">
-			<tags-input class="taglist" ng-model="taglist" placeholder="Ajouter un tag" add-on-comma="true" add-on-space="true"></tags-input>
+		<div class="ask-preview">
+			<div class="wmd-preview"></div>
 		</div>
-		<dropdown title="Categorie" options="categories"></dropdown>
 	</div>
-	<div class="ask-preview">
-		<div class="wmd-preview"></div>
-	</div>
-</div>
+	<button class="ui-btn">Enregistrer</button>
+</form>

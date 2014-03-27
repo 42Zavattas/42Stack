@@ -13,7 +13,7 @@ angular.module('42StackApp', [
 ])
 .config(function (RestangularProvider, $httpProvider) {
 	RestangularProvider.setBaseUrl("/api");
-	RestangularProvider.setDefaultHttpFields({cache: true});
+	//RestangularProvider.setDefaultHttpFields({cache: true});
 	RestangularProvider.setRestangularFields({
 		id: "_id"
 	})
