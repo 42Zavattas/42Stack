@@ -350,7 +350,7 @@ h2 {
 	}
 }
 
-.login {
+.login, .register {
 	text-align: center;
 	display: flex;
 	vertical-align: middle;
@@ -371,6 +371,19 @@ h2 {
 			}
 		}
 	}
+}
+
+.register {
+	i {
+		font-size: 64px;
+	}
+	form {
+		margin-top: 24px;
+	}
+}
+
+.backlink {
+	font-size: 32px;
 }
 
 .unstyled {
