@@ -364,6 +364,11 @@ h2 {
 		width: 400px;
 		> form {
 			margin-bottom: 1em;
+			a {
+				display: block;
+				margin-top: 8px;
+				font-size: 12px;
+			}
 		}
 	}
 }
