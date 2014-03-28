@@ -4,5 +4,4 @@ angular.module('42StackApp')
 .controller('UserCtrl', function ($scope, user) {
 
 	$scope.user = user;
-	console.log(user);
 });
