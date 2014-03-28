@@ -692,3 +692,7 @@ input:-moz-placeholder {
 .bt-menu-trigger.ng-hide-remove {
 	animation: bounceInLeft 500ms;
 }
+
+#loading-bar .bar {
+	background: $green;
+}

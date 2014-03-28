@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies, $timeout) {
-
+.controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies,
+$timeout, cfpLoadingBar) {
 	$scope.user = { login : null, password : null };
 	$scope.uiLogged = true;
 	$timeout(function () {
@@ -17,6 +17,7 @@ angular.module('42StackApp')
 				$scope.$root.logged = true;
 				$scope.uiLogged = true;
 				Flash.set('Hello, <strong>'+data.user.login+'</strong>.', 'success');
+				cfpLoadingBar.start();
 				$timeout(function () {
 					$location.url('/');
 				}, 500);
