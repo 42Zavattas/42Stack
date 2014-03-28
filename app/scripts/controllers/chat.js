@@ -10,7 +10,7 @@ angular.module('42StackApp').controller('ChatCtrl', function ($scope, Socket) {
 	});
 
 	$scope.send = function (msg) {
-		Socket.emit('newChatMsg', { user : "current", content : msg || 'je suis un hacker je suis content' });
+		Socket.emit('newChatMsg', { user : 'current', content : msg || 'je suis un hacker je suis content' });
 		$scope.newMsg = '';
 	};
 });

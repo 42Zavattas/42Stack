@@ -14,15 +14,15 @@ angular.module('42StackApp', [
 ])
 .config(function (RestangularProvider, $httpProvider) {
 
-	RestangularProvider.setBaseUrl("/api");
-	RestangularProvider.setRestangularFields({ id: "_id" });
+	RestangularProvider.setBaseUrl('/api');
+	RestangularProvider.setRestangularFields({ id: '_id' });
 	$httpProvider.interceptors.push('authInterceptor');
 
 })
 .factory('socket', function (socketFactory) {
 	return socketFactory();
 })
-.factory('authInterceptor', function ($rootScope, $q, $cookies, Flash, $location) {
+.factory('authInterceptor', function ($rootScope, $q, $cookies) {
 	return {
 		request: function (config) {
 			config.headers = config.headers || {};
@@ -45,7 +45,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
 
-	$scope.$on('$routeChangeStart', function (event, current, previous) {
+	$scope.$on('$routeChangeStart', function () {
 		$scope.$broadcast('loading');
 	});
 
@@ -67,7 +67,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
 
-	Socket.on('send:newAnswer', function (answer) {
+	Socket.on('send:newAnswer', function () {
 		cache.removeAll();
 	});
 

@@ -4,7 +4,7 @@ angular.module('42StackApp').filter('startFrom', function() {
 	return function(input, start) {
 		start = +start;
 		return input.slice(start);
-	}
+	};
 });
 
 angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope, users, $routeParams, $timeout) {
@@ -33,6 +33,6 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 		filterTextTimeout = $timeout(function() {
 			$scope.filterText = tempFilterText;
 		}, 100);
-	})
+	});
 
 });

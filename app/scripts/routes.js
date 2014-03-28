@@ -1,5 +1,13 @@
 'use strict';
 
+function indexify(tab) {
+	var res = {};
+	angular.forEach(tab, function (el) {
+		res[el._id] = el;
+	});
+	return res;
+}
+
 angular.module('42StackApp')
 .config(function ($routeProvider, $locationProvider) {
 	$routeProvider
@@ -18,7 +26,7 @@ angular.module('42StackApp')
 					data.questions = res[0];
 					data.users = indexify(res[1]);
 					data.categories = indexify(res[2]);
-					angular.forEach(data.questions, function (question, _id) {
+					angular.forEach(data.questions, function (question) {
 						question.author = data.users[question.author];
 						question.category = data.categories[question.category].name;
 					});
@@ -62,7 +70,7 @@ angular.module('42StackApp')
 					}
 				}, function (err) {
 					deferred.reject(err);
-				})
+				});
 				return deferred.promise;
 			}
 		}
@@ -90,8 +98,9 @@ angular.module('42StackApp')
 					var data = {};
 					data.users = indexify(res[1]);
 					data.question = (function (question) {
-						if (!question._id)
+						if (!question._id) {
 							deferred.reject('question '+$route.current.params.id+' not found');
+						}
 						question.author = data.users[question.author];
 						return question;
 					})(res[0]);
@@ -124,7 +133,7 @@ angular.module('42StackApp')
 					data.questions = res[0];
 					data.users = indexify(res[1]);
 					data.categories = indexify(res[2]);
-					angular.forEach(data.questions, function (question, _id) {
+					angular.forEach(data.questions, function (question) {
 						question.author = data.users[question.author];
 						question.category = data.categories[question.category].name;
 					});
@@ -153,11 +162,3 @@ angular.module('42StackApp')
 	});
 	$locationProvider.html5Mode(true);
 });
-
-function indexify(tab) {
-	var res = {};
-	angular.forEach(tab, function (el) {
-		res[el._id] = el;
-	});
-	return res;
-}

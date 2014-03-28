@@ -2,6 +2,14 @@
 
 angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket) {
 
+	function resetAnswer () {
+		$scope.answer = {
+			question : $scope.question._id,
+			msg      : null
+		};
+		return $scope.answer;
+	}
+
 	$scope.question = data.question;
 	$scope.answers = data.answers;
 	$scope.question.answers = [];
@@ -35,13 +43,5 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			});
 		}
 	};
-
-	function resetAnswer () {
-		$scope.answer = {
-			question : $scope.question._id,
-			msg      : null
-		};
-		return $scope.answer;
-	}
 
 });
