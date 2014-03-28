@@ -1,11 +1,12 @@
 <hashbar></hashbar>
-<input type="text" ng-model="searchQuestions" placeholder="Search">
 <ul ng-if="filterTags.length || filterCategs.length" class="ui-tags-list">
-	<li class="filter-title">Filtre: </li>
-	<li class="ui-categ" ng-repeat="categ in filterCategs" ng-click="removeCateg($index)">{{ categ }}</li>
-	<li class="ui-tag" ng-repeat="tag in filterTags" ng-click="removeTag($index)">{{ tag }}</li>
+	<ul class="ui-smart-list" ng-if="filterCategs.length">
+		<li class="ui-categ" ng-repeat="categ in filterCategs" ng-click="removeCateg($index)">{{ categ }}</li>
+	</ul>
+	<ul class="ui-smart-list" ng-if="filterTags.length">
+		<li class="ui-tag" ng-repeat="tag in filterTags" ng-click="removeTag($index)">{{ tag }}</li>
+	</ul>
 </ul>
-<hr class="ui-hr">
 <ul class="unstyled ui-questions">
 	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | filter:searchQuestions | filter:filterTagsFn"
 		ng-click="viewQuestion(question)">

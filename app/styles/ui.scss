@@ -121,16 +121,31 @@ br.ui-br {
 
 .ui-tags-list {
 	margin-top: .5em;
+	margin-bottom: 1em;
 	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
 	.filter-title {
 		margin-right: 8px;
 	}
 }
 
+.ui-smart-list {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: .5em;
+	margin-right: .5em;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	background: rgba(black, .01);
+	border: 1px solid rgba(white, .125);
+	@include box-shadow(rgba(black, .5) 0 1px 3px);
+}
+
 .ui-tag, .ui-categ {
 	cursor: pointer;
 	margin-right: 8px;
-	margin-bottom: 8px;
+	margin-top: 8px;
 	font-family: "Menlo";
 	font-size: 12px;
 	line-height:12px;
@@ -154,4 +169,14 @@ br.ui-br {
 	&:hover {
 		border-color: $green;
 	}
+}
+
+.ui-hidden {
+	visibility: hidden;
+	display: none;
+}
+
+.ui-flex {
+	display: flex;
+	align-items: center;
 }
