@@ -7,21 +7,22 @@ angular.module('42StackApp')
 		templateUrl: 'partials/main',
 		controller : 'MainCtrl',
 		resolve : {
-			questions : function ($q, Restangular) {
+			data : function ($q, Restangular) {
+				var data = {};
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList({ limit : 10 }),
 					Restangular.all('users').getList(),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
-					var questions = res[0];
-					var users = indexify(res[1]);
-					var categories = indexify(res[2]);
-					angular.forEach(questions, function (question, _id) {
-						question.author = users[question.author];
-						question.category = categories[question.category].name;
+					data.questions = res[0];
+					data.users = indexify(res[1]);
+					data.categories = indexify(res[2]);
+					angular.forEach(data.questions, function (question, _id) {
+						question.author = data.users[question.author];
+						question.category = data.categories[question.category].name;
 					});
-					deferred.resolve(questions);
+					deferred.resolve(data);
 				}, function (err) {
 					deferred.reject(err);
 				});
@@ -112,23 +113,24 @@ angular.module('42StackApp')
 		templateUrl: 'partials/questions',
 		controller: 'QuestionsCtrl',
 		resolve: {
-			questions : function ($q, Restangular) {
+			data : function ($q, Restangular) {
+				var data = {};
 				var deferred = $q.defer();
 				$q.all([
-					Restangular.all('questions').getList(),
+					Restangular.all('questions').getList({ limit : 10 }),
 					Restangular.all('users').getList(),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
-					var questions = res[0];
-					var users = indexify(res[1]);
-					var categories = indexify(res[2]);
-					angular.forEach(questions, function (question, _id) {
-						question.author = users[question.author];
-						question.category = categories[question.category].name;
+					data.questions = res[0];
+					data.users = indexify(res[1]);
+					data.categories = indexify(res[2]);
+					angular.forEach(data.questions, function (question, _id) {
+						question.author = data.users[question.author];
+						question.category = data.categories[question.category].name;
 					});
-					deferred.resolve(questions);
+					deferred.resolve(data);
 				}, function (err) {
-					deferred.reject();
+					deferred.reject(err);
 				});
 				return deferred.promise;
 			}

@@ -1,8 +1,14 @@
 'use strict';
 
-angular.module('42StackApp').controller('MainCtrl', function ($scope, $location, $routeParams, questions) {
+angular.module('42StackApp').controller('MainCtrl', function ($scope, $location, $routeParams, data, Socket) {
 
-	$scope.questions = questions;
+	$scope.questions = data.questions;
+
+	Socket.on('send:newQuestion', function (question) {
+		question.author = data.users[question.author];
+		question.category = data.categories[question.category].name;
+		$scope.questions.push(question);
+	});
 
 	$scope.viewQuestion = function (question) {
 		$location.path('/questions/' + question._id);
