@@ -131,6 +131,12 @@ br.ui-br {
 }
 
 .ui-smart-list {
+	&.ng-leave {
+		animation: fadeIn 500ms;
+	}
+	&.ng-enter {
+		animation: fadeIn  500ms;
+	}
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: .5em;
@@ -168,6 +174,12 @@ br.ui-br {
 	border: 1px solid rgba(white, .1);
 	&:hover {
 		border-color: $green;
+	}
+	&.ng-leave {
+		animation: fadeIn 500ms;
+	}
+	&.ng-enter {
+		animation: fadeIn  500ms;
 	}
 }
 

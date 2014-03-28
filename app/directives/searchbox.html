@@ -1,1 +1,5 @@
-<input type="text" class="searchbox">
+<form ng-submit="searchGlobal(searchText)">
+	<input ng-show="searchActive" ng-focus="searchActive" ng-model="searchText" type="text" placeholder="Search ...">
+	<input type="submit" class="ui-hidden" value="Search">
+	<i class="icon-search" ng-class="{ active : searchActive }" ng-click="toggleActive()"></i>
+</form>
