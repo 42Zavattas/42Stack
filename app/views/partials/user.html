@@ -2,11 +2,13 @@
 <h2 ng-bind="user.name"></h2>
 <div class="user">
 	<section class="infos">
-		<img ng-src="/images/{{ user.misc.image }}" />
 		<section class="details">
-			<p>reputation : <span class="rep">{{ user.reputation - user.downvotes }}</span></p>
-			<p>joined on : <span class="joined">24/5/2011</span></p>
-			<p>hostname : <span class="host">e2r9p3</span></p>
+			<img ng-src="/images/{{ user.misc.image }}" />
+			<div>
+				<p>reputation : <span class="rep">{{ user.reputation - user.downvotes }}</span></p>
+				<p>joined on : <span class="joined">24/5/2011</span></p>
+				<p>hostname : <span class="host">e2r9p3</span></p>
+			</div>
 		</section>
 		<canvas>
 			Maybe a raphaelJs graph ?

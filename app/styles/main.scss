@@ -497,9 +497,12 @@ input {
 	}
 }
 
-.wmd-preview {
+.wmd-preview, .purpose-block .text {
 	p, pre, code, h1, h2, blockquote, a, strong, em, ul, ol, li {
 		@include user-select(text);
+	}
+	p {
+		margin-bottom: 16px;
 	}
 	p > code {
 		padding: 3px 4px;
@@ -633,16 +636,25 @@ textarea {
 		display: flex;
 		min-height: 256px;
 		.details {
-			margin-left: 16px;
-			p {
-				margin-bottom: 8px;
+			display: flex;
+			min-width: 24%;
+			img {
+				width: 128px;
+				height: 128px;
+				border: 2px solid $base03;
+				@include box-shadow(rgba(black, .4) 0 2px 5px);
+			}
+			> div {
+				margin-left: 16px;
+				p {
+					margin-bottom: 8px;
+				}
 			}
 		}
-		img {
-			width: 128px;
-			height: 128px;
+		canvas {
+			width: 100%;
+			margin: 0 24px;
 			border: 2px solid $base03;
-			@include box-shadow(rgba(black, .4) 0 2px 5px);
 		}
 		blockquote {
 			padding: 16px;
