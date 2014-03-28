@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('AskCtrl', function ($scope, categories, Flash, Restangular, $location, Socket) {
+.controller('AskCtrl', function ($scope, categories, Flash, Restangular, $location, Socket, Cache) {
 
 	$scope.question = {
 		title    : null,
@@ -32,6 +32,7 @@ angular.module('42StackApp')
 			Restangular.all('questions').post($scope.question).then(function (question) {
 				Flash.set('Question saved', 'success');
 				Socket.emit('newQuestion', question);
+				Cache.clean();
 				$location.path('/questions');
 			}, function (err) {
 				Flash.set(err.data, 'error');

@@ -5,9 +5,11 @@
 	position: fixed;
 	display: block;
 	margin: 0; padding: 0;
+	top: 0; right: .5em;
 	color: $base03;
-	top: 0;
-	right: .5em;
+	a {
+		color: $base03;
+	}
 	> ul {
 		list-style-type: none;
 		margin: 0; padding: 0;

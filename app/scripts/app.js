@@ -19,10 +19,20 @@ angular.module('42StackApp', [
 	$httpProvider.interceptors.push('authInterceptor');
 
 })
-.factory('socket', function (socketFactory) {
+.factory('Socket', function (socketFactory) {
 	return socketFactory();
-})
-.factory('authInterceptor', function ($rootScope, $q, $cookies) {
+}).factory('Cache', ['Restangular', '$cacheFactory', function(Restangular, $cacheFactory) {
+	var service = {};
+	var cache;
+	service.init = function() {
+		cache = $cacheFactory('http');
+		Restangular.setDefaultHttpFields({cache: cache});
+	};
+	service.clean = function () {
+		cache.removeAll();
+	};
+	return service;
+}]).factory('authInterceptor', function ($rootScope, $q, $cookies) {
 	return {
 		request: function (config) {
 			config.headers = config.headers || {};
@@ -37,10 +47,9 @@ angular.module('42StackApp', [
 	};
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies, Socket, Restangular, $cacheFactory) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies, Socket, Restangular, Cache) {
 
-	var cache = $cacheFactory('http');
-	Restangular.setDefaultHttpFields({ cache: cache });
+	Cache.init();
 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
@@ -67,8 +76,8 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
 
-	Socket.on('send:newAnswer', function () {
-		cache.removeAll();
+	Socket.on('send:clearCache', function () {
+		Cache.clean();
 	});
 
 	$scope.logout = function () {

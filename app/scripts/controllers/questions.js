@@ -20,15 +20,15 @@ angular.module('42StackApp')
 		return out;
 	}
 
+	Socket.on('send:newQuestion', function (question) {
+		question.author = data.users[question.author];
+		question.category = data.categories[question.category].name;
+		$scope.questions.push(question);
+	});
+
 	$scope.questions = data.questions;
 	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
 	$scope.filterCategs = $routeParams.categ ? removeDuplicate($routeParams.categ.split(',')) : [];
-
-	Socket.on('send:newQuestion', function (question) {
-		question.author = data.users[question.author];
-//		question.category = data.categories[question.category].name;
-		$scope.questions.push(question);
-	});
 
 	$scope.removeCateg = function (index) {
 		$scope.filterCategs.splice(index, 1);

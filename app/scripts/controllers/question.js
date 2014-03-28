@@ -16,6 +16,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	$scope.answer = resetAnswer();
 
 	Socket.on('send:newAnswer', function (answer) {
+		Flash.set('A new answer has been posted');
 		answer.author = data.users[answer.author];
 		$scope.answers.push(answer);
 	});
@@ -29,13 +30,14 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			Flash.set('<strong>Invalid purpose !</strong> Type an answer before posting ?', 'error');
 		}
 		if ($scope.answer.msg) {
-			Restangular.all('answers').post($scope.answer).then(function (res) {
-				if (typeof res === 'string') {
-					Flash.set(res, 'error');
+			Restangular.all('answers').post($scope.answer).then(function (answer) {
+				if (typeof answer === 'string') {
+					Flash.set(answer, 'error');
 				} else {
 					Flash.set('Answer saved', 'success');
-					Socket.emit('newAnswer', res);
-					res.author = data.users[res.author];
+					Socket.emit('newAnswer', answer);
+					answer.author = data.users[answer.author];
+					$scope.answers.push(answer);
 					resetAnswer();
 				}
 			}, function (err) {
