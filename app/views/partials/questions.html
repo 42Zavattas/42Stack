@@ -17,7 +17,7 @@
 					<span class="tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
 				</div>
 				<div class="extra">
-					par <a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
+					par <a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
 					le <span class="time">{{ question.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 			</div>
