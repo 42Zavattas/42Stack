@@ -23,6 +23,7 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 
 	var tempFilterText = '',
 	filterTextTimeout;
+
 	$scope.$watch('search', function (val) {
 		if (filterTextTimeout) {
 			$timeout.cancel(filterTextTimeout);
@@ -30,7 +31,7 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 		tempFilterText = val;
 		filterTextTimeout = $timeout(function() {
 			$scope.filterText = tempFilterText;
-		}, 250); // delay 250 ms
+		}, 100);
 	})
 
 });
