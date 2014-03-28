@@ -1,6 +1,5 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('ProfileCtrl', function ($scope, $http) {
-
+.controller('ProfileCtrl', function () {
 });

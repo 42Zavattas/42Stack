@@ -12,7 +12,7 @@ angular.module('42StackApp')
 	$scope.login = function() {
 		if ($scope.user.login && $scope.user.password) {
 			$http.post('/authenticate', $scope.user)
-			.success(function (data, status, headers, config) {
+			.success(function (data) {
 				$cookies.token = data.token;
 				$scope.$root.logged = true;
 				$scope.uiLogged = true;
@@ -21,11 +21,11 @@ angular.module('42StackApp')
 					$location.url('/');
 				}, 500);
 			})
-			.error(function (data, status, headers, config) {
+			.error(function (data) {
 				delete $cookies.token;
 				Flash.set(data, 'error');
 				$scope.user.password = null;
 			});
 		}
-	}
+	};
 });

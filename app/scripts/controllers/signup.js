@@ -7,7 +7,7 @@ angular.module('42StackApp')
 
 	$scope.send = function () {
 		if ($scope.login) {
-			$http.post('/signup', { login : $scope.login }).then(function (res) {
+			$http.post('/signup', { login : $scope.login }).then(function () {
 				Flash.set('Welcome to 42Stack <strong>' + $scope.login + '</strong> ! Your password has been sent to your mail adress.', 'success');
 				$location.url('/login');
 			}, function (err) {
@@ -15,5 +15,5 @@ angular.module('42StackApp')
 				$scope.login = null;
 			});
 		}
-	}
+	};
 });

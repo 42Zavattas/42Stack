@@ -6,7 +6,7 @@ angular.module('42StackApp')
 		templateUrl: 'directives/flash.html',
 		restrict: 'E',
 		replace : true,
-		link: function (scope, element, attrs) {
+		link: function (scope) {
 			scope.close = function (i) {
 				Flash.msgs.splice(i, 1);
 			};
