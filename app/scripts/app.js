@@ -9,7 +9,8 @@ angular.module('42StackApp', [
 	'ngTagsInput',
 	'ngMarkdown',
 	'restangular',
-	'btford.socket-io'
+	'btford.socket-io',
+	'highcharts-ng'
 ])
 .config(function (RestangularProvider, $httpProvider) {
 	RestangularProvider.setBaseUrl("/api");
