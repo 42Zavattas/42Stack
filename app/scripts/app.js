@@ -21,7 +21,7 @@ angular.module('42StackApp', [
 .factory('socket', function (socketFactory) {
 	return socketFactory();
 })
-.factory('authInterceptor', function ($rootScope, $q, $cookies, Flash) {
+.factory('authInterceptor', function ($rootScope, $q, $cookies, Flash, $location) {
 	return {
 		request: function (config) {
 			config.headers = config.headers || {};
@@ -31,12 +31,6 @@ angular.module('42StackApp', [
 			return config;
 		},
 		response: function (res) {
-			return res || $q.when(res);
-		},
-		responseError: function (res) {
-			if (typeof res.data === "string") {
-				Flash.set('<strong>' + res.config.url + '</strong> ' + res.status + ' ' + res.data, 'error');
-			}
 			return res || $q.when(res);
 		}
 	};

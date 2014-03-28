@@ -11,7 +11,7 @@ angular.module('42StackApp')
 
 	$scope.login = function() {
 		if ($scope.user.login && $scope.user.password) {
-			$http.post('/authentificate', $scope.user)
+			$http.post('/authenticate', $scope.user)
 			.success(function (data, status, headers, config) {
 				$cookies.token = data.token;
 				$scope.$root.logged = true;
