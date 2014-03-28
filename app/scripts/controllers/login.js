@@ -16,7 +16,7 @@ angular.module('42StackApp')
 				$cookies.token = data.token;
 				$scope.$root.logged = true;
 				$scope.uiLogged = true;
-				Flash.set('Welcome back, <strong>'+data.user.login+'</strong>', 'success');
+				Flash.set('Hello, <strong>'+data.user.login+'</strong>.', 'success');
 				$timeout(function () {
 					$location.url('/');
 				}, 500);
