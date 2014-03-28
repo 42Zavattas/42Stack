@@ -37,7 +37,7 @@ angular.module('42StackApp', [
 	};
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, Cache, $location, Flash, $cookies) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies) {
 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
@@ -65,8 +65,6 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, Cache, $loc
 	});
 
 	$scope.logout = function () {
-		console.log(Cache.store);
-		Cache.cleanAll();
 		delete $cookies.token;
 		$scope.$root.logged = false;
 		$location.path('/login');
