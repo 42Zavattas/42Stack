@@ -4,13 +4,24 @@ angular.module('42StackApp')
 .controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket) {
 
 	$scope.questions = data.questions;
+	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
+	$scope.filterCategs = $routeParams.categ ? removeDuplicate($routeParams.categ.split(',')) : [];
 
 	Socket.on('send:newQuestion', function (question) {
-		console.log('jsut received that: ', question);
 		question.author = data.users[question.author];
 //		question.category = data.categories[question.category].name;
 		$scope.questions.push(question);
 	});
+
+	$scope.removeCateg = function (index) {
+		$scope.filterCategs.splice(index, 1);
+		rewriteUrl();
+	};
+
+	$scope.removeTag = function (index) {
+		$scope.filterTags.splice(index, 1);
+		rewriteUrl();
+	};
 
 	$scope.viewQuestion = function (question) {
 		$location.url('/questions/' + question._id);
@@ -18,11 +29,35 @@ angular.module('42StackApp')
 
 	$scope.viewCateg = function ($event, category) {
 		$event.stopPropagation();
-		$location.url('/questions?categ=' + category);
-	}
+		if ($scope.filterCategs.indexOf(category) == -1) {
+			$scope.filterCategs.push(category);
+			rewriteUrl();
+		}
+	};
 
 	$scope.viewTag = function ($event, tag) {
 		$event.stopPropagation();
-		$location.url('/questions?tags=' + tag);
+		if ($scope.filterTags.indexOf(tag) == -1) {
+			$scope.filterTags.push(tag);
+			rewriteUrl();
+		}
+	};
+
+	function rewriteUrl () {
+		$location.url('/questions'
+			+ ($scope.filterTags.length || $scope.filterCategs ? '?' : '')
+			+ [($scope.filterCategs.length ? 'categ=' + $scope.filterCategs.join(',') : '')
+				, ($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
 	}
+
+	function removeDuplicate (tab) {
+		var out = [];
+		angular.forEach(tab, function (el) {
+			if (out.indexOf(el) == -1) {
+				out.push(el);
+			}
+		});
+		return out;
+	}
+
 });

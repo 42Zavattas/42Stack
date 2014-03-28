@@ -118,3 +118,40 @@ br.ui-br {
 	display: block;
 	margin: 1em 0;
 }
+
+.ui-tags-list {
+	margin-top: .5em;
+	display: flex;
+	.filter-title {
+		margin-right: 8px;
+	}
+}
+
+.ui-tag, .ui-categ {
+	cursor: pointer;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	font-family: "Menlo";
+	font-size: 12px;
+	line-height:12px;
+	padding: 2px;
+}
+
+.ui-categ {
+	background:rgba(black, .4);
+	text-decoration: none;
+	color: $base1;
+	border: 1px solid rgba(white, .2);
+	&:hover {
+		border: 1px solid rgba(white, .5);
+	}
+}
+
+.ui-tag {
+	background:rgba($base0, .4);
+	color: $green;
+	border: 1px solid rgba(white, .1);
+	&:hover {
+		border-color: $green;
+	}
+}
