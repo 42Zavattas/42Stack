@@ -7,11 +7,11 @@ angular.module('42StackApp')
 		templateUrl: 'partials/main',
 		controller : 'MainCtrl',
 		resolve : {
-			questions : function ($q, Restangular, Cache) {
+			questions : function ($q, Restangular) {
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList({ limit : 10 }),
-					Cache.get('users'),
+					Restangular.all('users').getList(),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
 					var questions = res[0];
@@ -42,8 +42,8 @@ angular.module('42StackApp')
 		templateUrl: 'partials/users',
 		controller: 'UsersCtrl',
 		resolve: {
-			users: function (Cache) {
-				return Cache.get('users');
+			users: function (Restangular) {
+				return Restangular.all('users').getList();
 			}
 		}
 	})
@@ -79,11 +79,11 @@ angular.module('42StackApp')
 		templateUrl: 'partials/question',
 		controller: 'QuestionCtrl',
 		resolve: {
-			data: function ($route, $q, Restangular, Cache) {
+			data: function ($route, $q, Restangular) {
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
-					Cache.get('users'),
+					Restangular.all('users').getList(),
 					Restangular.all('answers').getList({ question : $route.current.params.id })
 				]).then(function (res) {
 					var data = {};
@@ -112,11 +112,11 @@ angular.module('42StackApp')
 		templateUrl: 'partials/questions',
 		controller: 'QuestionsCtrl',
 		resolve: {
-			questions : function ($q, Cache, Restangular) {
+			questions : function ($q, Restangular) {
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList(),
-					Cache.get('users'),
+					Restangular.all('users').getList(),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
 					var questions = res[0];
