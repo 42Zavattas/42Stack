@@ -17,6 +17,7 @@ angular.module('42StackApp', [
 	RestangularProvider.setRestangularFields({
 		id: "_id"
 	})
+	RestangularProvider.setDefaultHttpFields({cache: true});
 	$httpProvider.interceptors.push('authInterceptor');
 })
 .factory('socket', function (socketFactory) {
