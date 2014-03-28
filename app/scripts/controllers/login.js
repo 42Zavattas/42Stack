@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies, $timeout) {
+.controller('LoginCtrl', function (Cache, $scope, $http, $location, Flash, $cookies, $timeout) {
 
 	$scope.user = { login : null, password : null };
 	$scope.uiLogged = true;
@@ -13,6 +13,7 @@ angular.module('42StackApp')
 		if ($scope.user.login && $scope.user.password) {
 			$http.post('/authenticate', $scope.user)
 			.success(function (data, status, headers, config) {
+				Cache.cleanAll();
 				$cookies.token = data.token;
 				$scope.$root.logged = true;
 				$scope.uiLogged = true;

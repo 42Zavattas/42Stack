@@ -106,7 +106,7 @@ a.ui-discret {
 	color: $base01;
 	text-decoration: none;
 	@include text-shadow(none);
-	&:hover {
+	&:hover, &:focus {
 		text-decoration: none;
 		> span {
 			text-decoration: underline;

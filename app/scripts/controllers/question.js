@@ -21,7 +21,10 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 					Flash.set(res, 'error');
 				} else {
 					Flash.set('Answer saved', 'success');
+					console.log(res.author, data.users[res.author], data.users);
+					res.author = data.users[res.author];
 					$scope.answers.push(res);
+					resetAnswer();
 				}
 			}, function (err) {
 				Flash.set(err.data, 'error');

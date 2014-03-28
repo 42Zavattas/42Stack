@@ -36,7 +36,7 @@ angular.module('42StackApp', [
 	};
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, Cache, $location, Flash, $cookies) {
 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
@@ -55,7 +55,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 		if (rejection) {
 			if (rejection.status && rejection.status === 401) {
 				Flash.set('You are not logged', 'error');
-				$location.path('/login');
+				$location.url('/login');
 				return;
 			}
 			Flash.set('Something bad occured. Your login has been recorded.', 'error');
@@ -64,6 +64,8 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 	});
 
 	$scope.logout = function () {
+		console.log(Cache.store);
+		Cache.cleanAll();
 		delete $cookies.token;
 		$scope.$root.logged = false;
 		$location.path('/login');
