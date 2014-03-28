@@ -79,30 +79,28 @@ angular.module('42StackApp')
 		templateUrl: 'partials/question',
 		controller: 'QuestionCtrl',
 		resolve: {
-			question: function ($route, $q, Restangular, Cache) {
+			data: function ($route, $q, Restangular, Cache) {
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
 					Cache.get('users'),
 					Restangular.all('answers').getList({ question : $route.current.params.id })
 				]).then(function (res) {
-					var question = res[0];
-					if (!question._id)
-						deferred.reject('question '+$route.current.params.id+' not found');
-					var users = indexify(res[1]);
-					question.author = users[question.author];
-					deferred.resolve(question);
-				}, function (err) {
-					deferred.reject(err);
-				});
-				return deferred.promise;
-			},
-			answers : function ($route, $q, Restangular) {
-				var deferred = $q.defer();
-				Restangular.all('answers')
-				.getList({ question : $route.current.params.id })
-				.then(function (res) {
-					deferred.resolve(res);
+					var data = {};
+					data.users = indexify(res[1]);
+					data.question = (function (question) {
+						if (!question._id)
+							deferred.reject('question '+$route.current.params.id+' not found');
+						question.author = data.users[question.author];
+						return question;
+					})(res[0]);
+					data.answers = (function (answers) {
+						angular.forEach(answers, function (el) {
+							el.author = data.users[el.author];
+						});
+						return answers;
+					})(res[2]);
+					deferred.resolve(data);
 				}, function (err) {
 					deferred.reject(err);
 				});

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, question, answers, $location, Flash) {
+angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash) {
 
-	$scope.question = question;
-	$scope.answers = answers;
+	$scope.question = data.question;
+	$scope.answers = data.answers;
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
 
