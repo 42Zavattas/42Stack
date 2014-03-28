@@ -1,2 +1,19 @@
 <hashbar></hashbar>
 <h2 ng-bind="user.name"></h2>
+<div class="user">
+	<section class="infos">
+		<img ng-src="/images/{{ user.misc.image }}" />
+		<section class="details">
+			<p>reputation : <span class="rep">{{ user.reputation - user.downvotes }}</span></p>
+			<p>joined on : <span class="joined">24/5/2011</span></p>
+			<p>hostname : <span class="host">e2r9p3</span></p>
+		</section>
+		<canvas>
+			Maybe a raphaelJs graph ?
+		</canvas>
+		<blockquote>DESSSSSSSSSSSSSSSSSCRIPTION {{ user.misc.description }}</blockquote>
+	</section>
+	<hr class="ui-hr">
+	<section class="activity">
+	</section>
+</div>

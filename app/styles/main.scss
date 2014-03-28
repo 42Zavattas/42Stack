@@ -628,6 +628,32 @@ textarea {
 	 }
 }
 
+.user {
+	.infos {
+		display: flex;
+		min-height: 256px;
+		.details {
+			margin-left: 16px;
+			p {
+				margin-bottom: 8px;
+			}
+		}
+		img {
+			width: 128px;
+			height: 128px;
+			border: 2px solid $base03;
+			@include box-shadow(rgba(black, .4) 0 2px 5px);
+		}
+		blockquote {
+			padding: 16px;
+			min-width: 32%;
+			margin-left: auto;
+			background-color: rgba(black, .1);
+			border: 3px dashed $base03;
+		}
+	}
+}
+
 ::-webkit-input-placeholder {
 	color: rgba($base1, .5) !important;
 	font-size: 14px;
