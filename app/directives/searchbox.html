@@ -1,5 +1,5 @@
 <form ng-submit="searchGlobal(searchText)">
-	<input ng-show="searchActive" ng-focus="searchActive" ng-model="searchText" type="text" placeholder="Search ...">
+	<input ng-show="searchActive" ng-model="searchText" type="text" placeholder="Search anything...">
 	<input type="submit" class="ui-hidden" value="Search">
-	<i class="icon-search" ng-class="{ active : searchActive }" ng-click="toggleActive()"></i>
+	<i class="icon-search" ng-class="{ active : pinned }" ng-mouseover="setActive()" ng-mouseout="setInactive()" ng-click="togglePin()"></i>
 </form>

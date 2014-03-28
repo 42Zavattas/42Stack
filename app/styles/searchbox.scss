@@ -18,9 +18,12 @@ searchbox {
 			border: 4px solid transparent;
 			min-width: 56px;
 			@include transition-property(border-color);
-			@include transition-duration(100ms);
-			&:hover, &.active {
+			@include transition-duration(500ms);
+			&:hover {
 				border-color: rgba(255,255,255,.2);
+			}
+			&.active {
+				border-color: rgba(255,255,255,.5);
 				color: rgba(255,255,255,.5);
 			}
 		}
