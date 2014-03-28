@@ -65,4 +65,17 @@ angular.module('42StackApp')
 		return out;
 	}
 
+/*	$scope.nbByPage = 50;
+	$scope.pageSize = $scope.nbByPage;
+
+	$scope.filterSearch = null;
+
+	$scope.searchQuestions = null;
+
+	$scope.filterTagsFn = function() {
+		return ($scope.selectedGenres.indexOf(movie.genre) !== -1);
+	};
+
+	console.log($scope.filterTags);
+*/
 });
