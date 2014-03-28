@@ -14,7 +14,6 @@ angular.module('42StackApp')
 					Cache.get('users'),
 					Restangular.all('categories').getList()
 				]).then(function (res) {
-					console.log(res);
 					var questions = res[0];
 					var users = indexify(res[1]);
 					var categories = indexify(res[2]);

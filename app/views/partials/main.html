@@ -2,5 +2,27 @@
 <h2>Bienvenue sur 42Stack !</h2>
 <hr class="ui-hr full">
 <section>
-	<h3>Trending questions</h3>
+	<ul class="unstyled ui-questions">
+		<li class="ui-question" ng-repeat="question in questions"
+			ng-click="viewQuestion(question)">
+			<div class="votes">{{ question.upvotes - question.downvotes }}</div>
+			<div class="description">
+				<div class="flex">
+					<i class="icon-quotes-left"></i>
+					<div class="title">{{ question.title }}</div>
+					<i class="icon-quotes-left inverted"></i>
+				</div>
+				<div class="infos">
+					<span class="categ" ng-click="viewCateg($event, question.category)">{{ question.category }}</span>
+					<div class="tags">
+						<span class="tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
+					</div>
+					<div class="extra">
+						par <a class="author" ng-href="/users/{{ question.author._id }}">{{ question.author.name }}</a>
+						le <span class="time">{{ question.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
 </section>

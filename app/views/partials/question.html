@@ -16,7 +16,7 @@
 				<div class="extra">
 					<div class="picture">
 						<a ng-href="/users/{{ question.author._id }}">
-							<img ng-src="/images/{{ question.author.image }}" />
+							<img ng-src="/images/{{ question.author.image || 'default.jpg' }}" />
 						</a>
 					</div>
 					<div class="signature">
@@ -56,7 +56,7 @@
 				<div class="extra">
 					<div class="picture">
 						<a ng-href="/users/2">
-							<img ng-src="/images/dawuut.png" />
+							<img ng-src="/images/default.jpg" />
 						</a>
 					</div>
 					<div class="signature">
