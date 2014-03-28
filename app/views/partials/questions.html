@@ -1,5 +1,10 @@
 <hashbar></hashbar>
 <input type="text" placeholder="Search ... (dont try it it is not working)">
+<ul ng-if="filterTags.length || filterCategs.length" class="ui-tags-list">
+	<li class="filter-title">Filtre: </li>
+	<li class="ui-categ" ng-repeat="categ in filterCategs" ng-click="removeCateg($index)">{{ categ }}</li>
+	<li class="ui-tag" ng-repeat="tag in filterTags" ng-click="removeTag($index)">{{ tag }}</li>
+</ul>
 <hr class="ui-hr">
 <ul class="unstyled ui-questions">
 	<li class="ui-question" ng-repeat="question in questions"
