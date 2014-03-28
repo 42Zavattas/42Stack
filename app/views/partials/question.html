@@ -47,7 +47,7 @@
 	<div ng-repeat="answer in answers" class="purpose-block answer">
 		<div class="action">
 			<i class="voteup icon-arrow-up3"></i>
-			<div class="count">10</div>
+			<div class="count">{{ answer.upvotes - answer.downvotes }}</div>
 			<i class="votedown icon-arrow-down3"></i>
 		</div>
 		<div class="content">
