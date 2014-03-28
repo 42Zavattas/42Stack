@@ -58,7 +58,7 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 				$location.path('/login');
 				return;
 			}
-			Flash.set(rejection, 'error');
+			Flash.set('Something bad occured. Your login has been recorded.', 'error');
 		}
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});

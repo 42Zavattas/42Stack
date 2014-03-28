@@ -7,7 +7,7 @@ angular.module('42StackApp').filter('startFrom', function() {
 	}
 });
 
-angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope, users, $routeParams) {
+angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope, users, $routeParams, $timeout) {
 
 	$scope.users = users;
 	$scope.length = $scope.users.length;
@@ -16,8 +16,21 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 	$scope.loadMore = function () {
 		$scope.pageSize += 30;
 	};
+
 	$scope.viewUser = function (user) {
 		$location.path('/users/' + user._id);
 	};
+
+	var tempFilterText = '',
+	filterTextTimeout;
+	$scope.$watch('search', function (val) {
+		if (filterTextTimeout) {
+			$timeout.cancel(filterTextTimeout);
+		}
+		tempFilterText = val;
+		filterTextTimeout = $timeout(function() {
+			$scope.filterText = tempFilterText;
+		}, 250); // delay 250 ms
+	})
 
 });
