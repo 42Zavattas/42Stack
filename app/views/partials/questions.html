@@ -1,5 +1,5 @@
 <hashbar></hashbar>
-<input type="text" placeholder="Search ... (dont try it it is not working)">
+<input type="text" ng-model="searchQuestions" placeholder="Search">
 <ul ng-if="filterTags.length || filterCategs.length" class="ui-tags-list">
 	<li class="filter-title">Filtre: </li>
 	<li class="ui-categ" ng-repeat="categ in filterCategs" ng-click="removeCateg($index)">{{ categ }}</li>
@@ -7,7 +7,7 @@
 </ul>
 <hr class="ui-hr">
 <ul class="unstyled ui-questions">
-	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp'"
+	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | filter:searchQuestions | filter:filterTagsFn"
 		ng-click="viewQuestion(question)">
 		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
