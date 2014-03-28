@@ -1,19 +1,16 @@
 'use strict';
 
-angular.module('42StackApp').controller('ChatCtrl', function ($scope, socket) {
+angular.module('42StackApp').controller('ChatCtrl', function ($scope, Socket) {
 
 	$scope.msgs = [];
 	$scope.newMsg = '';
 
-	socket.on('send:newChatMsg', function (data) {
+	Socket.on('send:newChatMsg', function (data) {
 		$scope.msgs.push(data);
 	});
 
 	$scope.send = function (msg) {
-		if (msg)
-		{
-			socket.emit('newChatMsg', { user : "current", content : msg });
-			$scope.newMsg = '';
-		}
+		Socket.emit('newChatMsg', { user : "current", content : msg || 'je suis un hacker je suis content' });
+		$scope.newMsg = '';
 	};
 });

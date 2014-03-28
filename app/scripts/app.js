@@ -13,12 +13,11 @@ angular.module('42StackApp', [
 	'highcharts-ng'
 ])
 .config(function (RestangularProvider, $httpProvider) {
+
 	RestangularProvider.setBaseUrl("/api");
-	RestangularProvider.setRestangularFields({
-		id: "_id"
-	})
-	RestangularProvider.setDefaultHttpFields({cache: true});
+	RestangularProvider.setRestangularFields({ id: "_id" });
 	$httpProvider.interceptors.push('authInterceptor');
+
 })
 .factory('socket', function (socketFactory) {
 	return socketFactory();
@@ -38,7 +37,10 @@ angular.module('42StackApp', [
 	};
 });
 
-angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies) {
+angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, Flash, $cookies, Socket, Restangular, $cacheFactory) {
+
+	var cache = $cacheFactory('http');
+	Restangular.setDefaultHttpFields({ cache: cache });
 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
@@ -63,6 +65,10 @@ angular.module('42StackApp').controller('AppCtrl', function ($scope, $location, 
 			Flash.set('Something bad occured. Your login has been recorded.', 'error');
 		}
 		$location.path(previous ? previous.$$route.originalPath : '/');
+	});
+
+	Socket.on('send:newAnswer', function (answer) {
+		cache.removeAll();
 	});
 
 	$scope.logout = function () {

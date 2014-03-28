@@ -1,11 +1,16 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash) {
+angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket) {
 
 	$scope.question = data.question;
 	$scope.answers = data.answers;
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
+
+	Socket.on('send:newAnswer', function (answer) {
+		answer.author = data.users[answer.author];
+		$scope.answers.push(answer);
+	});
 
 	$scope.viewTag = function (tag) {
 		$location.url('/questions?tags=' + tag);
@@ -21,9 +26,8 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 					Flash.set(res, 'error');
 				} else {
 					Flash.set('Answer saved', 'success');
-					console.log(res.author, data.users[res.author], data.users);
+					Socket.emit('newAnswer', res);
 					res.author = data.users[res.author];
-					$scope.answers.push(res);
 					resetAnswer();
 				}
 			}, function (err) {
