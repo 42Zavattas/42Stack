@@ -3,7 +3,7 @@
 <hr class="ui-hr">
 <ul class="userlist">
 	<li ng-repeat="user in users | filter: filterText | orderBy: 'name' | limitTo:pageSize" ng-click="viewUser(user)">
-		<div class="image"><img ng-src="/images/{{ user.image || 'default.jpg' }}"></div>
+		<div class="image"><img ng-src="/images/{{ user.misc.image || 'default.jpg' }}"></div>
 		<div class="infos">
 			<span class="name">{{ user.name }}</span>
 			<div class="rep"><strong>{{ user.reputation }}</strong></div>
