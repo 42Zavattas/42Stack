@@ -43,6 +43,11 @@ angular.module('42StackApp')
 		}
 	};
 
+	$scope.viewUser = function ($event, user) {
+		$event.stopPropagation();
+		$location.url('/users/' + user._id);
+	};
+
 	function rewriteUrl () {
 		$location.url('/questions'
 			+ ($scope.filterTags.length || $scope.filterCategs ? '?' : '')
