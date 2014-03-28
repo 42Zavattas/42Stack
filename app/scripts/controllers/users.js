@@ -9,12 +9,13 @@ angular.module('42StackApp').filter('startFrom', function() {
 
 angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope, users, $routeParams, $timeout) {
 
+	var nbByPage = 50;
 	$scope.users = users;
 	$scope.length = $scope.users.length;
-	$scope.pageSize = 30;
+	$scope.pageSize = nbByPage;
 
 	$scope.loadMore = function () {
-		$scope.pageSize += 30;
+		$scope.pageSize += nbByPage;
 	};
 
 	$scope.viewUser = function (user) {
