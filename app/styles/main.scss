@@ -176,11 +176,10 @@ h2 {
 				> .extra {
 					margin-left: auto;
 					> .author {
-						text-decoration: underline;
 						color: $base00;
+						text-decoration: none;
 						&:hover {
 							color: $green;
-							text-decoration: none;
 						}
 					}
 					.time {
