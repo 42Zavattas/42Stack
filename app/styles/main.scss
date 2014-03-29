@@ -98,7 +98,7 @@ h2 {
 
 .ui-questions {
 	display: flex;
-	align-items: flex-start;
+	//align-items: center;
 	flex-wrap: wrap;
 	> .ui-question {
 		display: flex;
@@ -625,85 +625,82 @@ textarea {
 	width: 100%;
 	margin-top: 4px;
 	outline: none;
-			 * {
-				 outline: none;
-			 }
-			 .tags {
-				 border: 1px solid rgba(white, .1);
-				 background-color:$base03;
-				 &:focus {
-					 border-color: $green;
-				 }
-			 }
-			 input {
-				 background: none;
-				 font-size: 14px;
-				 width: auto !important;
-			 }
+	.tags {
+		border: 1px solid rgba(white, .1);
+		background-color:$base03;
+		&:focus {
+			border-color: $green;
 		 }
+	 }
+	 input {
+		 background: none;
+		 font-size: 14px;
+		 width: auto !important;
+	}
+}
 
-		 .user {
-			 .infos {
-				 display: flex;
-				 min-height: 256px;
-				 .details {
-					 display: flex;
-					 min-width: 24%;
-					 img {
-						 width: 128px;
-						 height: 128px;
-						 border: 2px solid $base03;
-						 @include box-shadow(rgba(black, .4) 0 2px 5px);
-					 }
-					 > div {
-						 margin-left: 16px;
-						 p {
-							 margin-bottom: 8px;
-						 }
-					 }
-				 }
-				 .chart {
-					 width: 100%;
-					 margin: 0 24px;
-					 border: 2px solid $base03;
-				 }
-				 blockquote {
-					 padding: 16px;
-					 min-width: 32%;
-					 margin-left: auto;
-					 background-color: rgba(black, .1);
-					 border: 3px dashed $base03;
+.user {
+	.infos {
+		display: flex;
+		min-height: 256px;
+		.details {
+			display: flex;
+			min-width: 24%;
+			img {
+				width: 128px;
+				height: 128px;
+				border: 2px solid $base03;
+				@include box-shadow(rgba(black, .4) 0 2px 5px);
+			 }
+			 > div {
+				 margin-left: 16px;
+				 p {
+					 margin-bottom: 8px;
 				 }
 			 }
 		 }
+		 .chart {
+			 width: 44%;
+			 margin: 0 24px;
+			 border: 2px solid $base03;
+		 }
+		 blockquote {
+			 padding: 16px;
+			 min-width: 32%;
+			 margin-left: auto;
+			 background-color: rgba(black, .1);
+			 border: 3px dashed $base03;
+		 }
+	 }
+ }
 
-		 ::-webkit-input-placeholder {
-			 color: rgba($base1, .5) !important;
-			 font-size: 14px;
-			 text-shadow: none;
-		 }
+ ::-webkit-input-placeholder {
+	 color: rgba($base1, .5) !important;
+	 font-size: 14px;
+	 text-shadow: none;
+ }
 
-		 ::-moz-placeholder {
-			 color: rgba($base1, .5) !important;
-			 font-size: 14px;
-			 text-shadow: none;
-		 }
-		 :-ms-input-placeholder {
-			 color: rgba($base1, .5) !important;
-			 font-size: 14px;
-			 text-shadow: none;
-		 }
+ ::-moz-placeholder {
+	 color: rgba($base1, .5) !important;
+	 font-size: 14px;
+	 text-shadow: none;
+ }
+ :-ms-input-placeholder {
+	 color: rgba($base1, .5) !important;
+	 font-size: 14px;
+	 text-shadow: none;
+ }
 
-		 input:-moz-placeholder {
-			 color: rgba($base1, .5) !important;
-			 font-size: 14px;
-			 text-shadow: none;
-		 }
+ input:-moz-placeholder {
+	 color: rgba($base1, .5) !important;
+	 font-size: 14px;
+	 text-shadow: none;
+ }
 
-		 .bt-menu-trigger.ng-hide-remove {
-			 animation: bounceInLeft 500ms;
-		 }
+ .bt-menu-trigger.ng-hide-remove {
+	 animation: bounceInLeft 500ms;
+ }
 
-		 #loading-bar .bar {
-			 background: $green;
-		 }
+ #loading-bar .bar {
+	 background: $green;
+ }
