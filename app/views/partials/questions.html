@@ -8,7 +8,7 @@
 	</ul>
 </ul>
 <ul class="unstyled ui-questions">
-	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | filter:searchQuestions | filter:filterTagsFn"
+	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | filter:searchQuestions | filter:filterTagsFn | filter:filterCategsFn"
 		ng-click="viewQuestion(question)">
 		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
