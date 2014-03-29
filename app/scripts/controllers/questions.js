@@ -70,8 +70,6 @@ Socket, Flash) {
 	$scope.nbByPage = 50;
 	$scope.pageSize = $scope.nbByPage;
 
-	$scope.filterSearch = null;
-
 	$scope.searchQuestions = null;
 
 });
