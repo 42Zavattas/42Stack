@@ -75,15 +75,6 @@ angular.module('42StackApp')
 			}
 		}
 	})
-	.when('/chat', {
-		templateUrl: 'partials/chat',
-		controller: 'ChatCtrl',
-		resolve: {
-			user: function (Restangular) {
-				return Restangular.all('users').getList();
-			}
-		}
-	})
 	.when('/questions/:id', {
 		templateUrl: 'partials/question',
 		controller: 'QuestionCtrl',
@@ -142,6 +133,15 @@ angular.module('42StackApp')
 					deferred.reject(err);
 				});
 				return deferred.promise;
+			}
+		}
+	})
+	.when('/chat', {
+		templateUrl: 'partials/chat',
+		controller: 'ChatCtrl',
+		resolve: {
+			user: function (Restangular) {
+				return Restangular.all('users').getList();
 			}
 		}
 	})
