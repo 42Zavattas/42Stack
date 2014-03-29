@@ -65,23 +65,6 @@ angular.module('42StackApp')
 		$location.url('/users/' + user._id);
 	};
 
-	function rewriteUrl () {
-		$location.url('/questions'
-			+ ($scope.filterTags.length || $scope.filterCategs ? '?' : '')
-			+ [($scope.filterCategs.length ? 'categ=' + $scope.filterCategs.join(',') : '')
-				, ($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
-	}
-
-	function removeDuplicate (tab) {
-		var out = [];
-		angular.forEach(tab, function (el) {
-			if (out.indexOf(el) == -1) {
-				out.push(el);
-			}
-		});
-		return out;
-	}
-
 	$scope.nbByPage = 50;
 	$scope.pageSize = $scope.nbByPage;
 
@@ -92,7 +75,7 @@ angular.module('42StackApp')
 	$scope.filterTagsFn = function(question) {
 		if ($scope.filterTags.length > 0) {
 			angular.forEach($scope.filterTags, function (el) {
-				if (question.tags.indexOf(el) != -1) {
+				if (question.tags.indexOf(el) !== -1) {
 					console.log(question.title);
 					return (true);
 				}
@@ -104,7 +87,7 @@ angular.module('42StackApp')
 
 	$scope.filterCategsFn = function(question) {
 		if ($scope.filterCategs.length > 0) {
-			return ($scope.filterCategs.indexOf(question.category) != -1)
+			return ($scope.filterCategs.indexOf(question.category) !== -1);
 		}
 		return (true);
 	};

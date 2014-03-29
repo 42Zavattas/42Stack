@@ -5,7 +5,7 @@ angular.module('42StackApp')
 	return {
 		templateUrl: 'directives/searchbox.html',
 		restrict: 'E',
-		link: function postLink(scope, element, attrs) {
+		link: function postLink(scope, element) {
 			scope.searchText = null;
 			scope.searchActive = false;
 			scope.pinned = false;
@@ -18,7 +18,7 @@ angular.module('42StackApp')
 				scope.pinned = !scope.pinned;
 				scope.active = scope.pinned;
 				if (scope.active) {
-					element.find('input').focus();;
+					element.find('input').focus();
 				}
 			};
 			scope.toggleActive = function () {
