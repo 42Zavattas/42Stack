@@ -7,8 +7,7 @@ Socket, Flash) {
 	function rewriteUrl () {
 		$location.url('/questions' +
 		($scope.filterTags.length || $scope.filterCategs ? '?' : '') +
-		[($scope.filterCategs.length ? 'categ=' + $scope.filterCategs.join(',') : ''),
-		($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
+		[($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
 	}
 
 	function removeDuplicate (tab) {
@@ -23,14 +22,12 @@ Socket, Flash) {
 
 	Socket.on('send:newQuestion', function (question) {
 		question.author = data.users[question.author];
-		question.category = data.categories[question.category].name;
 		$scope.questions.push(question);
 		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');
 	});
 
 	$scope.questions = data.questions;
 	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
-	$scope.filterCategs = $routeParams.categ ? removeDuplicate($routeParams.categ.split(',')) : [];
 
 	$scope.removeCateg = function (index) {
 		$scope.filterCategs.splice(index, 1);
@@ -44,14 +41,6 @@ Socket, Flash) {
 
 	$scope.viewQuestion = function (question) {
 		$location.url('/questions/' + question._id);
-	};
-
-	$scope.viewCateg = function ($event, category) {
-		$event.stopPropagation();
-		if ($scope.filterCategs.indexOf(category) === -1) {
-			$scope.filterCategs.push(category);
-			rewriteUrl();
-		}
 	};
 
 	$scope.viewTag = function ($event, tag) {

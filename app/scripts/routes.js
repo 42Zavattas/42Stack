@@ -20,15 +20,12 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList({ limit : 10 }),
-					Restangular.all('users').getList(),
-					Restangular.all('categories').getList()
+					Restangular.all('users').getList()
 				]).then(function (res) {
 					data.questions = res[0];
 					data.users = indexify(res[1]);
-					data.categories = indexify(res[2]);
 					angular.forEach(data.questions, function (question) {
 						question.author = data.users[question.author];
-						question.category = data.categories[question.category].name;
 					});
 					deferred.resolve(data);
 				}, function (err) {
@@ -42,8 +39,9 @@ angular.module('42StackApp')
 		templateUrl: 'partials/ask',
 		controller: 'AskCtrl',
 		resolve : {
-			categories : function (Restangular) {
-				return Restangular.all('categories').getList();
+			users: function (Restangular) {
+				//prevent unwanted acces for now
+				return Restangular.all('users').getList();
 			}
 		}
 	})
@@ -119,15 +117,12 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList(),
-					Restangular.all('users').getList(),
-					Restangular.all('categories').getList()
+					Restangular.all('users').getList()
 				]).then(function (res) {
 					data.questions = res[0];
 					data.users = indexify(res[1]);
-					data.categories = indexify(res[2]);
 					angular.forEach(data.questions, function (question) {
 						question.author = data.users[question.author];
-						question.category = data.categories[question.category].name;
 					});
 					deferred.resolve(data);
 				}, function (err) {

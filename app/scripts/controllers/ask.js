@@ -1,22 +1,13 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('AskCtrl', function ($scope, categories, Flash, Restangular, $location, Socket, Cache) {
+.controller('AskCtrl', function ($scope, Flash, Restangular, $location, Socket, Cache) {
 
 	$scope.question = {
 		title    : null,
-		category : null,
 		tags     : [],
 		content  : null
 	};
-
-	$scope.categories = (function (categs) {
-		var res = [];
-		angular.forEach(categs, function (categ) {
-			res.push([categ.name, categ.name]);
-		});
-		return res;
-	})(categories);
 
 	$scope.post = function () {
 		if (!$scope.question.title) {

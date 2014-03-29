@@ -16,12 +16,9 @@ angular.module('42StackApp')
 			return out;
 		}
 
-		if (obj.text != undefined || obj.categs.length > 0 || obj.tags.length > 0) {
+		if (obj.text != undefined || obj.tags.length > 0) {
 			angular.forEach(items, function (item) {
 				if (item.title.indexOf(obj.text) >= 0) {
-					result.push(item);
-				}
-				else if (obj.categs.indexOf(item.category) >= 0) {
 					result.push(item);
 				}
 				angular.forEach(obj.tags, function (tag) {

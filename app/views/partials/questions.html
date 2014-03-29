@@ -1,16 +1,13 @@
 <hashbar></hashbar>
-<section class="ui-tags-list" ng-if="filterTags.length || filterCategs.length">
+<section class="ui-tags-list" ng-if="filterTags.length">
 <ul>
-	<ul class="ui-smart-list" ng-if="filterCategs.length">
-		<li class="ui-categ" ng-repeat="categ in filterCategs" ng-click="removeCateg($index)">{{ categ }}</li>
-	</ul>
 	<ul class="ui-smart-list" ng-if="filterTags.length">
 		<li class="ui-tag" ng-repeat="tag in filterTags" ng-click="removeTag($index)">{{ tag }}</li>
 	</ul>
 </ul>
 </section>
 <ul class="ui-questions">
-	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | questionsFilter:{text:searchQuestions,tags:filterTags,categs:filterCategs}"
+	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | questionsFilter:{text:searchQuestions,tags:filterTags}"
 		ng-click="viewQuestion(question)">
 		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
@@ -21,7 +18,6 @@
 			</div>
 			<div class="infos">
 				<section class="attribs">
-					<span class="ui-categ" ng-click="viewCateg($event, question.category)">{{ question.category }}</span>
 					<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
 				</section>
 				<section class="extra">
