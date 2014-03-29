@@ -46,4 +46,6 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	};
 
+	//$scope.vote = function ()
+
 });
