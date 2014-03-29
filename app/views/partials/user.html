@@ -7,7 +7,7 @@
 			<div>
 				<p>reputation : <span class="rep">{{ user.reputation - user.downvotes }}</span></p>
 				<p>joined on : <span class="joined">24/5/2011</span></p>
-				<p>hostname : <span class="host">e2r9p3</span></p>
+				<p>hostname : <tracking class="host" login="{{ user.login }}"></tracking></p>
 			</div>
 		</section>
 		<highchart class="chart" config="chart"></highchart>

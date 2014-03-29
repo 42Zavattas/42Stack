@@ -18,7 +18,6 @@ angular.module('42StackApp', [
 	RestangularProvider.setBaseUrl('/api');
 	RestangularProvider.setRestangularFields({ id: '_id' });
 	$httpProvider.interceptors.push('authInterceptor');
-
 })
 .config(function(cfpLoadingBarProvider) {
 	cfpLoadingBarProvider.includeSpinner = false;

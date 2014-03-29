@@ -26,13 +26,13 @@ angular.module('42StackApp')
 					overflow: 'justify'
 				},
 				offset: 0,
-				lineColor: "rgba(0, 0, 0, 0.1)"
+				lineColor: 'rgba(0, 0, 0, 0.1)'
 			},
 			yAxis: {
 				title: {
 					text: ''
 				},
-				tickInterval: 10,
+				tickInterval: 20,
 				min: 0,
 				minorGridLineWidth: 0,
 				gridLineWidth: 0,
@@ -46,8 +46,10 @@ angular.module('42StackApp')
 			}
 		},
 		series : [{
+			pointStart: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 14, 1, 0, 0, 0).getTime(),
+			pointInterval: 24 * 3600 * 1000,
 			name : 'Reputation changes',
-			data : [1, 2, 3, 4, 8, 42, 24, 16, 8]
+			data : [1, 2, 3, 4, 8, 42, 24, 16, 8, 0, 0, 12, 5, 99, 0]
 		}]
 	};
 });
