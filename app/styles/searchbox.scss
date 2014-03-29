@@ -1,0 +1,34 @@
+@import 'compass/css3';
+@import 'colors';
+
+searchbox {
+	> form {
+		display: flex;
+		align-items: center;
+		> i {
+			background: red;
+			font-size: 1.5em;
+			line-height: 0;
+			margin-left: .5em;
+			padding: 12px;
+			border-radius: 28px;
+			background: transparent;
+			color: rgba(0,0,0,.02);
+			cursor: pointer;
+			border: 4px solid transparent;
+			min-width: 56px;
+			@include transition-property(border-color);
+			@include transition-duration(500ms);
+			&:hover {
+				border-color: rgba(255,255,255,.2);
+			}
+			&.active {
+				border-color: rgba(255,255,255,.5);
+				color: rgba(255,255,255,.5);
+			}
+		}
+		> input[type="text"] {
+			margin: 0;
+		}
+	}
+}
