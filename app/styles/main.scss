@@ -642,10 +642,15 @@ textarea {
 .user {
 	.infos {
 		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		flex: 1;
 		min-height: 256px;
 		.details {
 			display: flex;
-			min-width: 24%;
+			min-width: 300px;
+			margin-bottom: 1em;
+			margin-right: 1em;
 			img {
 				width: 128px;
 				height: 128px;
@@ -660,14 +665,17 @@ textarea {
 			 }
 		 }
 		 .chart {
-			 width: 44%;
 			 margin: 0 24px;
 			 border: 2px solid $base03;
+			 margin-bottom: 1em;
+			 margin-left: 0;
+			 min-width: 600px;
+			 max-width: 800px;
+			 height: 256px;
 		 }
 		 blockquote {
 			 padding: 16px;
 			 min-width: 32%;
-			 margin-left: auto;
 			 background-color: rgba(black, .1);
 			 border: 3px dashed $base03;
 		 }

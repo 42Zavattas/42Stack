@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket) {
+.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location,
+Socket, Flash) {
 
 	function rewriteUrl () {
 		$location.url('/questions' +
@@ -24,6 +25,7 @@ angular.module('42StackApp')
 		question.author = data.users[question.author];
 		question.category = data.categories[question.category].name;
 		$scope.questions.push(question);
+		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');
 	});
 
 	$scope.questions = data.questions;
