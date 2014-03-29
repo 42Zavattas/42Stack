@@ -83,6 +83,7 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
+					Restangular.all('votes').getList(),
 					Restangular.all('users').getList(),
 					Restangular.all('answers').getList({ question : $route.current.params.id })
 				]).then(function (res) {

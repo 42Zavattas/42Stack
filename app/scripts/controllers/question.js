@@ -46,6 +46,16 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	};
 
-	//$scope.vote = function ()
+	$scope.vote = function (object, type) {
+		var send = {
+			object : object._id,
+			type : type
+		}
+		Restangular.all('votes').post(send).then(function (res) {
+			console.log(res);
+		}, function (err) {
+			Flash.set(err.data, 'error');
+		});
+	}
 
 });

@@ -2,9 +2,9 @@
 <div class="question-detailled">
 	<div class="purpose-block">
 		<div class="action">
-			<i class="voteup icon-arrow-up3"></i>
+			<i class="voteup icon-arrow-up3" ng-click="vote(question, 1)"></i>
 			<div class="count">{{ question.upvotes - question.downvotes }}</div>
-			<i class="votedown icon-arrow-down3"></i>
+			<i class="votedown icon-arrow-down3" ng-click="vote(question, 0)"></i>
 		</div>
 		<div class="content">
 			<h2 class="title">{{ question.title }}</h2>
