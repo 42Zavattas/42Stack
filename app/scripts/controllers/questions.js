@@ -74,24 +74,4 @@ Socket, Flash) {
 
 	$scope.searchQuestions = null;
 
-	$scope.filterTagsFn = function(question) {
-		if ($scope.filterTags.length > 0) {
-			angular.forEach($scope.filterTags, function (el) {
-				if (question.tags.indexOf(el) !== -1) {
-					console.log(question.title);
-					return (true);
-				}
-			});
-			return (false);
-		}
-		return (true);
-	};
-
-	$scope.filterCategsFn = function(question) {
-		if ($scope.filterCategs.length > 0) {
-			return ($scope.filterCategs.indexOf(question.category) !== -1);
-		}
-		return (true);
-	};
-
 });

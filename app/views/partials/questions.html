@@ -10,7 +10,7 @@
 </ul>
 </section>
 <ul class="ui-questions">
-	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | filter:searchQuestions | filter:filterTagsFn | filter:filterCategsFn"
+	<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp' | questionsFilter:{text:searchQuestions,tags:filterTags,categs:filterCategs}"
 		ng-click="viewQuestion(question)">
 		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
