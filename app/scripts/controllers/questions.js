@@ -82,17 +82,31 @@ angular.module('42StackApp')
 		return out;
 	}
 
-/*	$scope.nbByPage = 50;
+	$scope.nbByPage = 50;
 	$scope.pageSize = $scope.nbByPage;
 
 	$scope.filterSearch = null;
 
 	$scope.searchQuestions = null;
 
-	$scope.filterTagsFn = function() {
-		return ($scope.selectedGenres.indexOf(movie.genre) !== -1);
+	$scope.filterTagsFn = function(question) {
+		if ($scope.filterTags.length > 0) {
+			angular.forEach($scope.filterTags, function (el) {
+				if (question.tags.indexOf(el) != -1) {
+					console.log(question.title);
+					return (true);
+				}
+			});
+			return (false);
+		}
+		return (true);
 	};
 
-	console.log($scope.filterTags);
-*/
+	$scope.filterCategsFn = function(question) {
+		if ($scope.filterCategs.length > 0) {
+			return ($scope.filterCategs.indexOf(question.category) != -1)
+		}
+		return (true);
+	};
+
 });
