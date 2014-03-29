@@ -1,27 +1,13 @@
 <hashbar></hashbar>
-<h2>Bienvenue sur 42Stack !</h2>
 <section>
-	<ul class="unstyled ui-questions">
-		<li class="ui-question" ng-repeat="question in questions | orderBy: '-timestamp'"
-			ng-click="viewQuestion(question)">
-			<div class="votes">{{ question.upvotes - question.downvotes }}</div>
-			<div class="description">
-				<div class="flex">
-					<i class="icon-quotes-left"></i>
-					<div class="title">{{ question.title }}</div>
-					<i class="icon-quotes-left inverted"></i>
-				</div>
-				<div class="infos">
-					<span class="categ" ng-click="viewCateg($event, question.category)">{{ question.category }}</span>
-					<div class="tags">
-						<span class="tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
-					</div>
-					<div class="extra">
-						par <a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
-						le <span class="time">{{ question.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
-					</div>
-				</div>
-			</div>
+	<ul class="ui-pad-nav">
+		<li ng-click="navigateTo('/ask')">
+			<i class="icon-quill"></i>
+			<legend>Ask a question</legend>
+		</li>
+		<li ng-click="navigateTo('/questions')">
+			<i class="icon-list2"></i>
+			<legend>All questions</legend>
 		</li>
 	</ul>
 </section>

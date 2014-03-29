@@ -120,13 +120,14 @@ br.ui-br {
 }
 
 .ui-tags-list {
-	margin-top: .5em;
-	margin-bottom: 1em;
-	display: flex;
-	align-items: baseline;
-	flex-wrap: wrap;
-	.filter-title {
-		margin-right: 8px;
+	> ul {
+		margin-bottom: 1em;
+		display: flex;
+		align-items: baseline;
+		flex-wrap: wrap;
+		.filter-title {
+			margin-right: 8px;
+		}
 	}
 }
 
@@ -143,15 +144,16 @@ br.ui-br {
 	margin-right: .5em;
 	padding-bottom: 8px;
 	padding-left: 8px;
-	background: rgba(black, .01);
-	border: 1px solid rgba(white, .125);
-	@include box-shadow(rgba(black, .5) 0 1px 3px);
+	border: 1px solid transparent;
+	&:hover { border-color: rgba(white, .1); }
+	.ui-tag, .ui-categ {
+		margin-right: 8px;
+		margin-top: 8px;
+	}
 }
 
 .ui-tag, .ui-categ {
 	cursor: pointer;
-	margin-right: 8px;
-	margin-top: 8px;
 	font-family: "Menlo";
 	font-size: 12px;
 	line-height:12px;
@@ -191,4 +193,29 @@ br.ui-br {
 .ui-flex {
 	display: flex;
 	align-items: center;
+}
+
+ul.ui-pad-nav {
+	display: flex;
+	align-items: center;
+	> li {
+		margin-right: .5em;
+		margin-bottom: .5em;
+		text-align: center;
+		padding: 2em;
+		background: rgba(white, .03);
+		border: 1px solid rgba(white, .1);
+		@include box-shadow(rgba(black, .3) 0 2px 10px);
+		@include transition-property(border-color);
+		@include transition-duration(100ms);
+		cursor: pointer;
+		&:hover {
+			border-color:$green;
+			color: $green;
+		}
+		> i {
+			font-size: 68px;
+			line-height: 2em;
+		}
+	}
 }

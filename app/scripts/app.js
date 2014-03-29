@@ -99,4 +99,8 @@ Flash, $cookies, Socket, Restangular, Cache, cfpLoadingBar) {
 		return $scope.$root.logged;
 	};
 
+	$scope.navigateTo = function (url) {
+		$location.url(url);
+	};
+
 });
