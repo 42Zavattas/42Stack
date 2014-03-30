@@ -4,7 +4,7 @@
 		<div class="action">
 			<i class="voteup icon-arrow-up3" ng-click="vote(question, 1)"></i>
 			<div class="count">{{ question.upvotes - question.downvotes }}</div>
-			<i class="votedown icon-arrow-down3" ng-click="vote(question, 0)"></i>
+			<i class="votedown icon-arrow-down3" ng-click="vote(question, -1)"></i>
 		</div>
 		<div class="content">
 			<h2 class="title">{{ question.title }}</h2>
@@ -48,7 +48,7 @@
 		<div class="action">
 			<i class="voteup icon-arrow-up3" ng-click="vote(answer, 1)"></i>
 			<div class="count">{{ answer.upvotes - answer.downvotes }}</div>
-			<i class="votedown icon-arrow-down3" ng-click="vote(answer, 0)"></i>
+			<i class="votedown icon-arrow-down3" ng-click="vote(answer, -1)"></i>
 		</div>
 		<div class="content">
 			<div class="content text" ng-bind-html="answer.msg"></div>
