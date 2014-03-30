@@ -67,7 +67,7 @@ angular.module('42StackApp')
 								}
 							});
 						}, function (err) {
-							console.log(err);
+							deferred.reject(err);
 						})
 					});
 					deferred.resolve(data);
@@ -86,9 +86,34 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				Restangular.one('users', $route.current.params.id).get().then(function (res) {
 					if (!res._id) {
-						deferred.reject('user '+$route.current.params.id+' not found');
+						deferred.reject('user ' + $route.current.params.id + ' not found');
 					} else {
-						deferred.resolve(res);
+						Restangular.all('votes').getList({ user : res._id, range : 1 }).then(function (loule) {
+							console.log(loule);
+						}, function (err) {
+							console.log(err);
+						});
+						Restangular.all('votes').getList({ toUser : res._id }).then(function (votes) {
+							res.votesReceived = votes;
+							res.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+							angular.forEach(votes, function (vote) {
+								var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+								console.log(diff);
+								if (vote.type === -1) {
+									res.reputation -= 2;
+									res.serie[14 - diff] -= (diff < 15) ? 2 : 0;
+								}
+								else if (vote.type === 1) {
+									res.reputation += (vote.objtype === 'answer') ? 10 : 5;
+									if (diff < 15) {
+										res.serie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
+									}
+								}
+							});
+							deferred.resolve(res);
+						}, function (err) {
+							deferred.reject(err);
+						});
 					}
 				}, function (err) {
 					deferred.reject(err);

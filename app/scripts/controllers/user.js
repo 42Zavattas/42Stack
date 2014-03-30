@@ -33,7 +33,6 @@ angular.module('42StackApp')
 					text: ''
 				},
 				tickInterval: 20,
-				min: 0,
 				minorGridLineWidth: 0,
 				gridLineWidth: 0,
 				alternateGridColor: null
@@ -49,7 +48,7 @@ angular.module('42StackApp')
 			pointStart: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 14, 1, 0, 0, 0).getTime(),
 			pointInterval: 24 * 3600 * 1000,
 			name : 'Reputation changes',
-			data : [1, 2, 3, 4, 8, 42, 24, 16, 8, 0, 0, 12, 5, 99, 0]
+			data : user.serie
 		}]
 	};
 });
