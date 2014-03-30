@@ -2,7 +2,7 @@
 
 angular.module('42StackApp')
 .controller('QuestionsCtrl', function ($scope, data, $routeParams, $location,
-Socket, Flash) {
+Socket, Flash, Restangular) {
 
 	function rewriteUrl () {
 		$location.url('/questions' +
@@ -24,6 +24,29 @@ Socket, Flash) {
 		question.author = data.users[question.author];
 		$scope.questions.push(question);
 		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');
+	});
+
+	Socket.on('send:newVote', function (object) {
+		Restangular.one('votes', object).get().then(function (res) {
+			if (res[0].objtype === 'question') {
+				angular.forEach($scope.questions, function (question) {
+					if (question._id === object) {
+						question.upvotes = 0;
+						question.downvotes = 0;
+						angular.forEach(res, function (el) {
+							if (el.type === 1) {
+								question.upvotes++;
+							}
+							else if (el.type === -1) {
+								question.downvotes++;
+							}
+						});
+					}
+				});
+			}
+		}, function (err) {
+			Flash.set(err.message, 'error');
+		});
 	});
 
 	$scope.questions = data.questions;
