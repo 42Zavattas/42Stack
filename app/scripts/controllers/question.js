@@ -48,7 +48,6 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 
 	Socket.on('send:newVote', function (object) {
 		Restangular.one('votes', object).get().then(function (res) {
-			console.log(res[0]);
 			if (res[0].objtype === 'question') {
 				$scope.question.upvotes = 0;
 				$scope.question.downvotes = 0;
@@ -70,7 +69,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 							if (el.type === 1) {
 								answer.upvotes++;
 							}
-							else if (type === -1) {
+							else if (el.type === -1) {
 								answer.downvotes++;
 							}
 						});
