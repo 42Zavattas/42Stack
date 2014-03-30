@@ -27,7 +27,7 @@ Socket, Flash, Restangular) {
 	});
 
 	Socket.on('send:newVote', function (object) {
-		Restangular.one('votes', object).get().then(function (res) {
+		Restangular.all('votes').getList({ onQuestion : object }).then(function (res) {
 			if (res[0].objtype === 'question') {
 				angular.forEach($scope.questions, function (question) {
 					if (question._id === object) {
