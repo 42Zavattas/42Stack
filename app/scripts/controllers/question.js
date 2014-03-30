@@ -10,6 +10,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		return $scope.answer;
 	}
 
+	console.log(data);
 	$scope.question = data.question;
 	$scope.answers = data.answers;
 	$scope.question.answers = [];
@@ -46,6 +47,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	};
 
+	console.log(data.answers);
 	$scope.vote = function (object, type) {
 		var send = {
 			object : object._id,

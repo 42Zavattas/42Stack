@@ -82,7 +82,6 @@ angular.module('42StackApp')
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
 					Restangular.all('votes').getList(),
-					Restangular.all('users').getList(),
 					Restangular.all('answers').getList({ question : $route.current.params.id })
 				]).then(function (res) {
 					var data = {};
