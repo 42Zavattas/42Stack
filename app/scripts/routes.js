@@ -88,11 +88,6 @@ angular.module('42StackApp')
 					if (!res._id) {
 						deferred.reject('user ' + $route.current.params.id + ' not found');
 					} else {
-						Restangular.all('votes').getList({ user : res._id, range : 1 }).then(function (loule) {
-							console.log(loule);
-						}, function (err) {
-							console.log(err);
-						});
 						Restangular.all('votes').getList({ toUser : res._id }).then(function (votes) {
 							res.votesReceived = votes;
 							res.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
