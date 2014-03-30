@@ -87,6 +87,7 @@ angular.module('42StackApp')
 				]).then(function (res) {
 					var data = {};
 					data.users = indexify(res[1]);
+					data.votes = indexify(res[3]);
 					data.question = (function (question) {
 						if (!question._id) {
 							deferred.reject('question '+$route.current.params.id+' not found');

@@ -11,6 +11,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	}
 
 	console.log(data);
+	console.log(data.votes);
 	$scope.question = data.question;
 	$scope.answers = data.answers;
 	$scope.question.answers = [];
