@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('UserCtrl', function ($scope, user) {
+.controller('UserCtrl', function ($scope, user, Socket, Restangular) {
 
 	$scope.user = user;
 
