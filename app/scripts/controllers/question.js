@@ -47,8 +47,38 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	};
 
 	Socket.on('send:newVote', function (object) {
-		console.log(object);
-		Flash.set('New vote on' + object, 'info');
+		Restangular.one('votes', object._id).get().then(function (res) {
+			if (res[0].objtype === 'question') {
+				$scope.question.upvotes = 0;
+				$scope.question.downvotes = 0;
+				angular.forEach(res, function (el) {
+					if (el.type === 1) {
+						$scope.question.upvotes++;
+					}
+					else if (el.type === -1) {
+						$scope.question.downvotes++;
+					}
+				});
+			}
+			else if (res[0].objtype === 'answer') {
+				angular.forEach($scope.answers, function (answer) {
+					if (answer._id === object) {
+						answer.upvotes = 0;
+						answer.downvotes = 0;
+						angular.forEach(res, function (el) {
+							if (el.type === 1) {
+								answer.upvotes++;
+							}
+							else if (type === -1) {
+								answer.downvotes++;
+							}
+						});
+					}
+				});
+			}
+		}, function (err) {
+			Flash.set(err.data, 'error');
+		});
 	});
 
 	$scope.vote = function (object, type) {
