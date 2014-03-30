@@ -93,11 +93,31 @@ angular.module('42StackApp')
 							deferred.reject('question '+$route.current.params.id+' not found');
 						}
 						question.author = data.users[question.author];
+						angular.forEach(data.votes, function (vote) {
+							if (vote.obj === question._id) {
+								if (vote.type === -1) {
+									question.downvotes++;
+								}
+								else if (vote.type === 1) {
+									question.upvotes++;
+								}
+							}
+						});
 						return question;
 					})(res[0]);
 					data.answers = (function (answers) {
 						angular.forEach(answers, function (el) {
 							el.author = data.users[el.author];
+							angular.forEach(data.votes, function (vote) {
+								if (vote.obj === el._id) {
+									if (vote.type === -1) {
+										el.downvotes++;
+									}
+									else if (vote.type === 1) {
+										el.upvotes++;
+									}
+								}
+							});
 						});
 						return answers;
 					})(res[2]);
@@ -123,8 +143,19 @@ angular.module('42StackApp')
 				]).then(function (res) {
 					data.questions = res[0];
 					data.users = indexify(res[1]);
+					data.votes = indexify(res[2]);
 					angular.forEach(data.questions, function (question) {
 						question.author = data.users[question.author];
+						angular.forEach(data.votes, function (vote) {
+							if (vote.obj === question._id) {
+								if (vote.type === -1) {
+									question.downvotes++;
+								}
+								else if (vote.type === 1) {
+									question.upvotes++;
+								}
+							}
+						});
 					});
 					deferred.resolve(data);
 				}, function (err) {
