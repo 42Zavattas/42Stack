@@ -52,7 +52,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			type : type
 		}
 		Restangular.all('votes').post(send).then(function (res) {
-			console.log(res);
+			Flash.set(res, 'info');
 		}, function (err) {
 			Flash.set(err.data, 'error');
 		});
