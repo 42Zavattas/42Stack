@@ -47,7 +47,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	};
 
 	Socket.on('send:newVote', function (object) {
-		Restangular.all('votes', object).getList({ onQuestion : object }).then(function (res) {
+		Restangular.all('votes').getList({ onQuestion : object.obj }).then(function (res) {
 			if (res[0].objtype === 'question') {
 				$scope.question.upvotes = 0;
 				$scope.question.downvotes = 0;
@@ -62,7 +62,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			}
 			else if (res[0].objtype === 'answer') {
 				angular.forEach($scope.answers, function (answer) {
-					if (answer._id === object) {
+					if (answer._id === object.obj) {
 						answer.upvotes = 0;
 						answer.downvotes = 0;
 						angular.forEach(res, function (el) {
@@ -87,8 +87,8 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			type : type
 		}
 		Restangular.all('votes').post(send).then(function (res) {
-			Flash.set(res, 'info');
-			Socket.emit('newVote', object);
+			Flash.set(res.msg, 'info');
+			Socket.emit('newVote', res);
 		}, function (err) {
 			Flash.set(err.data, 'error');
 		});

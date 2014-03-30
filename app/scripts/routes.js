@@ -49,8 +49,32 @@ angular.module('42StackApp')
 		templateUrl: 'partials/users',
 		controller: 'UsersCtrl',
 		resolve: {
-			users: function (Restangular) {
-				return Restangular.all('users').getList();
+			data: function ($q, Restangular) {
+				var data = {};
+				var deferred = $q.defer();
+				$q.all([
+					Restangular.all('users').getList()
+				]).then(function (res) {
+					data.users = res[0];
+					angular.forEach(data.users, function (user) {
+						Restangular.all('votes').getList({ toUser : user._id }).then(function (res){
+							angular.forEach(res, function(vote) {
+								if (vote.type === -1) {
+									user.reputation -= 2;
+								}
+								else if (vote.type === 1) {
+									user.reputation += (vote.objtype === 'answer') ? 10 : 5;
+								}
+							});
+						}, function (err) {
+							console.log(err);
+						})
+					});
+					deferred.resolve(data);
+				}, function (err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
 			}
 		}
 	})
