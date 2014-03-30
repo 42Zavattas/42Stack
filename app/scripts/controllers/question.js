@@ -10,8 +10,6 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		return $scope.answer;
 	}
 
-	console.log(data);
-	console.log(data.votes);
 	$scope.question = data.question;
 	$scope.answers = data.answers;
 	$scope.question.answers = [];
@@ -50,6 +48,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 
 	Socket.on('send:newVote', function (object) {
 		console.log(object);
+		Flash.set('New vote on' + object, 'info');
 	});
 
 	$scope.vote = function (object, type) {
