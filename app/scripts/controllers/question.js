@@ -47,7 +47,10 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	};
 
-	console.log(data.answers);
+	Socket.on('send:newVote', function (object) {
+		console.log(object);
+	});
+
 	$scope.vote = function (object, type) {
 		var send = {
 			object : object._id,
@@ -55,6 +58,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 		Restangular.all('votes').post(send).then(function (res) {
 			Flash.set(res, 'info');
+			Socket.emit('newVote', object);
 		}, function (err) {
 			Flash.set(err.data, 'error');
 		});
