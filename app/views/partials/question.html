@@ -46,9 +46,9 @@
 	</div>
 	<div ng-repeat="answer in answers" class="purpose-block answer">
 		<div class="action">
-			<i class="voteup icon-arrow-up3"></i>
+			<i class="voteup icon-arrow-up3" ng-click="vote(answer, 1)"></i>
 			<div class="count">{{ answer.upvotes - answer.downvotes }}</div>
-			<i class="votedown icon-arrow-down3"></i>
+			<i class="votedown icon-arrow-down3" ng-click="vote(answer, 0)"></i>
 		</div>
 		<div class="content">
 			<div class="content text" ng-bind-html="answer.msg"></div>

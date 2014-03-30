@@ -81,8 +81,9 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('questions', $route.current.params.id).get(),
-					Restangular.all('votes').getList(),
-					Restangular.all('answers').getList({ question : $route.current.params.id })
+					Restangular.all('users').getList(),
+					Restangular.all('answers').getList({ question : $route.current.params.id }),
+					Restangular.all('votes').getList()
 				]).then(function (res) {
 					var data = {};
 					data.users = indexify(res[1]);
@@ -116,7 +117,8 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.all('questions').getList(),
-					Restangular.all('users').getList()
+					Restangular.all('users').getList(),
+					Restangular.all('votes').getList()
 				]).then(function (res) {
 					data.questions = res[0];
 					data.users = indexify(res[1]);
