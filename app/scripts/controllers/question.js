@@ -47,7 +47,8 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	};
 
 	Socket.on('send:newVote', function (object) {
-		Restangular.one('votes', object._id).get().then(function (res) {
+		Restangular.one('votes', object).get().then(function (res) {
+			console.log(res[0]);
 			if (res[0].objtype === 'question') {
 				$scope.question.upvotes = 0;
 				$scope.question.downvotes = 0;
