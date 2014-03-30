@@ -1,6 +1,6 @@
 <hashbar></hashbar>
 <ul class="userlist">
-	<li ng-repeat="user in users | filter: filterText | orderBy: 'name' | limitTo:pageSize" ng-click="viewUser(user)">
+	<li ng-repeat="user in users | filter: filterText | orderBy: '-reputation' | limitTo:pageSize" ng-click="viewUser(user)">
 		<div class="image"><img ng-src="/images/{{ user.misc.image || 'default.jpg' }}"></div>
 		<div class="infos">
 			<span class="name">{{ user.name }}</span>
