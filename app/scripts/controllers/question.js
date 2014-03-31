@@ -85,13 +85,13 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		var send = {
 			object : object._id,
 			type : type
-		}
+		};
 		Restangular.all('votes').post(send).then(function (res) {
 			Flash.set(res.msg, 'info');
 			Socket.emit('newVote', res);
 		}, function (err) {
 			Flash.set(err.data, 'error');
 		});
-	}
+	};
 
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.filter('questionsFilter', function ($filter) {
+.filter('questionsFilter', function () {
 
 	return function(items, obj) {
 
@@ -16,7 +16,7 @@ angular.module('42StackApp')
 			return out;
 		}
 
-		if (obj.text != undefined || obj.tags.length > 0) {
+		if (obj.text !== undefined || obj.tags.length > 0) {
 			angular.forEach(items, function (item) {
 				if (item.title.indexOf(obj.text) >= 0) {
 					result.push(item);
@@ -28,7 +28,7 @@ angular.module('42StackApp')
 				});
 			});
 			return removeDuplicate(result);
-		};
+		}
 		return items;
 	};
 });

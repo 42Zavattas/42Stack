@@ -68,7 +68,7 @@ angular.module('42StackApp')
 							});
 						}, function (err) {
 							deferred.reject(err);
-						})
+						});
 					});
 					deferred.resolve(data);
 				}, function (err) {
