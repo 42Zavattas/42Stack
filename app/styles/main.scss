@@ -18,10 +18,10 @@ $padsize: 4px;
 // Fonts
 // -----
 @include font-face("Menlo", font-files("Menlo-Powerline.otf"));
-@include font-face("Helvetica Neue", font-files("HelveticaNeue/helvetica-neue1.ttf"));
-@include font-face("Helvetica Neue Bold", font-files("HelveticaNeue/helvetica-neue-bold.ttf"));
-@include font-face("Helvetica Neue Italic", font-files("HelveticaNeue/HelveticaNeueLTStd-LtCnO.otf"));
-@include font-face("Helvetica Neue Thin", font-files("HelveticaNeue/HelveticaNeueLTPro-LtCnO.otf"));
+@include font-face("Helvetica Neue", font-files("helvetica-neue1.ttf"));
+@include font-face("Helvetica Neue Bold", font-files("helvetica-neue-bold.ttf"));
+@include font-face("Helvetica Neue Italic", font-files("HelveticaNeueLTStd-LtCnO.otf"));
+@include font-face("Helvetica Neue Thin", font-files("HelveticaNeueLTPro-LtCnO.otf"));
 
 @mixin simpleshadow (){
 	@include text-shadow(rgba(black, 0.3) 0 1px 0);
