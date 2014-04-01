@@ -22,6 +22,7 @@ $padsize: 4px;
 @include font-face("Helvetica Neue Bold", font-files("helvetica-neue-bold.ttf"));
 @include font-face("Helvetica Neue Italic", font-files("HelveticaNeueLTStd-LtCnO.otf"));
 @include font-face("Helvetica Neue Thin", font-files("HelveticaNeueLTPro-LtCnO.otf"));
+@include font-face("icomoon", font-files("icomoon.ttf", "icomoon.eot", "icomoon.woff", "icomoon.svg"));
 
 @mixin simpleshadow (){
 	@include text-shadow(rgba(black, 0.3) 0 1px 0);
