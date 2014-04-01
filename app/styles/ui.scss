@@ -197,6 +197,7 @@ br.ui-br {
 
 ul.ui-pad-nav {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	> li {
 		margin-right: .5em;
