@@ -9,7 +9,7 @@ angular.module('42StackApp')
 		$scope.user.questions = res;
 	}, function (err) {
 		Flash.set(err.message, 'error');
-	})
+	});
 	console.log(user);
 
 	$scope.chart = {
