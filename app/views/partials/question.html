@@ -55,12 +55,12 @@
 			<div class="info">
 				<div class="extra">
 					<div class="picture">
-						<a ng-href="/users/2">
+						<a ng-href="/users/{{ answer.author._id }}">
 							<img ng-src="/images/{{ answer.author.misc.image || default.jpg }}" />
 						</a>
 					</div>
 					<div class="signature">
-						<a class="author" ng-href="/users/2">{{ answer.author.login }}</a>
+						<a class="author" ng-href="/users/{{ answer.author._id }}">{{ answer.author.login }}</a>
 						<div class="timestamp">le {{ answer.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</div>
 					</div>
 				</div>
