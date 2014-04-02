@@ -680,6 +680,27 @@ textarea {
 			 border: 3px dashed $base03;
 		 }
 	 }
+	 .activity {
+		 display: flex;
+		.questions {
+			width: 50%;
+			margin-right: 24px;
+			> .question {
+				padding: 16px;
+				border: 1px solid rgba(white, .1);
+				> .votes {
+					margin-right: 16px;
+					padding: 8px;
+					background-color: $green;
+					border: 2px solid $base03;
+					color: $base03;
+				}
+			}
+		}
+		.answers {
+			width: 50%;
+		}
+	 }
  }
 
  ::-webkit-input-placeholder {

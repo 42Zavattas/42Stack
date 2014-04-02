@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('UserCtrl', function ($scope, user) {
+.controller('UserCtrl', function ($scope, user, Restangular, Flash) {
 
 	$scope.user = user;
+
+	Restangular.all('questions').getList({ ofUser : user._id }).then(function (res) {
+		$scope.user.questions = res;
+	}, function (err) {
+		Flash.set(err.message, 'error');
+	})
+	console.log(user);
 
 	$scope.chart = {
 		options : {
@@ -51,4 +58,5 @@ angular.module('42StackApp')
 			data : user.serie
 		}]
 	};
+
 });

@@ -15,5 +15,13 @@
 	</section>
 	<hr class="ui-hr">
 	<section class="activity">
+		<section class="questions" ng-repeat="question in user.questions">
+			<div class="question">
+				<span class="votes">10</span><span class="title">{{ question.title }}</span>
+			</div>
+		</section>
+		<section class="answers" ng-repeat="answerin user.answers">
+		
+		</section>
 	</section>
 </div>
