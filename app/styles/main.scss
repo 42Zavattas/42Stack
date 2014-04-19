@@ -419,7 +419,6 @@ form {
 }
 
 input {
-	@include user-select(text);
 	@include border-radius(5px, 5px);
 	@include simpleshadow;
 	font-size: 16px;
