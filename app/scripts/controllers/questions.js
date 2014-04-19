@@ -52,11 +52,6 @@ Socket, Flash, Restangular) {
 	$scope.questions = data.questions;
 	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
 
-	$scope.removeCateg = function (index) {
-		$scope.filterCategs.splice(index, 1);
-		rewriteUrl();
-	};
-
 	$scope.removeTag = function (index) {
 		$scope.filterTags.splice(index, 1);
 		rewriteUrl();
