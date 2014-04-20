@@ -10,7 +10,7 @@
 	<li class="ui-question"
 		ng-repeat="question in questions | orderBy: '-timestamp' | questionsFilter:{tags:filterTags}"
 		ng-click="viewQuestion(question)">
-		<div class="votes">{{ question.upvotes - question.downvotes }}</div>
+		<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
 			<div class="flex">
 				<i class="icon-quotes-left"></i>

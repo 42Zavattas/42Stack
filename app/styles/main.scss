@@ -101,11 +101,10 @@ h2 {
 	@include simpleshadow;
 }
 
-.ui-questions {
+.ui-questions, .ui-answers {
 	display: flex;
-	//align-items: center;
 	flex-wrap: wrap;
-	> .ui-question {
+	> .ui-question, .ui-answer {
 		display: flex;
 		align-items: center;
 		max-width: 512px;
@@ -129,6 +128,12 @@ h2 {
 			&:hover {
 				color: rgba($base2, .8);
 				background-color: rgba($green, .2);
+			}
+		}
+		> .votes.down {
+			background-color: rgba($red, .2);
+			&:hover {
+				background-color: rgba($red, .3);
 			}
 		}
 		> .description {
@@ -581,7 +586,7 @@ input {
 textarea {
 	width: 100%;
 	border: 1px solid rgba(white, .1);
-	background: $base03;
+	background: $base03 !important;
 	color: $base0;
 	padding: 1em;
 	font-size: 14px;
@@ -653,7 +658,7 @@ textarea {
 }
 
 .user {
-	.infos {
+	> .infos {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-start;
@@ -694,7 +699,14 @@ textarea {
 		 }
 	 }
 	 .activity {
-		 display: flex;
+		display: flex;
+		align-items: flex-start;
+		> ul {
+			width: 50%;
+		}
+		> ul:first-child {
+			margin-right: 32px;
+		}
 		.questions {
 			width: 50%;
 			margin-right: 24px;
@@ -721,9 +733,6 @@ textarea {
 					font-size: 17px;
 				}
 			}
-		}
-		.answers {
-			width: 50%;
 		}
 	}
 }
