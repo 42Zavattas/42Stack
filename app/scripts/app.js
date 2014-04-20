@@ -59,18 +59,15 @@ Flash, $cookies, Socket, Restangular, Cache, cfpLoadingBar) {
 	$scope.$root.logged = !!$cookies.token;
 
 	$scope.$on('$routeChangeStart', function () {
-		cfpLoadingBar.start();
 		$scope.$broadcast('loading');
 	});
 
 	$scope.$on('$routeChangeSuccess', function () {
 		$scope.$broadcast('loadingStop');
-		cfpLoadingBar.complete();
 		$scope.newLocation = $location.path();
 	});
 
 	$scope.$on('$routeChangeError', function (event, current, previous, rejection) {
-		cfpLoadingBar.complete();
 		$scope.$broadcast('loadingStop');
 		if (rejection) {
 			if (rejection.status && rejection.status === 401) {
