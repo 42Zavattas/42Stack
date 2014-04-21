@@ -15,13 +15,30 @@
 	</section>
 	<hr class="ui-hr">
 	<section class="activity">
-		<section class="questions" ng-repeat="question in user.questions">
-			<div class="question">
-				<span class="votes">10</span><span class="title">{{ question.title }}</span>
-			</div>
-		</section>
-		<section class="answers" ng-repeat="answer in user.answers">
-		
-		</section>
+		<ul class="ui-questions">
+			<li class="ui-question" ng-repeat="question in user.questions">
+				<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">{{ question.upvotes - question.downvotes }}</div>
+				<div class="description">
+					<div class="flex">
+						<i class="icon-quotes-left"></i>
+						<div class="title">{{ question.title }}</div>
+						<i class="icon-quotes-left inverted"></i>
+					</div>
+					<div class="infos">
+						<section class="attribs">
+							<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
+						</section>
+						<section class="extra">
+							<a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
+							<span class="time"> {{ question.timestamp | date:'dd/MM' }} - {{ question.timestamp | date:'hh:mm' }} </span>
+						</section>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="ui-answers">
+			<li class="ui-answer" ng-repeat="answer in user.answers">
+			</li>
+		</ul>
 	</section>
 </div>
