@@ -11,12 +11,12 @@
 			</div>
 		</section>
 		<highchart class="chart" config="chart"></highchart>
-		<blockquote>DESSSSSSSSSSSSSSSSSCRIPTION {{ user.misc.description }}</blockquote>
+		<blockquote>DESCRIPTION {{ user.misc.description }}</blockquote>
 	</section>
 	<hr class="ui-hr">
 	<section class="activity">
 	<ul class="ui-questions">
-		<li class="ui-question" ng-repeat="question in user.questions">
+		<li class="ui-question" ng-repeat="question in user.questions" ng-click=viewQuestion(question)>
 		<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">{{ question.upvotes - question.downvotes }}</div>
 		<div class="description">
 			<div class="flex">
