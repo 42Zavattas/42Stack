@@ -81,11 +81,9 @@ angular.module('42StackApp')
 								var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
 								console.log(diff);
 								if (vote.type === -1) {
-									res.reputation -= 2;
 									res.serie[14 - diff] -= (diff < 15) ? 2 : 0;
 								}
 								else if (vote.type === 1) {
-									res.reputation += (vote.objtype === 'answer') ? 10 : 5;
 									if (diff < 15) {
 										res.serie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
 									}
