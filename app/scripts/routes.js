@@ -68,34 +68,36 @@ angular.module('42StackApp')
 		templateUrl: 'partials/user',
 		controller: 'UserCtrl',
 		resolve: {
-			user: function ($route, $q, Restangular) {
+			data: function ($route, $q, Restangular) {
 				var deferred = $q.defer();
-				Restangular.one('users', $route.current.params.id).get().then(function (res) {
-					if (!res._id) {
-						deferred.reject('user ' + $route.current.params.id + ' not found');
-					} else {
-						Restangular.all('votes').getList({ toUser : res._id }).then(function (votes) {
-							res.votesReceived = votes;
-							res.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-							angular.forEach(votes, function (vote) {
-								var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
-								console.log(diff);
-								if (vote.type === -1) {
-									res.serie[14 - diff] -= (diff < 15) ? 2 : 0;
-								}
-								else if (vote.type === 1) {
-									if (diff < 15) {
-										res.serie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
-									}
-								}
-							});
-							deferred.resolve(res);
-						}, function (err) {
-							deferred.reject(err);
-						});
-					}
+				$q.all([
+					Restangular.one('users', $route.current.params.id).get(),
+					Restangular.all('votes').getList({ toUser : $route.current.params.id })
+				]).then(function (res) {
+
+					var data = {};
+					data.user = (function (user) {
+						if (!user._id)
+							deferred.reject('user ' + $route.current.params.id + ' not found.');
+						return user;
+					})(res[0]);
+					data.user.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					angular.forEach(res[1], function (vote) {
+						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+						//console.log(diff);
+						if (vote.type === -1) {
+							data.user.serie[14 - diff] -= (diff < 15) ? 2 : 0;
+						}
+						else if (vote.type === 1) {
+							if (diff < 15) {
+								data.user.serie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
+							}
+						}
+					});
+					deferred.resolve(data);
 				}, function (err) {
 					deferred.reject(err);
+					//deferred.reject('User ' + $route.current.params.id + ' not found');
 				});
 				return deferred.promise;
 			}

@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('UserCtrl', function ($scope, $location, user, Restangular, Flash) {
+.controller('UserCtrl', function ($scope, $location, $timeout, data, Restangular, Flash) {
 
-	$scope.user = user;
+	$scope.user = data.user;
 
-	Restangular.all('questions').getList({ ofUser : user._id }).then(function (res) {
+	Restangular.all('questions').getList({ ofUser : $scope.user._id }).then(function (res) {
 		$scope.user.questions = res;
 	}, function (err) {
 		Flash.set(err.message, 'error');
 	});
 
-	console.log(user);
+	Restangular.all('answers').getList({ ofUser : $scope.user._id }).then(function (res) {
+		$scope.user.answers = res;
+	}, function (err) {
+		Flash.set(err.message, 'error');
+	});
 
 	$scope.viewQuestion = function (question) {
 		$location.url('/questions/' + question._id);
@@ -60,7 +64,7 @@ angular.module('42StackApp')
 			pointStart: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 14, 1, 0, 0, 0).getTime(),
 			pointInterval: 24 * 3600 * 1000,
 			name : 'Reputation changes',
-			data : user.serie
+			data : $scope.user.serie
 		}]
 	};
 
