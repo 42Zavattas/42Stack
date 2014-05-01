@@ -51,7 +51,7 @@ angular.module('42StackApp', [
 });
 
 angular.module('42StackApp').controller('AppCtrl', function ($scope, $location,
-Flash, $cookies, Socket, Restangular, Cache, cfpLoadingBar) {
+Flash, $cookies, Socket, Restangular, Cache) {
 
 	Cache.init();
 
