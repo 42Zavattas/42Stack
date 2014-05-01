@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('UserCtrl', function ($scope, user, Restangular, Flash) {
+.controller('UserCtrl', function ($scope, $location, user, Restangular, Flash) {
 
 	$scope.user = user;
 
@@ -10,7 +10,12 @@ angular.module('42StackApp')
 	}, function (err) {
 		Flash.set(err.message, 'error');
 	});
+
 	console.log(user);
+
+	$scope.viewQuestion = function (question) {
+		$location.url('/questions/' + question._id);
+	};
 
 	$scope.chart = {
 		options : {
