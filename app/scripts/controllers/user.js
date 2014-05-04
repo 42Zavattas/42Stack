@@ -57,6 +57,20 @@ angular.module('42StackApp')
 		}
 	});
 
+	Socket.on('send:acceptedAnswer', function (object) {
+		angular.forEach($scope.user.answers, function (answer) {
+			if (answer._id === object.answer) {
+				answer.accepted = true;
+			}
+		});
+		angular.forEach($scope.user.questions, function(question) {
+			if (question._id === object.question) {
+				question.resolved = object.answer;
+			}
+		});
+	});
+
+
 	$scope.chart = {
 		options : {
 			chart : {

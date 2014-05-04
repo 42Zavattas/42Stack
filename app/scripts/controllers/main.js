@@ -5,6 +5,7 @@ angular.module('42StackApp').controller('MainCtrl', function ($scope, $location,
 	$scope.questions = data.questions;
 
 	Socket.on('send:newQuestion', function (question) {
+		console.log("from main");
 		question.author = data.users[question.author];
 		$scope.questions.push(question);
 		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');

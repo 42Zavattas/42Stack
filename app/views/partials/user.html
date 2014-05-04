@@ -17,7 +17,10 @@
 	<section class="activity">
 	<ul class="ui-questions">
 		<li class="ui-question" ng-repeat="question in user.questions" ng-click=viewQuestion(question)>
-		<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">{{ question.upvotes - question.downvotes }}</div>
+		<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">
+			{{ question.upvotes - question.downvotes }}
+			<i class="icon-checkmark" ng-class="{ hidden: !question.resolved }"></i>
+		</div>
 		<div class="description">
 			<div class="flex">
 				<i class="icon-quotes-left"></i>
@@ -38,7 +41,10 @@
 	</ul>
 	<ul class="ui-answers">
 		<li class="ui-answer" ng-repeat="answer in user.answers">
-		<div class="votes" ng-class="{ down: answer.upvotes < answer.downvotes }">{{ answer.upvotes - answer.downvotes }}</div>
+		<div class="votes" ng-class="{ down: answer.upvotes < answer.downvotes }">
+			{{ answer.upvotes - answer.downvotes }}
+			<i class="icon-checkmark" ng-class="{ hidden: !answer.accepted }"></i>
+		</div>
 		<div class="description">
 			<div class="flex">
 				<i class="icon-quotes-left"></i>

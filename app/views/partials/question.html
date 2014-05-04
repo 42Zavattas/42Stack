@@ -38,7 +38,7 @@
 						- <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a>
 						le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
-				<div class="new">
+				<div class="new hidden">
 					<input type="text" placeholder="Ajouter un commentaire">
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 					</span>
 					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
-				<div class="new">
+				<div class="new hidden">
 					<input type="text" placeholder="Ajouter un commentaire">
 				</div>
 			</div>

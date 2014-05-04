@@ -35,6 +35,14 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 		}, 100);
 	});
 
+	Socket.on('send:acceptedAnswer', function (object) {
+		angular.forEach($scope.users, function(user) {
+			if (object.user === user._id) {
+				user.reputation += 15;
+			}
+		});
+	});
+
 	Socket.on('send:newVote', function(object) {
 		Restangular.one('users', object.sender).get().then(function(res) {
 			angular.forEach($scope.users, function (user) {

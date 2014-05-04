@@ -24,6 +24,7 @@ Socket, Flash, Restangular) {
 		question.author = data.users[question.author];
 		$scope.questions.push(question);
 		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');
+		console.log("from questions");
 	});
 
 	Socket.on('send:newVote', function (object) {
@@ -39,6 +40,14 @@ Socket, Flash, Restangular) {
 				}
 			});
 		}
+	});
+
+	Socket.on('send:acceptedAnswer', function (object) {
+		angular.forEach($scope.questions, function (question) {
+			if (question._id === object.question) {
+				question.resolved = object.answer;
+			}
+		});
 	});
 
 	$scope.questions = data.questions;

@@ -56,8 +56,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 				answer: answer._id
 			}
 			Restangular.all('answers').customPOST(send, 'accept').then(function (res) {
-				console.log(res);
-				Socket.emit('acceptedAnswer', res);
+				Socket.emit('acceptAnswer', res);
 			}, function (err) {
 				Flash.set(err.data, 'error');
 			});
@@ -65,7 +64,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	};
 
 	Socket.on('send:acceptedAnswer', function (object) {
-		
+		$scope.question.resolved = object.answer;
 	});
 
 	Socket.on('send:newVote', function (object) {
