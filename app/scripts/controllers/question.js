@@ -12,6 +12,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 
 	$scope.question = data.question;
 	$scope.answers = data.answers;
+	$scope.currentUser = data.currentUser;
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
 
@@ -20,6 +21,8 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		answer.author = data.users[answer.author];
 		$scope.answers.push(answer);
 	});
+
+	console.log(data);
 
 	$scope.viewTag = function (tag) {
 		$location.url('/questions?tags=' + tag);
@@ -43,6 +46,23 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			}, function (err) {
 				Flash.set(err.data, 'error');
 			});
+		}
+	};
+
+	$scope.acceptAnswer = function (answer) {
+		if ($scope.currentUser._id === $scope.question.author._id) {
+			var send = {
+				question: $scope.question._id,
+				answer: answer._id
+			}
+			Restangular.all('answers').customPOST(send, 'accept').then(function (res) {
+				console.log(res);
+			}, function (err) {
+				Flash.set(err.data, 'error');
+			});
+		}
+		else {
+			console.log("non");
 		}
 	};
 

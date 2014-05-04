@@ -41,7 +41,7 @@ angular.module('42StackApp')
 		resolve : {
 			users: function (Restangular) {
 				//prevent unwanted acces for now
-				return Restangular.all('users').getList();
+				return Restangular.all('users').customGET('me');
 			}
 		}
 	})
@@ -81,6 +81,7 @@ angular.module('42StackApp')
 							deferred.reject('user ' + $route.current.params.id + ' not found.');
 						return user;
 					})(res[0]);
+
 					data.user.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 					angular.forEach(res[1], function (vote) {
 						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
@@ -97,7 +98,6 @@ angular.module('42StackApp')
 					deferred.resolve(data);
 				}, function (err) {
 					deferred.reject(err);
-					//deferred.reject('User ' + $route.current.params.id + ' not found');
 				});
 				return deferred.promise;
 			}
@@ -113,11 +113,13 @@ angular.module('42StackApp')
 					Restangular.one('questions', $route.current.params.id).get(),
 					Restangular.all('users').getList(),
 					Restangular.all('answers').getList({ question : $route.current.params.id }),
-					Restangular.all('votes').getList()
+					Restangular.all('votes').getList(),
+					Restangular.all('users').customGET('me')
 				]).then(function (res) {
 					var data = {};
 					data.users = indexify(res[1]);
 					data.votes = indexify(res[3]);
+					data.currentUser = res[4];
 					data.question = (function (question) {
 						if (!question._id) {
 							deferred.reject('question '+$route.current.params.id+' not found');

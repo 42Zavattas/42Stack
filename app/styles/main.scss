@@ -72,6 +72,10 @@ textarea, input {
 	display: flex;
 }
 
+.hidden {
+	display: none;
+}
+
 a {
 	color: $cyan;
 	text-decoration: none;
@@ -119,12 +123,20 @@ h2 {
 		@include transition-duration(100ms);
 		> .votes {
 			display: flex;
+			position: relative;
 			align-items: center;
 			padding: 13px 16px;
 			margin: 10px;
 			font-size: 25px;
 			background-color: rgba($green, .1);
 			border: 1px solid rgba(black, .3);
+			> i {
+				position: absolute;
+				font-size: 12px;
+				bottom: 3px;
+				right: 5px;
+				color: $green;
+			}
 			&:hover {
 				color: rgba($base2, .8);
 				background-color: rgba($green, .2);
@@ -256,9 +268,16 @@ h2 {
 			}
 			> i {
 				font-size: 32px;
-			}
-			> .voteup:hover, > .votedown:hover {
 				cursor: pointer;
+			}
+			> i.accept {
+				color: $green;
+				&:hover, &.force {
+					display: inline;
+					&:before {
+						content: "\e6fe";
+					}
+				}
 			}
 			> .voteup:hover, > .voteup.active {
 				color: $green;

@@ -49,6 +49,7 @@
 			<i class="voteup icon-arrow-up3" ng-click="vote(answer, 1)"></i>
 			<div class="count">{{ answer.upvotes - answer.downvotes }}</div>
 			<i class="votedown icon-arrow-down3" ng-click="vote(answer, -1)"></i>
+			<i class="accept icon-checkmark2" ng-class="{ hidden: question.author._id != currentUser._id || (question.resolved && question.resolved !== answer._id), 'icon-checkmark force' : question.resolved == answer._id }" ng-click="acceptAnswer(answer)"></i>
 		</div>
 		<div class="content">
 			<div class="content text" ng-bind-html="answer.msg"></div>
