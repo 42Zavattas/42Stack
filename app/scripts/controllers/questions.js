@@ -27,26 +27,18 @@ Socket, Flash, Restangular) {
 	});
 
 	Socket.on('send:newVote', function (object) {
-		Restangular.all('votes').getList({ onQuestion : object.obj }).then(function (res) {
-			if (res[0].objtype === 'question') {
-				angular.forEach($scope.questions, function (question) {
-					if (question._id === object.obj) {
-						question.upvotes = 0;
-						question.downvotes = 0;
-						angular.forEach(res, function (el) {
-							if (el.type === 1) {
-								question.upvotes++;
-							}
-							else if (el.type === -1) {
-								question.downvotes++;
-							}
-						});
-					}
-				});
-			}
-		}, function (err) {
-			Flash.set(err.message, 'error');
-		});
+		if (object.objType === 'question') {
+			angular.forEach($scope.questions, function (question) {
+				if (question._id === object.obj) {
+					Restangular.one('questions', question._id).get().then(function (res) {
+						question.downvotes = res.downvotes;
+						question.upvotes = res.upvotes;
+					}, function(err) {
+						Flash.set(err.data, 'error');
+					});
+				}
+			});
+		}
 	});
 
 	$scope.questions = data.questions;

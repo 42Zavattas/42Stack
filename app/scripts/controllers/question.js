@@ -57,48 +57,38 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			}
 			Restangular.all('answers').customPOST(send, 'accept').then(function (res) {
 				console.log(res);
+				Socket.emit('acceptedAnswer', res);
+			}, function (err) {
+				Flash.set(err.data, 'error');
+			});
+		}
+	};
+
+	Socket.on('send:acceptedAnswer', function (object) {
+		
+	});
+
+	Socket.on('send:newVote', function (object) {
+		if (object.objType === 'question' && $scope.question._id === object.obj) {
+			Restangular.one('questions', object.obj).get().then(function (res) {
+				$scope.question.upvotes = res.upvotes;
+				$scope.question.downvotes = res.downvotes;
 			}, function (err) {
 				Flash.set(err.data, 'error');
 			});
 		}
 		else {
-			console.log("non");
-		}
-	};
-
-	Socket.on('send:newVote', function (object) {
-		Restangular.all('votes').getList({ onQuestion : object.obj }).then(function (res) {
-			if (res[0].objtype === 'question') {
-				$scope.question.upvotes = 0;
-				$scope.question.downvotes = 0;
-				angular.forEach(res, function (el) {
-					if (el.type === 1) {
-						$scope.question.upvotes++;
-					}
-					else if (el.type === -1) {
-						$scope.question.downvotes++;
-					}
-				});
-			}
-			else if (res[0].objtype === 'answer') {
+			Restangular.one('answers', object.obj).get().then(function (res) {
 				angular.forEach($scope.answers, function (answer) {
-					if (answer._id === object.obj) {
-						answer.upvotes = 0;
-						answer.downvotes = 0;
-						angular.forEach(res, function (el) {
-							if (el.type === 1) {
-								answer.upvotes++;
-							}
-							else if (el.type === -1) {
-								answer.downvotes++;
-							}
-						});
+					if (object.obj === answer._id) {
+						answer.upvotes = res.upvotes;
+						answer.downvotes = res.downvotes;
 					}
 				});
-			}
-		}, function (err) {
-			Flash.set(err.data, 'error');
-		});
+			}, function (err) {
+				Flash.set(err.data, 'error');
+			});
+		}
 	});
 
 	$scope.vote = function (object, type) {

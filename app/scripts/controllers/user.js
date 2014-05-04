@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('UserCtrl', function ($scope, $location, $timeout, data, Restangular, Flash) {
+.controller('UserCtrl', function ($scope, $location, $timeout, data, Restangular, Flash, Socket) {
 
 	$scope.user = data.user;
 
@@ -20,6 +20,42 @@ angular.module('42StackApp')
 	$scope.viewQuestion = function (question) {
 		$location.url('/questions/' + question._id);
 	};
+
+	Socket.on('send:newVote', function(object) {
+		if (object.sender === $scope.user._id || object.receiver === $scope.user._id) {
+			Restangular.one('users', $scope.user._id).get().then(function(res) {
+				$scope.user.reputation = res.reputation;
+			}, function (err) {
+				Flash.set(err.message, 'error');
+			});
+			if (object.receiver === $scope.user._id) {
+				if (object.objType === 'question') {
+					Restangular.one('questions', object.obj).get().then(function(res) {
+						angular.forEach($scope.user.questions, function (question) {
+							if (question._id === res._id) {
+								question.downvotes = res.downvotes;
+								question.upvotes = res.upvotes;
+							}
+						});
+					}, function(err) {
+						Flash.set(err.message, 'error');
+					});
+				}
+				else {
+					Restangular.one('answers', object.obj).get().then(function(res) {
+						angular.forEach($scope.user.answers, function (answer) {
+							if (object.obj === answer._id) {
+								answer.downvotes = res.downvotes;
+								answer.upvotes = res.upvotes;
+							}
+						});
+					}, function (err) {
+						Flash.set(err.message, 'error');
+					});
+				}
+			}
+		}
+	});
 
 	$scope.chart = {
 		options : {

@@ -36,18 +36,19 @@ angular.module('42StackApp').controller('UsersCtrl', function ($location, $scope
 	});
 
 	Socket.on('send:newVote', function(object) {
-		Restangular.all('votes').getList({ toUser : object.receiver }).then(function (res) {
+		Restangular.one('users', object.sender).get().then(function(res) {
 			angular.forEach($scope.users, function (user) {
-				if (user._id === object.receiver) {
-					user.reputation = 0;
-					angular.forEach(res, function(vote) {
-						if (vote.type === -1) {
-							user.reputation -= 2;
-						}
-						else if (vote.type === 1) {
-							user.reputation += (vote.objtype === 'answer') ? 10 : 5;
-						}
-					});
+				if (user._id === res._id) {
+					user.reputation = res.reputation;
+				}
+			});
+		}, function (err) {
+			Flash.set(err.message, 'error');
+		});
+		Restangular.one('users', object.receiver).get().then(function(res) {
+			angular.forEach($scope.users, function (user) {
+				if (user._id === res._id) {
+					user.reputation = res.reputation;
 				}
 			});
 		}, function (err) {
