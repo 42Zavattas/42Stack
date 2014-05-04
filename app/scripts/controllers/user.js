@@ -21,6 +21,20 @@ angular.module('42StackApp')
 		$location.url('/questions/' + question._id);
 	};
 
+	var reloadChart = function() {
+		Restangular.all('votes').getList({ user : $scope.user._id, range: 0 }).then(function(res) {
+			$scope.user.serie[14] = 0;
+			angular.forEach(res, function(vote) {
+				$scope.user.serie[14] -= (vote.type === -1) ? 2 : 0;
+				if (vote.type === 1) {
+					$scope.user.serie[14] += (vote.objtype === 'answer') ? 10 : 5;
+				}
+			});
+		}, function (err) {
+			Flash.set(err.message, 'error');
+		});
+	};
+
 	Socket.on('send:newVote', function(object) {
 		if (object.sender === $scope.user._id || object.receiver === $scope.user._id) {
 			Restangular.one('users', $scope.user._id).get().then(function(res) {
@@ -70,7 +84,6 @@ angular.module('42StackApp')
 		});
 	});
 
-
 	$scope.chart = {
 		options : {
 			chart : {
@@ -111,7 +124,7 @@ angular.module('42StackApp')
 			}
 		},
 		series : [{
-			pointStart: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 14, 1, 0, 0, 0).getTime(),
+			pointStart: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 14, 2, 0, 0, 0).getTime(),
 			pointInterval: 24 * 3600 * 1000,
 			name : 'Reputation changes',
 			data : $scope.user.serie

@@ -72,7 +72,7 @@ angular.module('42StackApp')
 				var deferred = $q.defer();
 				$q.all([
 					Restangular.one('users', $route.current.params.id).get(),
-					Restangular.all('votes').getList({ toUser : $route.current.params.id })
+					Restangular.all('votes').getList({ user : $route.current.params.id, range : 14 })
 				]).then(function (res) {
 
 					var data = {};
@@ -81,11 +81,11 @@ angular.module('42StackApp')
 							deferred.reject('user ' + $route.current.params.id + ' not found.');
 						return user;
 					})(res[0]);
+					console.log(res[1]);
 
 					data.user.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 					angular.forEach(res[1], function (vote) {
 						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
-						//console.log(diff);
 						if (vote.type === -1) {
 							data.user.serie[14 - diff] -= (diff < 15) ? 2 : 0;
 						}
@@ -172,7 +172,7 @@ angular.module('42StackApp')
 		controller: 'ChatCtrl',
 		resolve: {
 			user: function (Restangular) {
-				return Restangular.all('users').getList();
+				return Restangular.all('users').customGET('me');
 			}
 		}
 	})

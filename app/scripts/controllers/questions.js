@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location,
-Socket, Flash, Restangular) {
+.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket, Flash, Restangular) {
+
+	$scope.questions = data.questions;
+	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
+	$scope.nbByPage = 50;
+	$scope.pageSize = $scope.nbByPage;
+	$scope.searchQuestions = null;
 
 	function rewriteUrl () {
-		$location.url('/questions' +
-		($scope.filterTags.length || $scope.filterCategs ? '?' : '') +
+		$location.url('/questions' + ($scope.filterTags.length ? '?' : '') +
 		[($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
 	}
 
@@ -19,6 +23,28 @@ Socket, Flash, Restangular) {
 		});
 		return out;
 	}
+
+	$scope.removeTag = function (index) {
+		$scope.filterTags.splice(index, 1);
+		rewriteUrl();
+	};
+
+	$scope.viewQuestion = function (question) {
+		$location.url('/questions/' + question._id);
+	};
+
+	$scope.viewTag = function ($event, tag) {
+		$event.stopPropagation();
+		if ($scope.filterTags.indexOf(tag) === -1) {
+			$scope.filterTags.push(tag);
+			rewriteUrl();
+		}
+	};
+
+	$scope.viewUser = function ($event, user) {
+		$event.stopPropagation();
+		$location.url('/users/' + user._id);
+	};
 
 	Socket.on('send:newQuestion', function (question) {
 		question.author = data.users[question.author];
@@ -49,35 +75,5 @@ Socket, Flash, Restangular) {
 			}
 		});
 	});
-
-	$scope.questions = data.questions;
-	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
-
-	$scope.removeTag = function (index) {
-		$scope.filterTags.splice(index, 1);
-		rewriteUrl();
-	};
-
-	$scope.viewQuestion = function (question) {
-		$location.url('/questions/' + question._id);
-	};
-
-	$scope.viewTag = function ($event, tag) {
-		$event.stopPropagation();
-		if ($scope.filterTags.indexOf(tag) === -1) {
-			$scope.filterTags.push(tag);
-			rewriteUrl();
-		}
-	};
-
-	$scope.viewUser = function ($event, user) {
-		$event.stopPropagation();
-		$location.url('/users/' + user._id);
-	};
-
-	$scope.nbByPage = 50;
-	$scope.pageSize = $scope.nbByPage;
-
-	$scope.searchQuestions = null;
 
 });

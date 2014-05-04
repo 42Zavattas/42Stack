@@ -60,7 +60,7 @@ Flash, $cookies, Socket, Restangular, Cache) {
 
 	$scope.$on('$routeChangeStart', function () {
 		$scope.$broadcast('loading');
-		Socket.removeAllListeners();
+		//Socket.removeAllListeners();
 	});
 
 	$scope.$on('$routeChangeSuccess', function () {
