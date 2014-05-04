@@ -29,23 +29,31 @@ angular.module('42StackApp')
 
 			Restangular.all('votes').getList({ fromUser : $scope.user._id, range: 14 }).then(function(res1) {
 
-				angular.forEach(res, function(vote) {
-					var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
-					newSerie[14 - diff] -= (vote.type === -1) ? 2 : 0;
-					if (vote.type === 1) {
-						newSerie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
-					}
-				});
-				angular.forEach(res1, function(vote) {
-					var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
-					newSerie[14 - diff] -= (vote.type === -1) ? 1 : 0;
-				});
+				Restangular.all('answers').getList({ author: $scope.user._id, range: 14 }).then(function(res2) {
 
-				angular.forEach($scope.user.serie, function (val, key) {
-					var repDiff;
-					repDiff = val - newSerie[key];
-					console.log(newSerie);
-					$scope.user.serie[key] -= repDiff;
+					angular.forEach(res2, function(answer) {
+						var diff = Math.round(Math.abs((new Date().getTime() - new Date(answer.dateaccept).getTime())/(86400000)));
+						newSerie[14 - diff] += 15;
+					});
+
+					angular.forEach(res, function(vote) {
+						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+						newSerie[14 - diff] -= (vote.type === -1) ? 2 : 0;
+						if (vote.type === 1) {
+							newSerie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
+						}
+					});
+
+					angular.forEach(res1, function(vote) {
+						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+						newSerie[14 - diff] -= (vote.type === -1) ? 1 : 0;
+					});
+
+					angular.forEach($scope.user.serie, function (val, key) {
+						var repDiff;
+						repDiff = val - newSerie[key];
+						$scope.user.serie[key] -= repDiff;
+					});
 				});
 
 			}, function (err) {
@@ -107,6 +115,10 @@ angular.module('42StackApp')
 				question.resolved = object.answer;
 			}
 		});
+		if (object.user === $scope.user._id) {
+			$scope.user.reputation += 15;
+		}
+		reloadChart();
 	});
 
 	$scope.chart = {
