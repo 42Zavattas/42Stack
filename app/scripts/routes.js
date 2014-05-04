@@ -71,8 +71,7 @@ angular.module('42StackApp')
 			data: function ($route, $q, Restangular) {
 				var deferred = $q.defer();
 				$q.all([
-					Restangular.one('users', $route.current.params.id).get(),
-					Restangular.all('votes').getList({ user : $route.current.params.id, range : 14 })
+					Restangular.one('users', $route.current.params.id).get()
 				]).then(function (res) {
 
 					var data = {};
@@ -81,20 +80,7 @@ angular.module('42StackApp')
 							deferred.reject('user ' + $route.current.params.id + ' not found.');
 						return user;
 					})(res[0]);
-					console.log(res[1]);
 
-					data.user.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-					angular.forEach(res[1], function (vote) {
-						var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
-						if (vote.type === -1) {
-							data.user.serie[14 - diff] -= (diff < 15) ? 2 : 0;
-						}
-						else if (vote.type === 1) {
-							if (diff < 15) {
-								data.user.serie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
-							}
-						}
-					});
 					deferred.resolve(data);
 				}, function (err) {
 					deferred.reject(err);

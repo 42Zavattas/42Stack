@@ -4,6 +4,7 @@ angular.module('42StackApp')
 .controller('UserCtrl', function ($scope, $location, $timeout, data, Restangular, Flash, Socket) {
 
 	$scope.user = data.user;
+	$scope.user.serie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	Restangular.all('questions').getList({ ofUser : $scope.user._id }).then(function (res) {
 		$scope.user.questions = res;
@@ -22,18 +23,41 @@ angular.module('42StackApp')
 	};
 
 	var reloadChart = function() {
-		Restangular.all('votes').getList({ user : $scope.user._id, range: 0 }).then(function(res) {
-			$scope.user.serie[14] = 0;
-			angular.forEach(res, function(vote) {
-				$scope.user.serie[14] -= (vote.type === -1) ? 2 : 0;
-				if (vote.type === 1) {
-					$scope.user.serie[14] += (vote.objtype === 'answer') ? 10 : 5;
-				}
+
+		var newSerie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		Restangular.all('votes').getList({ toUser : $scope.user._id, range: 14 }).then(function(res) {
+
+			Restangular.all('votes').getList({ fromUser : $scope.user._id, range: 14 }).then(function(res1) {
+
+				angular.forEach(res, function(vote) {
+					var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+					newSerie[14 - diff] -= (vote.type === -1) ? 2 : 0;
+					if (vote.type === 1) {
+						newSerie[14 - diff] += (vote.objtype === 'answer') ? 10 : 5;
+					}
+				});
+				angular.forEach(res1, function(vote) {
+					var diff = Math.round(Math.abs((new Date().getTime() - new Date(vote.timestamp).getTime())/(86400000)));
+					newSerie[14 - diff] -= (vote.type === -1) ? 1 : 0;
+				});
+
+				angular.forEach($scope.user.serie, function (val, key) {
+					var repDiff;
+					repDiff = val - newSerie[key];
+					console.log(newSerie);
+					$scope.user.serie[key] -= repDiff;
+				});
+
+			}, function (err) {
+				Flash.set(err.message, 'error');
 			});
+
 		}, function (err) {
 			Flash.set(err.message, 'error');
 		});
 	};
+
+	reloadChart();
 
 	Socket.on('send:newVote', function(object) {
 		if (object.sender === $scope.user._id || object.receiver === $scope.user._id) {
@@ -68,6 +92,7 @@ angular.module('42StackApp')
 					});
 				}
 			}
+			reloadChart();
 		}
 	});
 
