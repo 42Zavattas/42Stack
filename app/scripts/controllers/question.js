@@ -42,6 +42,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 					answer.author = data.users[answer.author];
 					$scope.answers.push(answer);
 					resetAnswer();
+					$scope.$broadcast('refreshMarkdown');
 				}
 			}, function (err) {
 				Flash.set(err.data, 'error');
