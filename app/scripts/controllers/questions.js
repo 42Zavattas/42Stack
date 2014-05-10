@@ -46,6 +46,8 @@ angular.module('42StackApp')
 		$location.url('/users/' + user._id);
 	};
 
+	Socket.removeAllListeners();
+
 	Socket.on('send:newQuestion', function (question) {
 		question.author = data.users[question.author];
 		$scope.questions.push(question);
