@@ -5,6 +5,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	function resetAnswer () {
 		$scope.answer = {
 			question : $scope.question._id,
+			qtitle   : $scope.question.title,
 			msg      : null
 		};
 		return $scope.answer;
