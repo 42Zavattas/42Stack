@@ -91,6 +91,13 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	});
 
+	$scope.sortByVotes = function (answer) {
+		if (answer.accepted) {
+			return -10000;
+		}
+		return -(answer.upvotes - answer.downvotes);
+	};
+
 	$scope.vote = function (object, type) {
 		var send = {
 			object : object._id,
