@@ -22,6 +22,10 @@ angular.module('42StackApp')
 		$location.url('/questions/' + question._id);
 	};
 
+	$scope.viewAnswer = function (answer) {
+		$location.url('/questions/' + answer.question + '#' + answer._id);
+	};
+
 	var reloadChart = function() {
 
 		var newSerie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

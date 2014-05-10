@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket) {
+angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket, $anchorScroll, $timeout) {
 
 	function resetAnswer () {
 		$scope.answer = {
@@ -10,6 +10,11 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		};
 		return $scope.answer;
 	}
+
+	$timeout(function() {
+		$location.hash($location.$$hash);
+		$anchorScroll();
+	}, 0);
 
 	$scope.question = data.question;
 	$scope.answers = data.answers;
