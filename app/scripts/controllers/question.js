@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket, $anchorScroll, $timeout) {
+angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $scope, data, $location, Flash, Socket, $anchorScroll, $timeout, Resetsocket) {
 
 	function resetAnswer () {
 		$scope.answer = {
@@ -21,12 +21,6 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	$scope.currentUser = data.currentUser;
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
-
-	Socket.on('send:newAnswer', function (answer) {
-		Flash.set('A new answer has been posted');
-		answer.author = data.users[answer.author];
-		$scope.answers.push(answer);
-	});
 
 	console.log(data);
 
@@ -70,6 +64,34 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 		}
 	};
 
+	$scope.sortByVotes = function (answer) {
+		if (answer.accepted) {
+			return -10000;
+		}
+		return -(answer.upvotes - answer.downvotes);
+	};
+
+	$scope.vote = function (object, type) {
+		var send = {
+			object : object._id,
+			type : type
+		};
+		Restangular.all('votes').post(send).then(function (res) {
+			Flash.set(res.msg, 'info');
+			Socket.emit('newVote', res);
+		}, function (err) {
+			Flash.set(err.data, 'error');
+		});
+	};
+
+	Resetsocket.run();
+
+	Socket.on('send:newAnswer', function (answer) {
+		Flash.set('A new answer has been posted');
+		answer.author = data.users[answer.author];
+		$scope.answers.push(answer);
+	});
+
 	Socket.on('send:acceptedAnswer', function (object) {
 		$scope.question.resolved = object.answer;
 	});
@@ -96,25 +118,5 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			});
 		}
 	});
-
-	$scope.sortByVotes = function (answer) {
-		if (answer.accepted) {
-			return -10000;
-		}
-		return -(answer.upvotes - answer.downvotes);
-	};
-
-	$scope.vote = function (object, type) {
-		var send = {
-			object : object._id,
-			type : type
-		};
-		Restangular.all('votes').post(send).then(function (res) {
-			Flash.set(res.msg, 'info');
-			Socket.emit('newVote', res);
-		}, function (err) {
-			Flash.set(err.data, 'error');
-		});
-	};
 
 });

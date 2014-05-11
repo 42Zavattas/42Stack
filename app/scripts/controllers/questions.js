@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket, Flash, Restangular) {
+.controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket, Flash, Restangular, Resetsocket) {
 
 	$scope.questions = data.questions;
 	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
@@ -46,7 +46,7 @@ angular.module('42StackApp')
 		$location.url('/users/' + user._id);
 	};
 
-	Socket.removeAllListeners();
+	Resetsocket.run();
 
 	Socket.on('send:newQuestion', function (question) {
 		question.author = data.users[question.author];

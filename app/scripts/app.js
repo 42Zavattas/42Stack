@@ -80,10 +80,6 @@ Flash, $cookies, Socket, Restangular, Cache) {
 		$location.path(previous ? previous.$$route.originalPath : '/');
 	});
 
-	Socket.on('send:clearCache', function () {
-		Cache.clean();
-	});
-
 	$scope.logout = function () {
 		delete $cookies.token;
 		$scope.$root.logged = false;
