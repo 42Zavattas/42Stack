@@ -2,7 +2,7 @@
 
 angular.module('42StackApp').filter('startFrom', function() {
 	return function(input, start) {
-		start = +start;
+		start = + start;
 		return input.slice(start);
 	};
 });

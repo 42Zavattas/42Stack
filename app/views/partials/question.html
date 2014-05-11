@@ -16,7 +16,7 @@
 				<div class="extra">
 					<div class="picture">
 						<a ng-href="/users/{{ question.author._id }}">
-							<img ng-src="/images/{{ question.author.misc.image || 'default.jpg' }}" />
+							<img ng-src="data:image/png;base64,{{ question.author.misc.image }}" />
 						</a>
 					</div>
 					<div class="signature">
@@ -35,7 +35,7 @@
 						<span class="upvote">+</span>
 					</span>
 					<span class="content">{{ comment.content }}
-						- <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a>
+						- <a href="/users/{{ comment.author._id }}">{{ comment.author.login }}</a>
 						le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 				<div class="new hidden">
@@ -57,7 +57,7 @@
 				<div class="extra">
 					<div class="picture">
 						<a ng-href="/users/{{ answer.author._id }}">
-							<img ng-src="/images/{{ answer.author.misc.image || default.jpg }}" />
+							<img ng-src="data:image/png;base64,{{ answer.author.misc.image }}" />
 						</a>
 					</div>
 					<div class="signature">
@@ -75,7 +75,7 @@
 						<span class="downvote">-</span>
 						<span class="upvote">+</span>
 					</span>
-					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.name }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+					<span class="content">{{ comment.content }} - <a href="/users/{{ comment.author._id }}">{{ comment.author.login }}</a> le {{ comment.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 				</div>
 				<div class="new hidden">
 					<input type="text" placeholder="Ajouter un commentaire">

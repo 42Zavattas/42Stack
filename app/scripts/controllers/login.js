@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('42StackApp')
-.controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies,
-$timeout, cfpLoadingBar) {
+.controller('LoginCtrl', function ($scope, $http, $location, Flash, $cookies, $timeout, cfpLoadingBar, Socket) {
+
 	$scope.user = { login : null, password : null };
 	$scope.uiLogged = true;
 	$timeout(function () {
@@ -16,6 +16,9 @@ $timeout, cfpLoadingBar) {
 				$cookies.token = data.token;
 				$scope.$root.logged = true;
 				$scope.uiLogged = true;
+				if (data.created) {
+					Socket.emit('newUser', { login: $scope.user.login });
+				}
 				Flash.set('Hello, <strong>'+data.user.login+'</strong>.', 'success');
 				cfpLoadingBar.start();
 				$timeout(function () {

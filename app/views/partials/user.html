@@ -3,10 +3,10 @@
 <div class="user">
 	<section class="infos">
 		<section class="details">
-			<img ng-src="/images/{{ user.misc.image }}" />
+			<img ng-src="data:image/png;base64,{{ user.misc.image }}" />
 			<div>
 				<p>reputation : <span class="rep">{{ user.reputation }}</span></p>
-				<p>joined on : <span class="joined">24/5/2011</span></p>
+				<p>joined on : <span class="joined">{{ user.joined | date:'dd/MM/yy' }}</span></p>
 				<p>hostname : <tracking class="host" login="{{ user.login }}"></tracking></p>
 			</div>
 		</section>

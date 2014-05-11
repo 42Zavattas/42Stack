@@ -25,7 +25,7 @@
 					<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
 				</section>
 				<section class="extra">
-					<a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
+					<a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.login }}</a>
 					<span class="time"> {{ question.timestamp | date:'dd/MM - hh:mm' }}</span>
 				</section>
 			</div>

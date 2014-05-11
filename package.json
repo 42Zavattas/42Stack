@@ -1,7 +1,7 @@
 {
   "name": "42stack",
   "version": "0.0.0",
-  "description": "purposing",
+  "description": "StackOverflow-like platform",
   "repository": "http://www.github.com/42Zavattas/42Stack.git",
   "dependencies": {
     "bcrypt": "^0.7.7",
@@ -9,6 +9,7 @@
     "express": "~3.4.3",
     "express-jwt": "~0.1.0",
     "jsonwebtoken": "~0.1.0",
+    "ldapjs": "^0.7.1",
     "lodash": "~2.4.1",
     "mail": "~0.2.3",
     "mongoose": "~3.8.8",
