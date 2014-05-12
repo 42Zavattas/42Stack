@@ -273,7 +273,7 @@ h2 {
 			> i.accept {
 				color: $green;
 				&:hover, &.force {
-					display: inline;
+					display: inline !important;
 					&:before {
 						content: "\e6fe";
 					}

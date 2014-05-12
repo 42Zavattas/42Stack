@@ -93,6 +93,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	});
 
 	Socket.on('send:acceptedAnswer', function (object) {
+		console.log(object);
 		$scope.question.resolved = object.answer;
 	});
 

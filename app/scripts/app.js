@@ -58,7 +58,11 @@ Flash, $cookies, Socket, Restangular, Cache) {
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
 
-	$scope.$on('$routeChangeStart', function () {
+	$scope.$on('$routeChangeStart', function (event, next, current) {
+		console.log(event);
+		console.log(next);
+		console.log(current);
+		console.log($cookies);
 		$scope.$broadcast('loading');
 	});
 
