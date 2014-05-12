@@ -3,12 +3,6 @@
 angular.module('42StackApp')
 .controller('QuestionsCtrl', function ($scope, data, $routeParams, $location, Socket, Flash, Restangular, Resetsocket) {
 
-	$scope.questions = data.questions;
-	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
-	$scope.nbByPage = 50;
-	$scope.pageSize = $scope.nbByPage;
-	$scope.searchQuestions = null;
-
 	function rewriteUrl () {
 		$location.url('/questions' + ($scope.filterTags.length ? '?' : '') +
 		[($scope.filterTags.length ? 'tags=' + $scope.filterTags.join(',') : '')].join('&'));
@@ -23,6 +17,12 @@ angular.module('42StackApp')
 		});
 		return out;
 	}
+
+	$scope.questions = data.questions;
+	$scope.filterTags = $routeParams.tags ? removeDuplicate($routeParams.tags.split(',')) : [];
+	$scope.nbByPage = 50;
+	$scope.pageSize = $scope.nbByPage;
+	$scope.searchQuestions = null;
 
 	$scope.removeTag = function (index) {
 		$scope.filterTags.splice(index, 1);
@@ -52,7 +52,6 @@ angular.module('42StackApp')
 		question.author = data.users[question.author];
 		$scope.questions.push(question);
 		Flash.set('A <strong><a href="/questions/'+question._id+'">new question</a></strong> has been posted !');
-		console.log("from questions");
 	});
 
 	Socket.on('send:newVote', function (object) {

@@ -76,8 +76,9 @@ angular.module('42StackApp')
 
 					var data = {};
 					data.user = (function (user) {
-						if (!user._id)
+						if (!user._id) {
 							deferred.reject('user ' + $route.current.params.id + ' not found.');
+						}
 						return user;
 					})(res[0]);
 

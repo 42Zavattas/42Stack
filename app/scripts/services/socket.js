@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('42StackApp')
-.factory('Socket', function (socketFactory, $cookies) {
+.factory('Socket', function (socketFactory) {
 	return socketFactory();
 });

@@ -55,7 +55,7 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 			var send = {
 				question: $scope.question._id,
 				answer: answer._id
-			}
+			};
 			Restangular.all('answers').customPOST(send, 'accept').then(function (res) {
 				Socket.emit('acceptAnswer', res);
 			}, function (err) {
