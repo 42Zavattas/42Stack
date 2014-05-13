@@ -22,8 +22,6 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	$scope.question.answers = [];
 	$scope.answer = resetAnswer();
 
-	console.log(data);
-
 	$scope.viewTag = function (tag) {
 		$location.url('/questions?tags=' + tag);
 	};
@@ -87,14 +85,17 @@ angular.module('42StackApp').controller('QuestionCtrl', function (Restangular, $
 	Resetsocket.run();
 
 	Socket.on('send:newAnswer', function (answer) {
-		Flash.set('A new answer has been posted');
-		answer.author = data.users[answer.author];
-		$scope.answers.push(answer);
+		if (answer.question === $scope.question._id) {
+			Flash.set('A new answer has been posted');
+			answer.author = data.users[answer.author];
+			$scope.answers.push(answer);
+		}
 	});
 
 	Socket.on('send:acceptedAnswer', function (object) {
-		console.log(object);
-		$scope.question.resolved = object.answer;
+		if (object.question === $scope.question._id) {
+			$scope.question.resolved = object.answer;
+		}
 	});
 
 	Socket.on('send:newVote', function (object) {
