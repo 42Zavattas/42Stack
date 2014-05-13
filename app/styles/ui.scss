@@ -198,7 +198,7 @@ br.ui-br {
 ul.ui-pad-nav {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: stretch;
 	> li {
 		margin-right: .5em;
 		margin-bottom: .5em;
@@ -214,7 +214,7 @@ ul.ui-pad-nav {
 			border-color:$green;
 			color: $green;
 		}
-		> i {
+		> i, img {
 			font-size: 68px;
 			line-height: 2em;
 		}

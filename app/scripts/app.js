@@ -57,12 +57,18 @@ Flash, $cookies, Socket, Restangular, Cache) {
 
 	$scope.msgs = Flash.msgs;
 	$scope.$root.logged = !!$cookies.token;
+	$scope.$root.user = null;
+
+	Restangular.all('users').customGET('me').then(function (res) {
+		$scope.$root.user = { _id: res._id, login : res.login };
+	}, function (err) {
+		Flash.set(err.message, 'error');
+	});
 
 	$scope.$on('$routeChangeStart', function (event, next, current) {
-		console.log(event);
-		console.log(next);
-		console.log(current);
-		console.log($cookies);
+		if (next.$$route.originalPath === '/profile') {
+			$location.url('/users/'+$scope.$root.user._id);
+		}
 		$scope.$broadcast('loading');
 	});
 
