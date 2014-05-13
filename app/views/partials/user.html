@@ -15,52 +15,58 @@
 	</section>
 	<hr class="ui-hr">
 	<section class="activity">
-	<ul class="ui-questions">
-		<li class="ui-question" ng-repeat="question in user.questions" ng-click=viewQuestion(question)>
-		<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">
-			{{ question.upvotes - question.downvotes }}
-			<i class="icon-checkmark" ng-class="{ hidden: !question.resolved }"></i>
+		<div>
+			<h2>Questions</h2>
+			<ul class="ui-questions">
+				<li class="ui-question" ng-repeat="question in user.questions" ng-click=viewQuestion(question)>
+					<div class="votes" ng-class="{ down: question.upvotes < question.downvotes }">
+						{{ question.upvotes - question.downvotes }}
+						<i class="icon-checkmark" ng-class="{ hidden: !question.resolved }"></i>
+					</div>
+					<div class="description">
+						<div class="flex">
+							<i class="icon-quotes-left"></i>
+							<div class="title">{{ question.title }}</div>
+							<i class="icon-quotes-left inverted"></i>
+						</div>
+						<div class="infos">
+							<section class="attribs">
+								<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
+							</section>
+							<section class="extra">
+								<a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
+								<span class="time"> {{ question.timestamp | date:'dd/MM - hh:mm' }}</span>
+							</section>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</div>
-		<div class="description">
-			<div class="flex">
-				<i class="icon-quotes-left"></i>
-				<div class="title">{{ question.title }}</div>
-				<i class="icon-quotes-left inverted"></i>
-			</div>
-			<div class="infos">
-				<section class="attribs">
-				<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
-				</section>
-				<section class="extra">
-				<a class="author" ng-click="viewUser($event, question.author)" href="">{{ question.author.name }}</a>
-				<span class="time"> {{ question.timestamp | date:'dd/MM - hh:mm' }}</span>
-				</section>
-			</div>
+		<div>
+			<h2>Answers</h2>
+			<ul class="ui-answers">
+				<li class="ui-answer" ng-repeat="answer in user.answers" ng-click="viewAnswer(answer)">
+					<div class="votes" ng-class="{ down: answer.upvotes < answer.downvotes }">
+						{{ answer.upvotes - answer.downvotes }}
+						<i class="icon-checkmark" ng-class="{ hidden: !answer.accepted }"></i>
+					</div>
+					<div class="description">
+						<div class="flex">
+							<i class="icon-quotes-left"></i>
+							<div class="title">{{ answer.qtitle }}</div>
+							<i class="icon-quotes-left inverted"></i>
+						</div>
+						<div class="infos">
+							<section class="attribs">
+								<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
+							</section>
+							<section class="extra">
+								<span class="time"> {{ answer.timestamp | date:'dd/MM - hh:mm' }}</span>
+							</section>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</div>
-		</li>
-	</ul>
-	<ul class="ui-answers">
-		<li class="ui-answer" ng-repeat="answer in user.answers" ng-click="viewAnswer(answer)">
-		<div class="votes" ng-class="{ down: answer.upvotes < answer.downvotes }">
-			{{ answer.upvotes - answer.downvotes }}
-			<i class="icon-checkmark" ng-class="{ hidden: !answer.accepted }"></i>
-		</div>
-		<div class="description">
-			<div class="flex">
-				<i class="icon-quotes-left"></i>
-				<div class="title">{{ answer.qtitle }}</div>
-				<i class="icon-quotes-left inverted"></i>
-			</div>
-			<div class="infos">
-				<section class="attribs">
-				<span class="ui-tag" ng-click="viewTag($event, tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
-				</section>
-				<section class="extra">
-				<span class="time"> {{ answer.timestamp | date:'dd/MM - hh:mm' }}</span>
-				</section>
-			</div>
-		</div>
-		</li>
-	</ul>
 	</section>
 </div>
