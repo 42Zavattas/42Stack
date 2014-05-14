@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('42StackApp').controller('ProfileCtrl', function ($scope, Restangular, $location) {
+angular.module('42StackApp').controller('ProfileCtrl', function ($scope, Restangular, $location, Flash) {
 
 	if ($scope.$root.user) {
 		$location.url('/users/' + $scope.$root.user._id);

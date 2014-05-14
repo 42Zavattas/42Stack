@@ -15,6 +15,9 @@ module.exports = function (grunt) {
 	// Time how long tasks take. Can help when optimizing build times
 	require('time-grunt')(grunt);
 
+	//Notifications
+	require('grunt-notify')(grunt);
+
 	// Define the configuration for all the tasks
 	grunt.initConfig({
 
@@ -23,6 +26,20 @@ module.exports = function (grunt) {
 			// configurable paths
 			app : require('./bower.json').appPath || 'app',
 			dist: 'dist'
+		},
+		notify: {
+			watch: {
+				options: {
+					title: "42Stack Watch",
+					message: "Task reloaded the server"
+				}
+			}
+		},
+		notify_hooks: {
+			options: {
+				title: "42Stack",
+				enabled: true
+			}
 		},
 		express         : {
 			options: {
@@ -51,7 +68,8 @@ module.exports = function (grunt) {
 				files  : ['<%= yeoman.app %>/scripts/{,*/}*.js'],
 				tasks  : ['newer:jshint:all'],
 				options: {
-					livereload: true
+					livereload: true,
+					message: "ok"
 				}
 			},
 			mochaTest : {
@@ -488,7 +506,8 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'express:dev',
 			'open',
-			'watch'
+			'watch',
+			'notify_hooks'
 		]);
 	});
 

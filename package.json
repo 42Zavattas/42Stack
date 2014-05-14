@@ -8,6 +8,7 @@
     "ejs": "~0.8.4",
     "express": "~3.4.3",
     "express-jwt": "~0.1.0",
+    "grunt-notify": "^0.3.0",
     "jsonwebtoken": "~0.1.0",
     "ldapjs": "^0.7.1",
     "lodash": "~2.4.1",

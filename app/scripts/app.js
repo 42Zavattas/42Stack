@@ -65,7 +65,7 @@ Flash, $cookies, Socket, Restangular, Cache) {
 		Flash.set(err.message, 'error');
 	});
 
-	$scope.$on('$routeChangeStart', function (event, next, current) {
+	$scope.$on('$routeChangeStart', function (event, next) {
 		if (next.$$route.originalPath === '/profile') {
 			$location.url('/users/' + $scope.$root.user._id);
 		}
