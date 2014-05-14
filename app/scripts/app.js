@@ -67,7 +67,7 @@ Flash, $cookies, Socket, Restangular, Cache) {
 
 	$scope.$on('$routeChangeStart', function (event, next, current) {
 		if (next.$$route.originalPath === '/profile') {
-			$location.url('/users/'+$scope.$root.user._id);
+			$location.url('/users/' + $scope.$root.user._id);
 		}
 		$scope.$broadcast('loading');
 	});
