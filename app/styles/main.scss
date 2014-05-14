@@ -482,6 +482,8 @@ input {
 .messagebox {
 	padding: 16px;
 	border: 1px solid rgba(white, .1);
+	max-height: 500px;
+	overflow: auto;
 	@include border-radius(5px, 5px);
 	> li {
 		padding: 10px 0;
