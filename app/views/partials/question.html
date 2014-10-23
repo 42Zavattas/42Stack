@@ -8,7 +8,7 @@
 		</div>
 		<div class="content">
 			<h2 class="title">{{ question.title }}</h2>
-			<div class="content text" ng-bind-html="question.content"></div>
+      <ng-markdown-preview ng-model="question.markdown" class="content text"><ng-markdown-preview>
 			<div class="info">
 				<div class="tags">
 					<span class="tag" ng-click="viewTag(tag)" ng-repeat="tag in question.tags">{{ tag }}</span>
@@ -52,7 +52,7 @@
 			<i class="accept icon-checkmark2" ng-class="{ hidden: question.author._id != currentUser._id || (question.resolved && question.resolved !== answer._id), 'icon-checkmark force' : question.resolved == answer._id }" ng-click="acceptAnswer(answer)"></i>
 		</div>
 		<div class="content">
-			<div class="content text" ng-bind-html="answer.msg"></div>
+      <ng-markdown-preview ng-model="answer.markdown" class="content text"><ng-markdown-preview>
 			<div class="info">
 				<div class="extra">
 					<div class="picture">
