@@ -5,7 +5,7 @@
   "repository": "http://www.github.com/42Zavattas/42Stack.git",
   "dependencies": {
     "bcrypt": "^0.7.7",
-    "ejs": "~0.8.4",
+    "ejs": "~2.7.1",
     "express": "~3.4.3",
     "express-jwt": "~0.1.0",
     "grunt-notify": "^0.3.0",
