@@ -13,7 +13,7 @@
     "ldapjs": "^0.7.1",
     "lodash": "~2.4.1",
     "mail": "~0.2.3",
-    "mongoose": "~3.8.8",
+    "mongoose": "~5.7.9",
     "pagedown": "~1.1.0",
     "socket.io": "~0.9.16"
   },
